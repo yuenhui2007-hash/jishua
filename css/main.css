@@ -2461,3 +2461,81 @@ body {
         font-size: 1rem;
     }
 }
+
+/* ==========================================
+   PAYMENT METHODS
+   ========================================== */
+
+.payment-section {
+    padding: 60px 0;
+    background: linear-gradient(180deg, rgba(165,166,143,0.04), transparent);
+}
+.payment-section .section-head {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.payment-method-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.payment-method-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(74,74,66,0.08);
+    border-color: rgba(165,166,143,0.25);
+}
+.payment-method-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(165,166,143,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 16px;
+}
+.payment-method-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+.payment-method-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.payment-badges {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+.payment-badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .payment-methods-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+    }
+}

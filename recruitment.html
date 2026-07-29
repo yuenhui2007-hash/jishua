@@ -3,283 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Recruitment Agency — ResumeAI Pro</title>
+    <title>YH AI Recruitment — Hire Smarter with AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <div class="noise-overlay"></div>
+<body data-theme="light" style="background: #FAF4E3;">
+    <div class="noise-overlay" style="opacity: 0.015;"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="mouse-glow" id="mouseGlow"></div>
 
-    <!-- Sub-nav for verticals -->
     <div class="vertical-nav">
         <div class="container">
             <div class="vertical-nav-links">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html#ai-resume"><i class="fas fa-file-alt"></i> AI Resume</a>
                 <a href="recruitment.html" class="active"><i class="fas fa-building"></i> Recruitment</a>
                 <a href="student-career.html"><i class="fas fa-graduation-cap"></i> Student Career</a>
                 <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
-                <a href="ai-tools.html"><i class="fas fa-robot"></i> AI Tools</a>
             </div>
         </div>
     </div>
 
     <nav class="nav nav-with-vertical" id="navbar">
         <a href="index.html" class="nav-logo">
-            <span class="logo-mark">R</span>
-            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+            <span class="logo-mark" style="background: #A5A68F;">YH</span>
+            <span class="logo-text">YH</span>
         </a>
         <div class="nav-links">
-            <a href="templates.html">Templates</a>
-            <a href="ai-tools.html">AI Tools</a>
-            <a href="app.html">Builder</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#payment">Payment</a>
+            <a href="#post-job">Post a Job</a>
         </div>
         <div id="navAuth">
-            <a href="app.html" class="btn-nav">For Employers</a>
+            <a href="#post-job" class="btn-nav">For Employers</a>
         </div>
         <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
     </nav>
 
     <!-- Hero -->
-    <header class="hero recruitment-hero">
+    <header class="hero" style="padding-top: 120px; padding-bottom: 60px;">
         <div class="hero-aurora"></div>
-        <div class="hero-glow hero-glow-1"></div>
-        <div class="hero-glow hero-glow-2"></div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <div class="hero-label" data-animate="fade-up">
                     <span class="pulse-dot"></span>
-                    AI Recruitment Agency
+                    🤖 AI Recruitment Agency
                 </div>
-                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
-                    Hire Smarter with <em>AI-Powered</em> Recruitment
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100" style="font-size: clamp(2.5rem, 5vw, 4rem);">
+                    Hire Smarter with<br>
+                    <em style="color: #A5A68F;">AI-Powered Recruitment</em>
                 </h1>
-                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                <p class="hero-desc" data-animate="fade-up" data-delay="200" style="max-width: 600px; margin-left: auto; margin-right: auto;">
                     Our AI vets candidates, matches them to your culture, and predicts performance — cutting your time-to-hire by 70%.
                 </p>
-                <div class="hero-actions" data-animate="fade-up" data-delay="300">
-                    <a href="#post-job" class="btn-primary">Post a Job Free</a>
-                    <a href="#how-it-works" class="btn-text">See how it works <i class="fas fa-arrow-right"></i></a>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300" style="justify-content: center;">
+                    <a href="#post-job" class="btn-primary">📋 Post a Job Free</a>
+                    <a href="#features" class="btn-text">Explore Features <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="recruitment-stats" data-animate="fade-up" data-delay="400">
-                    <div class="rec-stat"><span class="rec-stat-num">50K+</span><span class="rec-stat-label">Candidates</span></div>
-                    <div class="rec-stat"><span class="rec-stat-num">2,400+</span><span class="rec-stat-label">Companies</span></div>
-                    <div class="rec-stat"><span class="rec-stat-num">70%</span><span class="rec-stat-label">Faster Hiring</span></div>
-                    <div class="rec-stat"><span class="rec-stat-num">94%</span><span class="rec-stat-label">Retention Rate</span></div>
-                </div>
-            </div>
-            <div class="hero-visual" data-animate="fade-in" data-delay="300">
-                <div class="recruitment-visual">
-                    <div class="rv-card rv-candidate">
-                        <div class="rv-avatar"></div>
-                        <div class="rv-info">
-                            <div class="rv-name">Sarah Chen</div>
-                            <div class="rv-role">Senior Product Manager</div>
-                            <div class="rv-match"><i class="fas fa-check-circle"></i> 96% Match</div>
-                        </div>
-                    </div>
-                    <div class="rv-card rv-candidate">
-                        <div class="rv-avatar rv-avatar-2"></div>
-                        <div class="rv-info">
-                            <div class="rv-name">Marcus Johnson</div>
-                            <div class="rv-role">Full-Stack Engineer</div>
-                            <div class="rv-match"><i class="fas fa-check-circle"></i> 91% Match</div>
-                        </div>
-                    </div>
-                    <div class="rv-card rv-candidate">
-                        <div class="rv-avatar rv-avatar-3"></div>
-                        <div class="rv-info">
-                            <div class="rv-name">Priya Patel</div>
-                            <div class="rv-role">UX Research Lead</div>
-                            <div class="rv-match"><i class="fas fa-check-circle"></i> 89% Match</div>
-                        </div>
-                    </div>
-                    <div class="rv-connector"></div>
-                    <div class="rv-company">
-                        <i class="fas fa-building"></i>
-                        <span>Your Company</span>
-                    </div>
+                <div class="recruitment-stats" data-animate="fade-up" data-delay="400" style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;">
+                    <div class="rec-stat" style="text-align: center;"><span class="rec-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">50K+</span><span class="rec-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">👥 Candidates</span></div>
+                    <div class="rec-stat" style="text-align: center;"><span class="rec-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">2,400+</span><span class="rec-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">🏢 Companies</span></div>
+                    <div class="rec-stat" style="text-align: center;"><span class="rec-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">70%</span><span class="rec-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">⚡ Faster Hiring</span></div>
+                    <div class="rec-stat" style="text-align: center;"><span class="rec-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">94%</span><span class="rec-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">🎯 Retention Rate</span></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">The Process</span>
-                <h2>AI Recruitment in 4 Steps</h2>
-            </div>
-            <div class="steps">
-                <div class="step" data-animate="fade-up" data-delay="100">
-                    <div class="step-num">01</div>
-                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
-                    <h3>Post Your Job</h3>
-                    <p>Describe the role. Our AI analyzes requirements, culture fit markers, and success predictors.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="200"></div>
-                <div class="step" data-animate="fade-up" data-delay="200">
-                    <div class="step-num">02</div>
-                    <div class="step-icon"><i class="fas fa-brain"></i></div>
-                    <h3>AI Matches Candidates</h3>
-                    <p>Our algorithm scores candidates on skills, experience, culture fit, and growth potential.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="300"></div>
-                <div class="step" data-animate="fade-up" data-delay="300">
-                    <div class="step-num">03</div>
-                    <div class="step-icon"><i class="fas fa-user-check"></i></div>
-                    <h3>Screen & Interview</h3>
-                    <p>AI-generated interview questions tailored to each candidate. Video screening with sentiment analysis.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="400"></div>
-                <div class="step" data-animate="fade-up" data-delay="400">
-                    <div class="step-num">04</div>
-                    <div class="step-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Hire & Onboard</h3>
-                    <p>AI-generated offer letters, onboarding plans, and 90-day success roadmaps.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Features -->
-    <section class="features" id="features">
+    <section class="features" id="features" style="padding: 80px 0;">
         <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">Capabilities</span>
-                <h2>Why Recruiters Choose Us</h2>
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">🚀 Features</span>
+                <h2>Everything You Need to Hire Better</h2>
+                <p class="section-sub">Powerful AI tools designed for modern recruiters.</p>
             </div>
             <div class="features-grid">
-                <div class="feature" data-animate="fade-up" data-delay="100">
-                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
-                    <h3>AI Candidate Matching</h3>
-                    <p>Our AI scores candidates on 50+ dimensions — not just keywords, but culture fit, growth trajectory, and team compatibility.</p>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-brain"></i></div>
+                    <h3>🎯 AI Candidate Matching</h3>
+                    <p>Our AI scores candidates on 50+ dimensions including skills, experience, and culture fit.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="150">
-                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Automated Screening</h3>
-                    <p>AI phone screens and video interviews with real-time sentiment analysis, competency scoring, and bias detection.</p>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-robot"></i></div>
+                    <h3>🤖 Automated Screening</h3>
+                    <p>AI phone and video screens with sentiment analysis and skill verification.</p>
                 </div>
                 <div class="feature" data-animate="fade-up" data-delay="200">
-                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Predictive Analytics</h3>
-                    <p>Predict candidate success, time-to-productivity, and retention likelihood before you make an offer.</p>
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-chart-line"></i></div>
+                    <h3>📊 Predictive Analytics</h3>
+                    <p>Predict candidate success, time-to-productivity, and long-term retention.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="250">
-                    <div class="feature-icon"><i class="fas fa-users"></i></div>
-                    <h3>Talent Pool Building</h3>
-                    <p>Automatically build and nurture passive candidate pipelines. AI reaches out to engage top talent before you need them.</p>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-users"></i></div>
+                    <h3>👥 Talent Pool Building</h3>
+                    <p>Automatically build and nurture a pipeline of passive candidates.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="300">
-                    <div class="feature-icon"><i class="fas fa-balance-scale"></i></div>
-                    <h3>Bias Reduction</h3>
-                    <p>Blind screening options, structured interview generation, and diversity analytics to build fairer hiring practices.</p>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-balance-scale"></i></div>
+                    <h3>⚖️ Bias Reduction</h3>
+                    <p>Blind screening, structured interviews, and diversity analytics.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="350">
-                    <div class="feature-icon"><i class="fas fa-file-signature"></i></div>
-                    <h3>Offer Optimization</h3>
-                    <p>AI suggests competitive compensation packages based on market data, candidate profile, and your budget.</p>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>💰 Offer Optimization</h3>
+                    <p>Market-based compensation suggestions to win top candidates.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Tiers -->
-    <section class="recruitment-pricing" id="pricing">
+    <!-- Pricing -->
+    <section class="recruitment-pricing" id="pricing" style="padding: 80px 0; background: linear-gradient(180deg, rgba(165,166,143,0.04), transparent);">
         <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">Pricing</span>
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">💎 Pricing</span>
                 <h2>Recruitment Plans</h2>
                 <p class="section-sub">Pay per hire or subscribe for unlimited access</p>
             </div>
             <div class="plans-grid">
-                <div class="plan-card" data-animate="fade-up" data-delay="100">
-                    <div class="plan-header">
-                        <h3>Pay Per Hire</h3>
-                        <p>For occasional hiring needs</p>
+                <div class="plan-card" data-animate="fade-up" data-delay="100" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px;">
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>💼 Pay Per Hire</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For occasional hiring needs</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">$499</span>
-                        <span class="period">per successful hire</span>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$499</span>
+                        <span class="period" style="color: var(--text-muted);">per successful hire</span>
                     </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> AI candidate matching</li>
-                        <li><i class="fas fa-check"></i> Up to 5 job postings</li>
-                        <li><i class="fas fa-check"></i> Basic screening</li>
-                        <li><i class="fas fa-check"></i> 30-day replacement guarantee</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Talent pool access</li>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> AI candidate matching</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Up to 5 job postings</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Basic screening</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> 30-day replacement guarantee</li>
+                        <li style="padding: 8px 0; color: var(--text-muted);"><i class="fas fa-times" style="margin-right: 8px;"></i> Talent pool access</li>
                     </ul>
-                    <a href="#post-job" class="btn-outline-full">Get Started</a>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="#post-job" class="btn-outline-full" style="display: block; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-weight: 500; transition: all 0.3s ease;">Get Started</a>
+                    </div>
                 </div>
-                <div class="plan-card popular" data-animate="fade-up" data-delay="200">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="plan-header">
-                        <h3>Growth</h3>
-                        <p>For growing teams</p>
+                <div class="plan-card popular" data-animate="fade-up" data-delay="200" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; position: relative; overflow: hidden;">
+                    <div class="popular-badge" style="position: absolute; top: 16px; right: -40px; background: #A5A68F; color: #fff; padding: 6px 40px; font-size: 0.75rem; font-weight: 600; transform: rotate(45deg);">🔥 Most Popular</div>
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🚀 Growth</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For growing teams</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">$999</span>
-                        <span class="period">/month</span>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$999</span>
+                        <span class="period" style="color: var(--text-muted);">/month</span>
                     </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Unlimited job postings</li>
-                        <li><i class="fas fa-check"></i> Advanced AI matching</li>
-                        <li><i class="fas fa-check"></i> Video screening</li>
-                        <li><i class="fas fa-check"></i> Talent pool access</li>
-                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Unlimited job postings</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Advanced AI matching</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Video screening</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Talent pool access</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Dedicated account manager</li>
                     </ul>
-                    <a href="#post-job" class="btn-primary btn-full">Start Free Trial</a>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="#post-job" class="btn-primary btn-full" style="display: block; text-align: center; padding: 14px; border-radius: 12px; text-decoration: none; color: #fff; font-weight: 500; background: linear-gradient(135deg, #A5A68F, #8a8b75); transition: all 0.3s ease;">Start Free Trial</a>
+                    </div>
                 </div>
-                <div class="plan-card" data-animate="fade-up" data-delay="300">
-                    <div class="plan-header">
-                        <h3>Enterprise</h3>
-                        <p>For large organizations</p>
+                <div class="plan-card" data-animate="fade-up" data-delay="300" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px;">
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🏢 Enterprise</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For large organizations</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">Custom</span>
-                        <span class="period">tailored pricing</span>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">Custom</span>
+                        <span class="period" style="color: var(--text-muted);">tailored pricing</span>
                     </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Everything in Growth</li>
-                        <li><i class="fas fa-check"></i> White-label options</li>
-                        <li><i class="fas fa-check"></i> API access</li>
-                        <li><i class="fas fa-check"></i> Custom integrations</li>
-                        <li><i class="fas fa-check"></i> SLA guarantee</li>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Everything in Growth</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> White-label options</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> API access</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Custom integrations</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> SLA guarantee</li>
                     </ul>
-                    <a href="#contact" class="btn-outline-full">Contact Sales</a>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="#post-job" class="btn-outline-full" style="display: block; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-weight: 500; transition: all 0.3s ease;">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-section" id="payment">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label" style="background: rgba(217,178,169,0.15); color: #a08078;">💳 Payment Options</span>
+                <h2>Flexible Payment Methods</h2>
+                <p class="section-sub">Choose the payment method that works best for you</p>
+            </div>
+            <div class="payment-methods-grid" data-animate="fade-up" data-delay="100">
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">📱</div>
+                    <h4>Touch 'n Go eWallet</h4>
+                    <p>Fast & secure mobile payments via Malaysia's leading e-wallet</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Instant</span>
+                        <span class="payment-badge">No Fees</span>
+                    </div>
+                </div>
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">🏦</div>
+                    <h4>Online Banking / FPX</h4>
+                    <p>Direct bank transfer from all major Malaysian banks</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Secure</span>
+                        <span class="payment-badge">Real-time</span>
+                    </div>
+                </div>
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">💳</div>
+                    <h4>Debit / Credit Card</h4>
+                    <p>Visa, Mastercard, Amex accepted worldwide with 3D Secure</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Visa</span>
+                        <span class="payment-badge">Mastercard</span>
+                        <span class="payment-badge">Amex</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Post Job CTA -->
-    <section class="cta" id="post-job">
+    <section class="cta" id="post-job" style="padding: 80px 0;">
         <div class="container">
-            <div class="cta-box" data-animate="fade-up">
-                <h2>Ready to Find Your Next Hire?</h2>
+            <div class="cta-box" data-animate="fade-up" style="background: linear-gradient(135deg, rgba(165,166,143,0.08), rgba(217,178,169,0.05)); border: 1px solid rgba(165,166,143,0.2);">
+                <h2>🚀 Ready to Find Your Next Hire?</h2>
                 <p>Post your first job for free. Our AI will start matching candidates within minutes.</p>
-                <form class="post-job-form" onsubmit="event.preventDefault(); alert('Thank you! Our team will contact you shortly.');">
-                    <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 16px; max-width: 600px; margin: 0 auto 20px;">
+                <form class="post-job-form" onsubmit="event.preventDefault(); alert('Thank you! Our team will contact you shortly. 🎉');">
+                    <div class="form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 600px; margin: 0 auto 20px;">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" placeholder="Your Name" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; color: var(--text); font-size: 0.9rem;">
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Work Email" required>
+                            <input type="email" placeholder="Work Email" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; color: var(--text); font-size: 0.9rem;">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Company Name" required>
+                            <input type="text" placeholder="Company Name" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; color: var(--text); font-size: 0.9rem;">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Job Title You're Hiring For" required>
+                            <input type="text" placeholder="Job Title You're Hiring For" required style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; color: var(--text); font-size: 0.9rem;">
                         </div>
                     </div>
-                    <button type="submit" class="btn-primary btn-large">Post Job — Start Free</button>
+                    <button type="submit" class="btn-primary btn-large">📋 Post Job — Start Free</button>
                     <span class="cta-note">No credit card required • Free for first 3 candidates</span>
                 </form>
             </div>
@@ -291,20 +264,19 @@
         <div class="container">
             <div class="footer-top">
                 <a href="index.html" class="footer-logo">
-                    <span class="logo-mark">R</span>
-                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                    <span class="logo-mark" style="background: #A5A68F;">YH</span>
+                    <span class="logo-text">YH</span>
                 </a>
                 <div class="footer-links">
+                    <a href="index.html#ai-resume">AI Resume</a>
                     <a href="recruitment.html">Recruitment</a>
                     <a href="student-career.html">Student Career</a>
                     <a href="hr-services.html">HR Services</a>
-                    
-                    <a href="templates.html">Templates</a>
                     <a href="index.html">Home</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>ResumeAI Pro. All rights reserved.</p>
+                <p>© 2026 YH. All rights reserved.</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -316,12 +288,11 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
-        <a href="recruitment.html">Recruitment</a>
-        <a href="student-career.html">Student Career</a>
-        <a href="hr-services.html">HR Services</a>
-        
-        <a href="templates.html">Templates</a>
-        <a href="index.html">Home</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="index.html#ai-resume">📝 AI Resume</a>
+        <a href="recruitment.html">🏢 Recruitment</a>
+        <a href="student-career.html">🎓 Student Career</a>
+        <a href="hr-services.html">👥 HR Services</a>
     </div>
 
     <div id="authModalContainer"></div>

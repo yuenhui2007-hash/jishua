@@ -3,40 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Student Career — ResumeAI Pro</title>
+    <title>YH Student Career — From Campus to Dream Job</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <div class="noise-overlay"></div>
+<body data-theme="light" style="background: #FAF4E3;">
+    <div class="noise-overlay" style="opacity: 0.015;"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="mouse-glow" id="mouseGlow"></div>
 
     <div class="vertical-nav">
         <div class="container">
             <div class="vertical-nav-links">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html#ai-resume"><i class="fas fa-file-alt"></i> AI Resume</a>
                 <a href="recruitment.html"><i class="fas fa-building"></i> Recruitment</a>
                 <a href="student-career.html" class="active"><i class="fas fa-graduation-cap"></i> Student Career</a>
                 <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
-                <a href="ai-tools.html"><i class="fas fa-robot"></i> AI Tools</a>
             </div>
         </div>
     </div>
 
     <nav class="nav nav-with-vertical" id="navbar">
         <a href="index.html" class="nav-logo">
-            <span class="logo-mark">R</span>
-            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+            <span class="logo-mark" style="background: #A5A68F;">YH</span>
+            <span class="logo-text">YH</span>
         </a>
         <div class="nav-links">
-            <a href="templates.html">Templates</a>
-            <a href="ai-tools.html">AI Tools</a>
-            <a href="app.html">Builder</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#payment">Payment</a>
+            <a href="app.html">Build Resume</a>
         </div>
         <div id="navAuth">
             <a href="app.html" class="btn-nav">Get Started Free</a>
@@ -45,235 +44,230 @@
     </nav>
 
     <!-- Hero -->
-    <header class="hero student-hero">
+    <header class="hero" style="padding-top: 120px; padding-bottom: 60px;">
         <div class="hero-aurora"></div>
-        <div class="hero-glow hero-glow-1"></div>
-        <div class="hero-glow hero-glow-2"></div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <div class="hero-label" data-animate="fade-up">
                     <span class="pulse-dot"></span>
-                    AI Student Career Hub
+                    🎓 AI Student Career Hub
                 </div>
-                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
-                    From <em>Campus</em> to <em>Career</em> with AI
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100" style="font-size: clamp(2.5rem, 5vw, 4rem);">
+                    From <em style="color: #A5A68F;">Campus</em> to<br>
+                    <em style="color: #A5A68F;">Dream Job</em> with AI
                 </h1>
-                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                <p class="hero-desc" data-animate="fade-up" data-delay="200" style="max-width: 600px; margin-left: auto; margin-right: auto;">
                     Built for students and fresh graduates. AI-powered resume building, internship matching, interview prep, and career roadmaps — all in one place.
                 </p>
-                <div class="hero-actions" data-animate="fade-up" data-delay="300">
-                    <a href="app.html" class="btn-primary">Build Your First Resume</a>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300" style="justify-content: center;">
+                    <a href="app.html" class="btn-primary">📝 Build Your First Resume</a>
                     <a href="#features" class="btn-text">Explore Features <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="student-stats" data-animate="fade-up" data-delay="400">
-                    <div class="stu-stat"><span class="stu-stat-num">25K+</span><span class="stu-stat-label">Students Helped</span></div>
-                    <div class="stu-stat"><span class="stu-stat-num">4,200+</span><span class="stu-stat-label">Internships Matched</span></div>
-                    <div class="stu-stat"><span class="stu-stat-num">85%</span><span class="stu-stat-label">Interview Success</span></div>
-                </div>
-            </div>
-            <div class="hero-visual" data-animate="fade-in" data-delay="300">
-                <div class="student-visual">
-                    <div class="sv-path">
-                        <div class="sv-node sv-node-start"><i class="fas fa-graduation-cap"></i><span>Student</span></div>
-                        <div class="sv-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="sv-node"><i class="fas fa-file-alt"></i><span>AI Resume</span></div>
-                        <div class="sv-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="sv-node"><i class="fas fa-briefcase"></i><span>Internship</span></div>
-                        <div class="sv-arrow"><i class="fas fa-arrow-right"></i></div>
-                        <div class="sv-node sv-node-end"><i class="fas fa-trophy"></i><span>Dream Job</span></div>
-                    </div>
+                <div class="student-stats" data-animate="fade-up" data-delay="400" style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;">
+                    <div class="stu-stat" style="text-align: center;"><span class="stu-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">25K+</span><span class="stu-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">🎓 Students Helped</span></div>
+                    <div class="stu-stat" style="text-align: center;"><span class="stu-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">4,200+</span><span class="stu-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">💼 Internships Matched</span></div>
+                    <div class="stu-stat" style="text-align: center;"><span class="stu-stat-num" style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">85%</span><span class="stu-stat-label" style="font-size: 0.9rem; color: var(--text-secondary);">🎯 Interview Success</span></div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Features -->
-    <section class="features" id="features">
+    <section class="features" id="features" style="padding: 80px 0;">
         <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">Student Tools</span>
-                <h2>Everything You Need to Launch Your Career</h2>
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">🚀 Features</span>
+                <h2>Everything Students Need to Launch Their Career</h2>
+                <p class="section-sub">Powerful AI tools built specifically for students and fresh grads.</p>
             </div>
             <div class="features-grid">
-                <div class="feature" data-animate="fade-up" data-delay="100">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05)); color: #22c55e; border-color: rgba(34,197,94,0.2);"><i class="fas fa-file-alt"></i></div>
-                    <h3>First Resume Builder</h3>
-                    <p>No experience? No problem. Our AI helps you turn coursework, projects, and part-time jobs into a compelling professional resume.</p>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-file-alt"></i></div>
+                    <h3>📝 First Resume Builder</h3>
+                    <p>Turn coursework, projects, and volunteer work into a professional resume that impresses employers.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="150">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); color: #60a5fa; border-color: rgba(59,130,246,0.2);"><i class="fas fa-briefcase"></i></div>
-                    <h3>Internship Matcher</h3>
-                    <p>AI matches your skills and interests with thousands of internships. Get personalized recommendations based on your major and career goals.</p>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-bullseye"></i></div>
+                    <h3>🎯 Internship Matcher</h3>
+                    <p>AI matches your skills and major with thousands of internships from top companies.</p>
                 </div>
                 <div class="feature" data-animate="fade-up" data-delay="200">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05)); color: #a78bfa; border-color: rgba(139,92,246,0.2);"><i class="fas fa-comments"></i></div>
-                    <h3>Mock Interview AI</h3>
-                    <p>Practice with our AI interviewer. Get real-time feedback on your answers, body language tips, and suggested improvements.</p>
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-video"></i></div>
+                    <h3>🎤 Mock Interview AI</h3>
+                    <p>Practice with an AI interviewer. Get real-time feedback on your answers, tone, and body language.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="250">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05)); color: #f59e0b; border-color: rgba(245,158,11,0.2);"><i class="fas fa-road"></i></div>
-                    <h3>Career Roadmap</h3>
-                    <p>AI creates a personalized career path from your current year to your dream job. Know exactly what skills to build and when.</p>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>🗺️ Career Roadmap</h3>
+                    <p>Get a personalized path from your current year to your dream job with milestone checkpoints.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="300">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(236,72,153,0.05)); color: #ec4899; border-color: rgba(236,72,153,0.2);"><i class="fas fa-network-wired"></i></div>
-                    <h3>LinkedIn & Portfolio</h3>
-                    <p>Generate an optimized LinkedIn profile and portfolio website from your resume. Stand out to recruiters from day one.</p>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fab fa-linkedin"></i></div>
+                    <h3>💼 LinkedIn & Portfolio</h3>
+                    <p>One-click optimized LinkedIn profile and portfolio website generator.</p>
                 </div>
-                <div class="feature" data-animate="fade-up" data-delay="350">
-                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(14,165,233,0.05)); color: #38bdf8; border-color: rgba(14,165,233,0.2);"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3>Skill Courses</h3>
-                    <p>AI identifies skill gaps for your target role and recommends free courses, certifications, and projects to close them.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" style="background: var(--bg-elevated);">
-        <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">Your Journey</span>
-                <h2>4 Steps to Your Dream Job</h2>
-            </div>
-            <div class="steps">
-                <div class="step" data-animate="fade-up" data-delay="100">
-                    <div class="step-num">01</div>
-                    <div class="step-icon"><i class="fas fa-user-graduate"></i></div>
-                    <h3>Create Your Profile</h3>
-                    <p>Tell us your major, interests, and dream companies. Our AI builds your student profile.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="200"></div>
-                <div class="step" data-animate="fade-up" data-delay="200">
-                    <div class="step-num">02</div>
-                    <div class="step-icon"><i class="fas fa-magic"></i></div>
-                    <h3>AI Builds Your Resume</h3>
-                    <p>Turn coursework, projects, and activities into a professional resume that passes ATS.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="300"></div>
-                <div class="step" data-animate="fade-up" data-delay="300">
-                    <div class="step-num">03</div>
-                    <div class="step-icon"><i class="fas fa-bullseye"></i></div>
-                    <h3>Match & Apply</h3>
-                    <p>Get matched with internships and entry-level roles. Apply with one-click tailored applications.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="400"></div>
-                <div class="step" data-animate="fade-up" data-delay="400">
-                    <div class="step-num">04</div>
-                    <div class="step-icon"><i class="fas fa-trophy"></i></div>
-                    <h3>Interview & Land</h3>
-                    <p>Practice with AI mock interviews. Get offer negotiation tips. Land your first role.</p>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-book-open"></i></div>
+                    <h3>📚 Skill Courses</h3>
+                    <p>Identify skill gaps and get recommended free courses to close them before applying.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Student Pricing -->
-    <section class="student-pricing">
+    <!-- Pricing -->
+    <section class="student-pricing" id="pricing" style="padding: 80px 0; background: linear-gradient(180deg, rgba(165,166,143,0.04), transparent);">
         <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">Student Pricing</span>
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">💎 Student Pricing</span>
                 <h2>Free for Students</h2>
                 <p class="section-sub">Because starting your career shouldn't cost a fortune</p>
             </div>
             <div class="plans-grid">
-                <div class="plan-card" data-animate="fade-up" data-delay="100">
-                    <div class="plan-header">
-                        <h3>Student Free</h3>
-                        <p>Forever free for students</p>
+                <div class="plan-card" data-animate="fade-up" data-delay="100" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px;">
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🎓 Student Free</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Forever free for students</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">$0</span>
-                        <span class="period">forever</span>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$0</span>
+                        <span class="period" style="color: var(--text-muted);">forever</span>
                     </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 3 AI resume generations</li>
-                        <li><i class="fas fa-check"></i> Basic templates</li>
-                        <li><i class="fas fa-check"></i> Internship matcher</li>
-                        <li><i class="fas fa-check"></i> LinkedIn bio generator</li>
-                        <li><i class="fas fa-check"></i> Career roadmap</li>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> 3 AI resume generations</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Basic templates</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Internship matcher</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> LinkedIn bio generator</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Career roadmap</li>
                     </ul>
-                    <a href="app.html" class="btn-outline-full">Get Started</a>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="app.html" class="btn-outline-full" style="display: block; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-weight: 500; transition: all 0.3s ease;">Get Started</a>
+                    </div>
                 </div>
-                <div class="plan-card popular" data-animate="fade-up" data-delay="200">
-                    <div class="popular-badge">Best Value</div>
-                    <div class="plan-header">
-                        <h3>Student Pro</h3>
-                        <p>Supercharge your job search</p>
+                <div class="plan-card popular" data-animate="fade-up" data-delay="200" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; position: relative; overflow: hidden;">
+                    <div class="popular-badge" style="position: absolute; top: 16px; right: -40px; background: #A5A68F; color: #fff; padding: 6px 40px; font-size: 0.75rem; font-weight: 600; transform: rotate(45deg);">🔥 Best Value</div>
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🚀 Student Pro</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Supercharge your job search</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">$4.99</span>
-                        <span class="period">/month</span>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$4.99</span>
+                        <span class="period" style="color: var(--text-muted);">/month</span>
                     </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Unlimited AI generations</li>
-                        <li><i class="fas fa-check"></i> All premium templates</li>
-                        <li><i class="fas fa-check"></i> Mock interview AI</li>
-                        <li><i class="fas fa-check"></i> Cover letter tailor</li>
-                        <li><i class="fas fa-check"></i> Priority internship alerts</li>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Unlimited AI generations</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> All premium templates</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Mock interview AI</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Cover letter tailor</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Priority internship alerts</li>
                     </ul>
-                    <a href="pricing.html" class="btn-primary btn-full">Upgrade to Pro</a>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="app.html" class="btn-primary btn-full" style="display: block; text-align: center; padding: 14px; border-radius: 12px; text-decoration: none; color: #fff; font-weight: 500; background: linear-gradient(135deg, #A5A68F, #8a8b75); transition: all 0.3s ease;">Upgrade to Pro</a>
+                    </div>
                 </div>
-                <div class="plan-card" data-animate="fade-up" data-delay="300">
-                    <div class="plan-header">
-                        <h3>University Plan</h3>
-                        <p>For career centers</p>
+                <div class="plan-card" data-animate="fade-up" data-delay="300" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px;">
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🏫 University Plan</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For career centers</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price">Custom</span>
-                        <span class="period">per student</span>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">Custom</span>
+                        <span class="period" style="color: var(--text-muted);">per student</span>
                     </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Campus-wide access</li>
-                        <li><i class="fas fa-check"></i> Career counselor dashboard</li>
-                        <li><i class="fas fa-check"></i> Employer network</li>
-                        <li><i class="fas fa-check"></i> Analytics & reporting</li>
-                        <li><i class="fas fa-check"></i> White-label option</li>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Campus-wide access</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Career counselor dashboard</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Employer network</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Analytics & reporting</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> White-label option</li>
                     </ul>
-                    <a href="#contact" class="btn-outline-full">Contact Us</a>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="#contact" class="btn-outline-full" style="display: block; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-weight: 500; transition: all 0.3s ease;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-section" id="payment">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label" style="background: rgba(217,178,169,0.15); color: #a08078;">💳 Payment Options</span>
+                <h2>Flexible Payment Methods</h2>
+                <p class="section-sub">Choose the payment method that works best for you</p>
+            </div>
+            <div class="payment-methods-grid" data-animate="fade-up" data-delay="100">
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">📱</div>
+                    <h4>Touch 'n Go eWallet</h4>
+                    <p>Fast & secure mobile payments via Malaysia's leading e-wallet</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Instant</span>
+                        <span class="payment-badge">No Fees</span>
+                    </div>
+                </div>
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">🏦</div>
+                    <h4>Online Banking / FPX</h4>
+                    <p>Direct bank transfer from all major Malaysian banks</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Secure</span>
+                        <span class="payment-badge">Real-time</span>
+                    </div>
+                </div>
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">💳</div>
+                    <h4>Debit / Credit Card</h4>
+                    <p>Visa, Mastercard, Amex accepted worldwide with 3D Secure</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Visa</span>
+                        <span class="payment-badge">Mastercard</span>
+                        <span class="payment-badge">Amex</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials">
+    <section class="testimonials" style="padding: 80px 0;">
         <div class="container">
-            <div class="section-head" data-animate="fade-up">
-                <span class="section-label">Success Stories</span>
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(217,178,169,0.15); color: #a08078;">⭐ Success Stories</span>
                 <h2>Students Who Landed Their Dream Roles</h2>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial" data-animate="fade-up" data-delay="100">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"I had zero internship experience. ResumeAI helped me frame my coursework and club activities into a resume that got me 5 interview calls in 2 weeks. Now I'm interning at Google!"</p>
-                    <div class="testimonial-author">
-                        <div class="ta-avatar">JK</div>
+                <div class="testimonial" data-animate="fade-up" data-delay="100" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <div class="testimonial-stars" style="color: #A5A68F; margin-bottom: 16px;">★★★★★</div>
+                    <p class="testimonial-text" style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">"I had zero internship experience. YH helped me frame my coursework and club activities into a resume that got me 5 interview calls in 2 weeks. Now I'm interning at Google! 🎉"</p>
+                    <div class="testimonial-author" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="ta-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #A5A68F;">JK</div>
                         <div class="ta-info">
-                            <strong>Jason Kim</strong>
-                            <span>Computer Science, Stanford • Google Intern</span>
+                            <strong style="color: var(--text);">Jason Kim</strong>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; display: block;">Computer Science, Stanford • Google Intern</span>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial" data-animate="fade-up" data-delay="200">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The mock interview feature saved me. I practiced 20+ times with the AI and walked into my real interview confident. Landed my first full-time offer at a Fortune 500 company."</p>
-                    <div class="testimonial-author">
-                        <div class="ta-avatar">MR</div>
+                <div class="testimonial" data-animate="fade-up" data-delay="200" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <div class="testimonial-stars" style="color: #A5A68F; margin-bottom: 16px;">★★★★★</div>
+                    <p class="testimonial-text" style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">"The mock interview feature saved me. I practiced 20+ times with the AI and walked into my real interview confident. Landed my first full-time offer at a Fortune 500 company. 💪"</p>
+                    <div class="testimonial-author" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="ta-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #A5A68F;">MR</div>
                         <div class="ta-info">
-                            <strong>Maria Rodriguez</strong>
-                            <span>Business Admin, NYU • Deloitte Analyst</span>
+                            <strong style="color: var(--text);">Maria Rodriguez</strong>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; display: block;">Business Admin, NYU • Deloitte Analyst</span>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial" data-animate="fade-up" data-delay="300">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"As an international student, I struggled with US resume formats. The AI adapted my experience perfectly and even suggested skills I should highlight for visa sponsorship roles."</p>
-                    <div class="testimonial-author">
-                        <div class="ta-avatar">AP</div>
+                <div class="testimonial" data-animate="fade-up" data-delay="300" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <div class="testimonial-stars" style="color: #A5A68F; margin-bottom: 16px;">★★★★★</div>
+                    <p class="testimonial-text" style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">"As an international student, I struggled with resume formats. The AI adapted my experience perfectly and even suggested skills I should highlight for visa sponsorship roles. 🌍"</p>
+                    <div class="testimonial-author" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="ta-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #A5A68F;">AP</div>
                         <div class="ta-info">
-                            <strong>Aisha Patel</strong>
-                            <span>Data Science, CMU • Meta Data Scientist</span>
+                            <strong style="color: var(--text);">Aisha Patel</strong>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; display: block;">Data Science, CMU • Meta Data Scientist</span>
                         </div>
                     </div>
                 </div>
@@ -282,12 +276,12 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta">
+    <section class="cta" style="padding: 80px 0;">
         <div class="container">
-            <div class="cta-box" data-animate="fade-up">
-                <h2>Start Building Your Future Today</h2>
+            <div class="cta-box" data-animate="fade-up" style="background: linear-gradient(135deg, rgba(165,166,143,0.08), rgba(217,178,169,0.05)); border: 1px solid rgba(165,166,143,0.2);">
+                <h2>🚀 Start Building Your Future Today</h2>
                 <p>Join 25,000+ students who launched their careers with AI.</p>
-                <a href="app.html" class="btn-primary btn-large">Create Free Resume</a>
+                <a href="app.html" class="btn-primary btn-large">📝 Create Free Resume</a>
                 <span class="cta-note">No credit card required • Free forever plan available</span>
             </div>
         </div>
@@ -298,20 +292,19 @@
         <div class="container">
             <div class="footer-top">
                 <a href="index.html" class="footer-logo">
-                    <span class="logo-mark">R</span>
-                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                    <span class="logo-mark" style="background: #A5A68F;">YH</span>
+                    <span class="logo-text">YH</span>
                 </a>
                 <div class="footer-links">
+                    <a href="index.html#ai-resume">AI Resume</a>
                     <a href="recruitment.html">Recruitment</a>
                     <a href="student-career.html">Student Career</a>
                     <a href="hr-services.html">HR Services</a>
-                    
-                    <a href="templates.html">Templates</a>
                     <a href="index.html">Home</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>ResumeAI Pro. All rights reserved.</p>
+                <p>© 2026 YH. All rights reserved.</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -323,12 +316,11 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
-        <a href="recruitment.html">Recruitment</a>
-        <a href="student-career.html">Student Career</a>
-        <a href="hr-services.html">HR Services</a>
-        
-        <a href="templates.html">Templates</a>
-        <a href="index.html">Home</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="index.html#ai-resume">📝 AI Resume</a>
+        <a href="recruitment.html">🏢 Recruitment</a>
+        <a href="student-career.html">🎓 Student Career</a>
+        <a href="hr-services.html">👥 HR Services</a>
     </div>
 
     <div id="authModalContainer"></div>
