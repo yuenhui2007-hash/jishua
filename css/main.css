@@ -499,6 +499,17 @@ body {
 .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.5rem; font-weight: 600; }
 
 /* ==========================================
+   AUTH UI
+   ========================================== */
+.nav-user {
+    display: flex; align-items: center; gap: 12px;
+}
+.nav-user span {
+    font-size: 0.85rem; color: var(--text-secondary);
+    max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ==========================================
    AI TEMPLATE STUDIO
    ========================================== */
 

@@ -22,7 +22,9 @@
             <a href="pricing.html">Pricing</a>
             <a href="index.html#features">Features</a>
         </div>
-        <a href="app.html" class="btn-nav">Get Started</a>
+        <div id="navAuth">
+            <a href="app.html" class="btn-nav">Get Started</a>
+        </div>
     </nav>
 
     <section class="pricing-hero">
@@ -152,5 +154,18 @@
             </div>
         </div>
     </footer>
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>

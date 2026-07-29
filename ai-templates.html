@@ -926,5 +926,17 @@
         previewActions.style.display = 'grid';
     }
     </script>
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
 </body>
 </html>
