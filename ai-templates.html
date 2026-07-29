@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Template Studio — ResumeAI Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <nav class="nav" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="ai-templates.html">AI Templates</a>
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="index.html#features">Features</a>
+        </div>
+        <a href="app.html" class="btn-nav">Get Started</a>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero ai-hero">
+        <div class="hero-aurora"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    AI Template Studio
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                    Meet Your <em>AI Design Team</em>
+                </h1>
+                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                    Six specialized AI agents, each an expert in a unique resume style. Select an agent, watch them craft your perfect template in real-time.
+                </p>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                    <a href="#agents" class="btn-primary">Choose Your Agent</a>
+                    <a href="#how-it-works" class="btn-text">See how it works <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="ai-stats-row" data-animate="fade-up" data-delay="400">
+                    <div class="ai-stat">
+                        <span class="ai-stat-num">6</span>
+                        <span class="ai-stat-label">AI Agents</span>
+                    </div>
+                    <div class="ai-stat">
+                        <span class="ai-stat-num">48+</span>
+                        <span class="ai-stat-label">Templates</span>
+                    </div>
+                    <div class="ai-stat">
+                        <span class="ai-stat-num">&lt;3s</span>
+                        <span class="ai-stat-label">Generation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual" data-animate="fade-in" data-delay="300">
+                <div class="ai-orbit">
+                    <div class="orbit-center">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="orbit-ring orbit-ring-1">
+                        <div class="orbit-node" style="--angle: 0deg;"><i class="fas fa-crown"></i></div>
+                        <div class="orbit-node" style="--angle: 60deg;"><i class="fas fa-palette"></i></div>
+                        <div class="orbit-node" style="--angle: 120deg;"><i class="fas fa-code"></i></div>
+                        <div class="orbit-node" style="--angle: 180deg;"><i class="fas fa-leaf"></i></div>
+                        <div class="orbit-node" style="--angle: 240deg;"><i class="fas fa-fire"></i></div>
+                        <div class="orbit-node" style="--angle: 300deg;"><i class="fas fa-graduation-cap"></i></div>
+                    </div>
+                    <div class="orbit-ring orbit-ring-2"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">The Process</span>
+                <h2>How AI Agents Work</h2>
+                <p class="section-sub">Three simple steps to your perfect resume</p>
+            </div>
+            <div class="steps">
+                <div class="step" data-animate="fade-up" data-delay="100">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="fas fa-user-astronaut"></i></div>
+                    <h3>Select Agent</h3>
+                    <p>Choose from 6 specialized AI designers, each with a unique style philosophy.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="200"></div>
+                <div class="step" data-animate="fade-up" data-delay="200">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>AI Generates</h3>
+                    <p>Watch in real-time as your agent analyzes, designs, and crafts your template.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="300"></div>
+                <div class="step" data-animate="fade-up" data-delay="300">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="fas fa-download"></i></div>
+                    <h3>Use & Customize</h3>
+                    <p>Preview, customize in the builder, and export to PDF or share online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents -->
+    <section class="ai-agents" id="agents">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">The Team</span>
+                <h2>Choose Your AI Designer</h2>
+                <p class="section-sub">Each agent specializes in a distinct resume philosophy</p>
+            </div>
+            <div class="agents-grid">
+                <!-- Agent 1: Aurelius -->
+                <div class="agent-card" data-agent="aurelius" data-animate="fade-up" data-delay="100">
+                    <div class="agent-glow agent-glow-gold"></div>
+                    <div class="agent-avatar">
+                        <div class="agent-icon agent-icon-gold"><i class="fas fa-crown"></i></div>
+                        <div class="agent-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Aurelius</h3>
+                        <span class="agent-role">Executive Strategist</span>
+                        <p>Boardroom-ready templates with commanding presence. Bold typography, refined layouts, and authority-driven design for C-suite aspirants.</p>
+                        <div class="agent-tags">
+                            <span>Leadership</span>
+                            <span>Serif</span>
+                            <span>Authority</span>
+                        </div>
+                        <div class="agent-meta">
+                            <span><i class="fas fa-file-alt"></i> 8 templates</span>
+                            <span><i class="fas fa-star"></i> 4.9 rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-full agent-select-btn">Select Agent</button>
+                </div>
+
+                <!-- Agent 2: Nova -->
+                <div class="agent-card" data-agent="nova" data-animate="fade-up" data-delay="150">
+                    <div class="agent-glow agent-glow-rose"></div>
+                    <div class="agent-avatar">
+                        <div class="agent-icon agent-icon-rose"><i class="fas fa-palette"></i></div>
+                        <div class="agent-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Nova</h3>
+                        <span class="agent-role">Creative Visionary</span>
+                        <p>Striking, unconventional designs for creative professionals. Vibrant accents, asymmetric layouts, and portfolio-forward presentation.</p>
+                        <div class="agent-tags">
+                            <span>Creative</span>
+                            <span>Bold</span>
+                            <span>Portfolio</span>
+                        </div>
+                        <div class="agent-meta">
+                            <span><i class="fas fa-file-alt"></i> 10 templates</span>
+                            <span><i class="fas fa-star"></i> 4.8 rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-full agent-select-btn">Select Agent</button>
+                </div>
+
+                <!-- Agent 3: Cipher -->
+                <div class="agent-card" data-agent="cipher" data-animate="fade-up" data-delay="200">
+                    <div class="agent-glow agent-glow-cyan"></div>
+                    <div class="agent-avatar">
+                        <div class="agent-icon agent-icon-cyan"><i class="fas fa-code"></i></div>
+                        <div class="agent-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Cipher</h3>
+                        <span class="agent-role">Technical Architect</span>
+                        <p>Precision-engineered for tech roles. Clean monospace accents, skill visualization, and ATS-optimized structure that highlights your stack.</p>
+                        <div class="agent-tags">
+                            <span>Tech</span>
+                            <span>ATS-Max</span>
+                            <span>Data Viz</span>
+                        </div>
+                        <div class="agent-meta">
+                            <span><i class="fas fa-file-alt"></i> 9 templates</span>
+                            <span><i class="fas fa-star"></i> 4.9 rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-full agent-select-btn">Select Agent</button>
+                </div>
+
+                <!-- Agent 4: Luna -->
+                <div class="agent-card" data-agent="luna" data-animate="fade-up" data-delay="250">
+                    <div class="agent-glow agent-glow-silver"></div>
+                    <div class="agent-avatar">
+                        <div class="agent-icon agent-icon-silver"><i class="fas fa-leaf"></i></div>
+                        <div class="agent-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Luna</h3>
+                        <span class="agent-role">Minimalist Purist</span>
+                        <p>Swiss-inspired elegance. Generous whitespace, refined typography hierarchy, and understated confidence for the modern professional.</p>
+                        <div class="agent-tags">
+                            <span>Minimal</span>
+                            <span>Clean</span>
+                            <span>Swiss</span>
+                        </div>
+                        <div class="agent-meta">
+                            <span><i class="fas fa-file-alt"></i> 7 templates</span>
+                            <span><i class="fas fa-star"></i> 4.7 rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-full agent-select-btn">Select Agent</button>
+                </div>
+
+                <!-- Agent 5: Phoenix -->
+                <div class="agent-card" data-agent="phoenix" data-animate="fade-up" data-delay="300">
+                    <div class="agent-glow agent-glow-amber"></div>
+                    <div class="agent-avatar">
+                        <div class="agent-icon agent-icon-amber"><i class="fas fa-fire"></i></div>
+                        <div class="agent-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Phoenix</h3>
+                        <span class="agent-role">Career Transformer</span>
+                        <p>Designed for pivots and reinventions. Strategic skill highlighting, transferable experience framing, and compelling narrative flow.</p>
+                        <div class="agent-tags">
+                            <span>Pivot</span>
+                            <span>Narrative</span>
+                            <span>Impact</span>
+                        </div>
+                        <div class="agent-meta">
+                            <span><i class="fas fa-file-alt"></i> 8 templates</span>
+                            <span><i class="fas fa-star"></i> 4.8 rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-full agent-select-btn">Select Agent</button>
+                </div>
+
+                <!-- Agent 6: Atlas -->
+                <div class="agent-card" data-agent="atlas" data-animate="fade-up" data-delay="350">
+                    <div class="agent-glow agent-glow-indigo"></div>
+                    <div class="agent-avatar">
+                        <div class="agent-icon agent-icon-indigo"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="agent-status"><span class="status-dot"></span>Online</div>
+                    </div>
+                    <div class="agent-info">
+                        <h3>Atlas</h3>
+                        <span class="agent-role">Academic Scholar</span>
+                        <p>Formal credentials-forward design. Publication listings, research highlights, and institutional prestige for academia and research roles.</p>
+                        <div class="agent-tags">
+                            <span>Academic</span>
+                            <span>Research</span>
+                            <span>Formal</span>
+                        </div>
+                        <div class="agent-meta">
+                            <span><i class="fas fa-file-alt"></i> 6 templates</span>
+                            <span><i class="fas fa-star"></i> 4.9 rating</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-full agent-select-btn">Select Agent</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generation Studio -->
+    <section class="generation-studio" id="studio">
+        <div class="container">
+            <div class="studio-header" data-animate="fade-up">
+                <span class="section-label">Generation Studio</span>
+                <h2>Watch the Magic Happen</h2>
+                <p class="section-sub">Select an agent above to see them craft your template</p>
+            </div>
+            <div class="studio-workspace" data-animate="fade-up" data-delay="100">
+                <div class="studio-panel studio-left">
+                    <div class="studio-agent-info" id="studioAgentInfo">
+                        <div class="studio-agent-placeholder">
+                            <i class="fas fa-robot"></i>
+                            <p>Select an AI agent to begin generation</p>
+                        </div>
+                    </div>
+                    <div class="generation-log" id="generationLog">
+                        <!-- Log entries appear here -->
+                    </div>
+                </div>
+                <div class="studio-panel studio-right">
+                    <div class="template-preview-frame" id="templatePreview">
+                        <div class="preview-placeholder">
+                            <div class="ph-icon"><i class="fas fa-magic"></i></div>
+                            <p>Your template will appear here</p>
+                        </div>
+                    </div>
+                    <div class="preview-actions-bar" id="previewActions" style="display:none;">
+                        <button class="btn-outline-full" id="regenerateBtn"><i class="fas fa-redo"></i> Regenerate</button>
+                        <a href="app.html" class="btn-primary btn-full"><i class="fas fa-edit"></i> Customize in Builder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Gallery -->
+    <section class="template-gallery" id="gallery">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Preview Gallery</span>
+                <h2>Recently Generated Templates</h2>
+                <p class="section-sub">Templates crafted by our AI agents for real professionals</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-animate="fade-up" data-delay="100">
+                    <div class="gallery-card gallery-executive">
+                        <div class="gc-header">
+                            <div class="gc-avatar"></div>
+                            <div class="gc-name">James Whitmore</div>
+                            <div class="gc-role">Chief Operations Officer</div>
+                        </div>
+                        <div class="gc-body">
+                            <div class="gc-line gc-line-title"></div>
+                            <div class="gc-line"></div>
+                            <div class="gc-line gc-line-short"></div>
+                            <div class="gc-line"></div>
+                            <div class="gc-line gc-line-med"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-meta">
+                        <span class="gallery-agent"><i class="fas fa-crown" style="color:#d4af37"></i> Aurelius</span>
+                        <span class="gallery-name">Executive Prime</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-animate="fade-up" data-delay="150">
+                    <div class="gallery-card gallery-creative">
+                        <div class="gc-sidebar"></div>
+                        <div class="gc-main">
+                            <div class="gc-name" style="color:#e8a0bf">Maya Chen</div>
+                            <div class="gc-role">Art Director</div>
+                            <div class="gc-line"></div>
+                            <div class="gc-line gc-line-short"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-meta">
+                        <span class="gallery-agent"><i class="fas fa-palette" style="color:#e8a0bf"></i> Nova</span>
+                        <span class="gallery-name">Visionary Split</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-animate="fade-up" data-delay="200">
+                    <div class="gallery-card gallery-tech">
+                        <div class="gc-header" style="border-bottom:2px solid #22d3ee">
+                            <div class="gc-name">Alex Rivera</div>
+                            <div class="gc-role">Senior Full-Stack Engineer</div>
+                        </div>
+                        <div class="gc-body">
+                            <div class="gc-skill-bar"><span></span><span></span><span></span></div>
+                            <div class="gc-line"></div>
+                            <div class="gc-line gc-line-short"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-meta">
+                        <span class="gallery-agent"><i class="fas fa-code" style="color:#22d3ee"></i> Cipher</span>
+                        <span class="gallery-name">Stack Matrix</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-animate="fade-up" data-delay="250">
+                    <div class="gallery-card gallery-minimal">
+                        <div class="gc-body" style="padding-top:24px">
+                            <div class="gc-name" style="font-size:1rem; margin-bottom:2px">Olivia Park</div>
+                            <div class="gc-role" style="font-size:0.65rem; margin-bottom:16px">Product Designer</div>
+                            <div class="gc-line" style="background:rgba(0,0,0,0.06)"></div>
+                            <div class="gc-line gc-line-short" style="background:rgba(0,0,0,0.06)"></div>
+                            <div class="gc-line" style="background:rgba(0,0,0,0.06)"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-meta">
+                        <span class="gallery-agent"><i class="fas fa-leaf" style="color:#c0c0c0"></i> Luna</span>
+                        <span class="gallery-name">Swiss Pure</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-animate="fade-up" data-delay="300">
+                    <div class="gallery-card gallery-pivot">
+                        <div class="gc-header" style="background:linear-gradient(135deg,#f59e0b20,#ef444420); border-radius:8px 8px 0 0; padding:16px">
+                            <div class="gc-name">David Kim</div>
+                            <div class="gc-role">Product Manager</div>
+                        </div>
+                        <div class="gc-body">
+                            <div class="gc-line"></div>
+                            <div class="gc-line gc-line-med"></div>
+                            <div class="gc-line gc-line-short"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-meta">
+                        <span class="gallery-agent"><i class="fas fa-fire" style="color:#f59e0b"></i> Phoenix</span>
+                        <span class="gallery-name">Narrative Flow</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-animate="fade-up" data-delay="350">
+                    <div class="gallery-card gallery-academic">
+                        <div class="gc-body" style="font-family:Georgia,serif">
+                            <div class="gc-name" style="font-family:Georgia,serif; font-size:1rem; text-align:center; border-bottom:1px solid #ddd; padding-bottom:8px; margin-bottom:12px">Dr. Sarah Thompson</div>
+                            <div class="gc-line" style="background:rgba(0,0,0,0.05)"></div>
+                            <div class="gc-line gc-line-short" style="background:rgba(0,0,0,0.05)"></div>
+                            <div class="gc-line" style="background:rgba(0,0,0,0.05)"></div>
+                            <div class="gc-line gc-line-med" style="background:rgba(0,0,0,0.05)"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-meta">
+                        <span class="gallery-agent"><i class="fas fa-graduation-cap" style="color:#818cf8"></i> Atlas</span>
+                        <span class="gallery-name">Scholar Formal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box" data-animate="fade-up">
+                <h2>Ready to Meet Your AI Designer?</h2>
+                <p>Choose an agent and generate your perfect resume template in seconds.</p>
+                <a href="#agents" class="btn-primary btn-large">Select an AI Agent</a>
+                <span class="cta-note">No credit card required • Free templates available</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark">R</span>
+                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                </a>
+                <div class="footer-links">
+                    <a href="ai-templates.html">AI Templates</a>
+                    <a href="app.html">Builder</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>ResumeAI Pro. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="ai-templates.html">AI Templates</a>
+        <a href="app.html">Builder</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="index.html">Home</a>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+    // ==========================================
+    // AI TEMPLATE STUDIO
+    // ==========================================
+    const agentsData = {
+        aurelius: {
+            name: 'Aurelius',
+            role: 'Executive Strategist',
+            iconClass: 'agent-icon-gold',
+            iconHtml: '<i class="fas fa-crown"></i>',
+            color: '#d4af37',
+            logs: [
+                { type: 'info', text: 'Analyzing executive positioning and leadership narrative...' },
+                { type: 'process', text: 'Selecting <span class="highlight">Playfair Display + Inter</span> font pairing for authority' },
+                { type: 'info', text: 'Structuring C-suite caliber section hierarchy' },
+                { type: 'process', text: 'Applying <span class="highlight">gold accent #c9a96e</span> and premium borders' },
+                { type: 'info', text: 'Optimizing whitespace for boardroom readability' },
+                { type: 'process', text: 'Embedding strategic KPI callout blocks' },
+                { type: 'success', text: 'Executive Prime template generated successfully' }
+            ],
+            templateHtml: `
+                <div class="generated-template gt-aurelius">
+                    <div class="gt-header">
+                        <div class="gt-name">Jonathan Whitmore</div>
+                        <div class="gt-role">Chief Operations Officer</div>
+                        <div class="gt-contact">
+                            <span><i class="fas fa-envelope"></i> j.whitmore@email.com</span>
+                            <span><i class="fas fa-phone"></i> +1 (555) 234-5678</span>
+                            <span><i class="fas fa-map-marker-alt"></i> New York, NY</span>
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Executive Summary</div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                        <div class="gt-line gt-line-short"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Leadership Experience</div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                            <strong>COO — Apex Global Industries</strong>
+                            <span style="color:#888">2019 — Present</span>
+                        </div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                        <div class="gt-line"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Core Competencies</div>
+                        <div class="gt-skills">
+                            <span class="gt-skill">Strategic Planning</span>
+                            <span class="gt-skill">P&L Management</span>
+                            <span class="gt-skill">M&A Integration</span>
+                            <span class="gt-skill">Board Relations</span>
+                            <span class="gt-skill">Change Leadership</span>
+                            <span class="gt-skill">Global Operations</span>
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Education</div>
+                        <div class="gt-line gt-line-short"></div>
+                        <div class="gt-line"></div>
+                    </div>
+                </div>
+            `
+        },
+        nova: {
+            name: 'Nova',
+            role: 'Creative Visionary',
+            iconClass: 'agent-icon-rose',
+            iconHtml: '<i class="fas fa-palette"></i>',
+            color: '#e8a0bf',
+            logs: [
+                { type: 'info', text: 'Detecting creative industry signals and portfolio requirements...' },
+                { type: 'process', text: 'Designing <span class="highlight">split-layout</span> with bold color blocking' },
+                { type: 'info', text: 'Curating accent palette: rose gold + deep charcoal' },
+                { type: 'process', text: 'Building asymmetric visual hierarchy for portfolio-forward presentation' },
+                { type: 'info', text: 'Injecting personality-driven section headers' },
+                { type: 'process', text: 'Adding project showcase grid placeholders' },
+                { type: 'success', text: 'Visionary Split template generated successfully' }
+            ],
+            templateHtml: `
+                <div class="generated-template gt-nova">
+                    <div class="gt-sidebar">
+                        <div class="gt-name">Maya Chen</div>
+                        <div class="gt-role">Art Director</div>
+                        <div style="margin-top:20px;">
+                            <div style="font-size:0.65rem;color:rgba(255,255,255,0.7);margin-bottom:6px;">Contact</div>
+                            <div class="gt-line" style="background:rgba(255,255,255,0.2);width:80%"></div>
+                            <div class="gt-line" style="background:rgba(255,255,255,0.2);width:60%"></div>
+                        </div>
+                        <div style="margin-top:16px;">
+                            <div style="font-size:0.65rem;color:rgba(255,255,255,0.7);margin-bottom:6px;">Skills</div>
+                            <div class="gt-skills">
+                                <span class="gt-skill" style="background:rgba(255,255,255,0.15);color:white">Brand Identity</span>
+                                <span class="gt-skill" style="background:rgba(255,255,255,0.15);color:white">Motion Design</span>
+                                <span class="gt-skill" style="background:rgba(255,255,255,0.15);color:white">Art Direction</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gt-main">
+                        <div class="gt-section">
+                            <div class="gt-section-title">About</div>
+                            <div class="gt-line"></div>
+                            <div class="gt-line gt-line-med"></div>
+                        </div>
+                        <div class="gt-section">
+                            <div class="gt-section-title">Selected Work</div>
+                            <div class="gt-line"></div>
+                            <div class="gt-line gt-line-short"></div>
+                            <div class="gt-line"></div>
+                        </div>
+                        <div class="gt-section">
+                            <div class="gt-section-title">Experience</div>
+                            <div class="gt-line"></div>
+                            <div class="gt-line gt-line-med"></div>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        cipher: {
+            name: 'Cipher',
+            role: 'Technical Architect',
+            iconClass: 'agent-icon-cyan',
+            iconHtml: '<i class="fas fa-code"></i>',
+            color: '#22d3ee',
+            logs: [
+                { type: 'info', text: 'Parsing technical stack and skill taxonomy...' },
+                { type: 'process', text: 'Optimizing for <span class="highlight">ATS parsing</span> with clean semantic structure' },
+                { type: 'info', text: 'Building skill visualization matrix with proficiency bars' },
+                { type: 'process', text: 'Applying monospace accents for code-centric aesthetic' },
+                { type: 'info', text: 'Structuring project impact with quantified metrics' },
+                { type: 'process', text: 'Validating keyword density against top 100 tech JDs' },
+                { type: 'success', text: 'Stack Matrix template generated successfully' }
+            ],
+            templateHtml: `
+                <div class="generated-template gt-cipher">
+                    <div class="gt-header">
+                        <div class="gt-name">Alex Rivera</div>
+                        <div class="gt-role">Senior Full-Stack Engineer</div>
+                        <div class="gt-contact">
+                            <span><i class="fas fa-envelope"></i> alex@dev.io</span>
+                            <span><i class="fas fa-globe"></i> github.com/arivera</span>
+                            <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Technical Skills</div>
+                        <div class="gt-skill-bar">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="gt-skills">
+                            <span class="gt-skill">React / Next.js</span>
+                            <span class="gt-skill">Node.js</span>
+                            <span class="gt-skill">Python</span>
+                            <span class="gt-skill">PostgreSQL</span>
+                            <span class="gt-skill">AWS</span>
+                            <span class="gt-skill">Docker</span>
+                            <span class="gt-skill">GraphQL</span>
+                            <span class="gt-skill">TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Professional Experience</div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                            <strong>Senior Engineer — TechScale</strong>
+                            <span style="color:#888">2021 — Present</span>
+                        </div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                        <div class="gt-line"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Open Source & Projects</div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-short"></div>
+                    </div>
+                </div>
+            `
+        },
+        luna: {
+            name: 'Luna',
+            role: 'Minimalist Purist',
+            iconClass: 'agent-icon-silver',
+            iconHtml: '<i class="fas fa-leaf"></i>',
+            color: '#c0c0c0',
+            logs: [
+                { type: 'info', text: 'Calibrating for Swiss-inspired typographic purity...' },
+                { type: 'process', text: 'Stripping all non-essential visual elements' },
+                { type: 'info', text: 'Establishing <span class="highlight">8pt baseline grid</span> for rhythmic spacing' },
+                { type: 'process', text: 'Selecting neutral palette: charcoal, warm gray, pure white' },
+                { type: 'info', text: 'Optimizing line-length to 65 characters for ideal readability' },
+                { type: 'process', text: 'Fine-ttering letter-spacing and leading ratios' },
+                { type: 'success', text: 'Swiss Pure template generated successfully' }
+            ],
+            templateHtml: `
+                <div class="generated-template gt-luna">
+                    <div style="text-align:center;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid #ddd;">
+                        <div class="gt-name">Olivia Park</div>
+                        <div class="gt-role">Product Designer</div>
+                        <div class="gt-contact" style="font-size:0.6rem;color:#999;margin-top:8px;">
+                            olivia@design.studio · linkedin.com/in/oliviapark · Portland, OR
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Profile</div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Experience</div>
+                        <div style="margin-bottom:10px;">
+                            <div style="display:flex;justify-content:space-between;font-size:0.7rem;">
+                                <strong>Senior Product Designer</strong>
+                                <span style="color:#999">2020 — Present</span>
+                            </div>
+                            <div style="font-size:0.65rem;color:#888;margin-bottom:6px;">Figma, Adobe CC, Design Systems</div>
+                            <div class="gt-line"></div>
+                            <div class="gt-line gt-line-short"></div>
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Education</div>
+                        <div class="gt-line gt-line-short"></div>
+                    </div>
+                </div>
+            `
+        },
+        phoenix: {
+            name: 'Phoenix',
+            role: 'Career Transformer',
+            iconClass: 'agent-icon-amber',
+            iconHtml: '<i class="fas fa-fire"></i>',
+            color: '#f59e0b',
+            logs: [
+                { type: 'info', text: 'Analyzing transferable skills and pivot trajectory...' },
+                { type: 'process', text: 'Crafting <span class="highlight">narrative bridge</span> from past to target role' },
+                { type: 'info', text: 'Reframing experience through transferable competency lens' },
+                { type: 'process', text: 'Designing impact-forward layout with achievement callouts' },
+                { type: 'info', text: 'Injecting strategic summary for career change context' },
+                { type: 'process', text: 'Highlighting continuous learning and adaptability signals' },
+                { type: 'success', text: 'Narrative Flow template generated successfully' }
+            ],
+            templateHtml: `
+                <div class="generated-template gt-phoenix">
+                    <div class="gt-header">
+                        <div class="gt-name">David Kim</div>
+                        <div class="gt-role">Product Manager</div>
+                        <div class="gt-contact">
+                            <span><i class="fas fa-envelope"></i> david.kim@pmail.com</span>
+                            <span><i class="fas fa-linkedin"></i> linkedin.com/in/davidkim</span>
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Career Transition Statement</div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                        <div class="gt-line"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Transferable Impact</div>
+                        <div style="background:linear-gradient(135deg,#fef3c720,#fff7ed20);padding:10px;border-radius:6px;margin-bottom:10px;">
+                            <strong style="font-size:0.7rem;color:#b45309;">$2.4M cost savings</strong>
+                            <div class="gt-line" style="margin-top:6px;"></div>
+                            <div class="gt-line gt-line-short"></div>
+                        </div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Skills Bridge</div>
+                        <div class="gt-skills">
+                            <span class="gt-skill">Data Analysis</span>
+                            <span class="gt-skill">Cross-functional Leadership</span>
+                            <span class="gt-skill">Strategic Planning</span>
+                            <span class="gt-skill">User Research</span>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        atlas: {
+            name: 'Atlas',
+            role: 'Academic Scholar',
+            iconClass: 'agent-icon-indigo',
+            iconHtml: '<i class="fas fa-graduation-cap"></i>',
+            color: '#818cf8',
+            logs: [
+                { type: 'info', text: 'Indexing academic credentials and publication record...' },
+                { type: 'process', text: 'Structuring <span class="highlight">CV-format</span> with chronological research timeline' },
+                { type: 'info', text: 'Formatting citation indices and h-index metrics' },
+                { type: 'process', text: 'Building publications section with APA styling' },
+                { type: 'info', text: 'Organizing grants, fellowships, and institutional affiliations' },
+                { type: 'process', text: 'Adding teaching experience and academic service blocks' },
+                { type: 'success', text: 'Scholar Formal template generated successfully' }
+            ],
+            templateHtml: `
+                <div class="generated-template gt-atlas">
+                    <div style="text-align:center;border-bottom:1px solid #ddd;padding-bottom:12px;margin-bottom:16px;">
+                        <div class="gt-name">Dr. Sarah Thompson</div>
+                        <div class="gt-role">Associate Professor of Biochemistry</div>
+                        <div class="gt-contact" style="font-size:0.6rem;color:#666;margin-top:6px;">
+                            s.thompson@university.edu · Google Scholar: s.thompson · Lab: thompsonlab.bio
+                        </div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Research Interests</div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-short"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Publications</div>
+                        <div style="margin-bottom:8px;">
+                            <div style="font-size:0.65rem;font-style:italic;">Thompson, S. et al. (2024). Novel approaches to...</div>
+                            <div style="font-size:0.6rem;color:#888;"><em>Nature Biotechnology</em>, 42(3), 245-258.</div>
+                        </div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-med"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Grants & Funding</div>
+                        <div class="gt-line gt-line-short"></div>
+                        <div class="gt-line"></div>
+                    </div>
+                    <div class="gt-section">
+                        <div class="gt-section-title">Teaching</div>
+                        <div class="gt-line"></div>
+                        <div class="gt-line gt-line-short"></div>
+                    </div>
+                </div>
+            `
+        }
+    };
+
+    let selectedAgent = null;
+    let isGenerating = false;
+
+    const agentCards = document.querySelectorAll('.agent-card');
+    const studioAgentInfo = document.getElementById('studioAgentInfo');
+    const generationLog = document.getElementById('generationLog');
+    const templatePreview = document.getElementById('templatePreview');
+    const previewActions = document.getElementById('previewActions');
+    const regenerateBtn = document.getElementById('regenerateBtn');
+
+    agentCards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (isGenerating) return;
+            const agentKey = card.dataset.agent;
+            selectAgent(agentKey);
+        });
+
+        const btn = card.querySelector('.agent-select-btn');
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isGenerating) return;
+            const agentKey = card.dataset.agent;
+            selectAgent(agentKey);
+        });
+    });
+
+    regenerateBtn.addEventListener('click', () => {
+        if (selectedAgent && !isGenerating) {
+            selectAgent(selectedAgent);
+        }
+    });
+
+    function selectAgent(agentKey) {
+        selectedAgent = agentKey;
+        const agent = agentsData[agentKey];
+
+        // Update visual selection
+        agentCards.forEach(c => c.classList.remove('selected'));
+        document.querySelector(`[data-agent="${agentKey}"]`).classList.add('selected');
+
+        // Scroll to studio
+        document.getElementById('studio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Start generation
+        startGeneration(agent);
+    }
+
+    function startGeneration(agent) {
+        isGenerating = true;
+        generationLog.innerHTML = '';
+        templatePreview.innerHTML = `
+            <div class="preview-placeholder">
+                <div class="ph-icon"><i class="fas fa-circle-notch fa-spin"></i></div>
+                <p>${agent.name} is generating your template...</p>
+            </div>
+        `;
+        previewActions.style.display = 'none';
+
+        // Show agent info in studio
+        studioAgentInfo.innerHTML = `
+            <div class="agent-icon ${agent.iconClass}">${agent.iconHtml}</div>
+            <div>
+                <h4>${agent.name}</h4>
+                <span>${agent.role}</span>
+            </div>
+        `;
+
+        // Add progress bar
+        const progressDiv = document.createElement('div');
+        progressDiv.className = 'generation-progress';
+        progressDiv.innerHTML = `
+            <div class="gen-progress-bar"><div class="gen-progress-fill" id="genProgressFill"></div></div>
+            <div class="gen-progress-label"><span>Initializing...</span><span id="genPercent">0%</span></div>
+        `;
+        generationLog.parentElement.appendChild(progressDiv);
+
+        // Animate logs
+        let logIndex = 0;
+        const totalLogs = agent.logs.length;
+
+        function addNextLog() {
+            if (logIndex >= totalLogs) {
+                // Generation complete
+                setTimeout(() => {
+                    showTemplate(agent);
+                    progressDiv.remove();
+                    isGenerating = false;
+                }, 600);
+                return;
+            }
+
+            const log = agent.logs[logIndex];
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const time = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            entry.innerHTML = `
+                <span class="log-time">${time}</span>
+                <span class="log-icon ${log.type}"><i class="fas fa-${log.type === 'info' ? 'info' : log.type === 'success' ? 'check' : 'cog'}"></i></span>
+                <span class="log-text">${log.text}</span>
+            `;
+            generationLog.appendChild(entry);
+            generationLog.scrollTop = generationLog.scrollHeight;
+
+            // Update progress
+            const percent = Math.round(((logIndex + 1) / totalLogs) * 100);
+            document.getElementById('genProgressFill').style.width = percent + '%';
+            document.getElementById('genPercent').textContent = percent + '%';
+            progressDiv.querySelector('.gen-progress-label span:first-child').textContent = log.type === 'success' ? 'Finalizing...' : log.text.replace(/<[^>]*>/g, '').substring(0, 40) + '...';
+
+            logIndex++;
+            const delay = log.type === 'success' ? 800 : 400 + Math.random() * 600;
+            setTimeout(addNextLog, delay);
+        }
+
+        addNextLog();
+    }
+
+    function showTemplate(agent) {
+        templatePreview.innerHTML = agent.templateHtml;
+        previewActions.style.display = 'grid';
+    }
+    </script>
+</body>
+</html>
