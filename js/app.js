@@ -35,6 +35,51 @@ if (navbar) {
 }
 
 // ==========================================
+// SCROLL PROGRESS
+// ==========================================
+const scrollProgress = document.getElementById('scrollProgress');
+if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        scrollProgress.style.width = progress + '%';
+    });
+}
+
+// ==========================================
+// MOUSE GLOW
+// ==========================================
+const mouseGlow = document.getElementById('mouseGlow');
+if (mouseGlow) {
+    let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    function animateGlow() {
+        currentX += (mouseX - currentX) * 0.08;
+        currentY += (mouseY - currentY) * 0.08;
+        mouseGlow.style.left = currentX + 'px';
+        mouseGlow.style.top = currentY + 'px';
+        requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+}
+
+// ==========================================
+// PARALLAX
+// ==========================================
+const heroVisual = document.querySelector('.hero-visual');
+if (heroVisual) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const rate = scrolled * 0.15;
+        heroVisual.style.transform = `translateY(${rate}px)`;
+    });
+}
+
+// ==========================================
 // SCROLL ANIMATIONS
 // ==========================================
 const animateOnScroll = () => {
