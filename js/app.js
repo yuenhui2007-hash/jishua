@@ -25,6 +25,64 @@ if (mobileToggle) {
 }
 
 // ==========================================
+// NAVBAR SCROLL
+// ==========================================
+const navbar = document.getElementById('navbar');
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+}
+
+// ==========================================
+// SCROLL ANIMATIONS
+// ==========================================
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.85;
+        if (isVisible) {
+            const delay = el.dataset.delay || 0;
+            setTimeout(() => el.classList.add('animated'), parseInt(delay));
+        }
+    });
+};
+
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+
+// ==========================================
+// COUNTER ANIMATION
+// ==========================================
+const animateCounters = () => {
+    const counters = document.querySelectorAll('.stat-number[data-target]');
+    counters.forEach(counter => {
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9 && !counter.classList.contains('counted')) {
+            counter.classList.add('counted');
+            const target = parseFloat(counter.dataset.target);
+            const isDecimal = target % 1 !== 0;
+            const duration = 2000;
+            const start = performance.now();
+
+            const update = (now) => {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = target * eased;
+                counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+            };
+            requestAnimationFrame(update);
+        }
+    });
+};
+
+window.addEventListener('scroll', animateCounters);
+window.addEventListener('load', animateCounters);
+
+// ==========================================
 // APP NAVIGATION
 // ==========================================
 const navItems = document.querySelectorAll('.nav-item');
@@ -216,31 +274,12 @@ if (jobDesc && keywordMatch) {
 }
 
 // ==========================================
-// SCROLL ANIMATIONS
-// ==========================================
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.market-card, .feature, .testimonial, .step, .plan-card, .faq-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(el);
-});
-
-// ==========================================
 // INIT
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    setTimeout(() => document.body.style.opacity = '1', 50);
+    document.body.style.transition = 'opacity 0.6s ease';
+    setTimeout(() => document.body.style.opacity = '1', 100);
     updateProgress();
+    animateOnScroll();
 });

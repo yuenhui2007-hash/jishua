@@ -6,12 +6,14 @@
     <title>ResumeAI Pro — AI-Powered Resume Builder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <nav class="nav">
+    <div class="noise-overlay"></div>
+
+    <nav class="nav" id="navbar">
         <a href="index.html" class="nav-logo">
             <span class="logo-mark">R</span>
             <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
@@ -19,59 +21,91 @@
         <div class="nav-links">
             <a href="app.html">Builder</a>
             <a href="pricing.html">Pricing</a>
-            <a href="index.html#features">Features</a>
+            <a href="#features">Features</a>
         </div>
         <a href="app.html" class="btn-nav">Get Started</a>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
     </nav>
 
     <header class="hero">
-        <div class="hero-glow"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
         <div class="container">
             <div class="hero-content">
-                <p class="hero-label">AI-Powered Resume Platform</p>
-                <h1 class="hero-title">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    AI-Powered Resume Platform
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
                     The Resume That
                     <em>Gets You Hired</em>
                 </h1>
-                <p class="hero-desc">
+                <p class="hero-desc" data-animate="fade-up" data-delay="200">
                     Our AI analyzes your experience and the job you want, then crafts a perfectly optimized resume that passes ATS systems and impresses hiring managers.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions" data-animate="fade-up" data-delay="300">
                     <a href="app.html" class="btn-primary">Build Your Resume</a>
                     <a href="#how-it-works" class="btn-text">See how it works <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="hero-trust">
+                <div class="hero-trust" data-animate="fade-up" data-delay="400">
                     <div class="trust-avatars">
                         <span></span><span></span><span></span><span></span>
                     </div>
                     <p>Trusted by <strong>50,000+</strong> job seekers worldwide</p>
                 </div>
             </div>
-            <div class="hero-visual">
+            <div class="hero-visual" data-animate="fade-in" data-delay="300">
                 <div class="resume-card">
-                    <div class="rc-header">
-                        <div class="rc-avatar"></div>
-                        <div class="rc-info">
-                            <div class="rc-name">Sarah Chen</div>
-                            <div class="rc-role">Product Manager</div>
+                    <div class="rc-glass"></div>
+                    <div class="rc-content">
+                        <div class="rc-header">
+                            <div class="rc-avatar"></div>
+                            <div class="rc-info">
+                                <div class="rc-name">Sarah Chen</div>
+                                <div class="rc-role">Product Manager</div>
+                            </div>
+                            <div class="rc-score-badge">
+                                <span class="rc-score-num">98</span>
+                                <span class="rc-score-label">ATS</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="rc-body">
-                        <div class="rc-line rc-line-short"></div>
-                        <div class="rc-line"></div>
-                        <div class="rc-line"></div>
-                        <div class="rc-line rc-line-med"></div>
-                    </div>
-                    <div class="rc-badge">
-                        <i class="fas fa-check-circle"></i>
-                        ATS Optimized
+                        <div class="rc-section">
+                            <div class="rc-sec-title"></div>
+                            <div class="rc-line rc-line-short"></div>
+                            <div class="rc-line"></div>
+                            <div class="rc-line rc-line-med"></div>
+                        </div>
+                        <div class="rc-section">
+                            <div class="rc-sec-title"></div>
+                            <div class="rc-line"></div>
+                            <div class="rc-line rc-line-short"></div>
+                        </div>
+                        <div class="rc-section">
+                            <div class="rc-sec-title"></div>
+                            <div class="rc-skill"><span></span><span></span><span></span></div>
+                        </div>
                     </div>
                 </div>
                 <div class="floating-tag tag-1">
-                    <i class="fas fa-sparkles"></i> AI Generated
+                    <div class="ft-icon"><i class="fas fa-sparkles"></i></div>
+                    <div class="ft-text">
+                        <strong>AI Generated</strong>
+                        <span>Optimized content</span>
+                    </div>
                 </div>
                 <div class="floating-tag tag-2">
-                    <i class="fas fa-shield-alt"></i> ATS Ready
+                    <div class="ft-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="ft-text">
+                        <strong>ATS Ready</strong>
+                        <span>Passes every system</span>
+                    </div>
+                </div>
+                <div class="floating-tag tag-3">
+                    <div class="ft-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="ft-text">
+                        <strong>3x Faster</strong>
+                        <span>Get interviews</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,8 +113,8 @@
 
     <section class="brands">
         <div class="container">
-            <p class="brands-label">Our users land jobs at</p>
-            <div class="brands-logos">
+            <p class="brands-label" data-animate="fade-up">Our users land jobs at</p>
+            <div class="brands-logos" data-animate="fade-up" data-delay="100">
                 <span>Google</span>
                 <span>Microsoft</span>
                 <span>Amazon</span>
@@ -93,69 +127,84 @@
 
     <section class="problem" id="problem">
         <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">The Problem</span>
+                <h2>Most Resumes Never Get Seen</h2>
+            </div>
             <div class="problem-grid">
-                <div class="problem-text">
-                    <span class="section-label">The Problem</span>
-                    <h2>75% of Resumes Never Reach a Human</h2>
-                    <p>Applicant Tracking Systems filter out most candidates before a recruiter even sees them. A poorly formatted resume or missing keywords means instant rejection — no matter how qualified you are.</p>
-                    <ul class="problem-list">
-                        <li><i class="fas fa-times"></i> Poor formatting gets auto-rejected</li>
-                        <li><i class="fas fa-times"></i> Missing keywords = invisible to ATS</li>
-                        <li><i class="fas fa-times"></i> Generic resumes don't stand out</li>
-                    </ul>
+                <div class="problem-card" data-animate="fade-up" data-delay="100">
+                    <div class="pc-icon"><i class="fas fa-file-excel"></i></div>
+                    <h3>Poor Formatting</h3>
+                    <p>Complex layouts confuse ATS scanners, causing instant rejection before a human ever sees your resume.</p>
                 </div>
-                <div class="problem-visual">
-                    <div class="reject-card">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Your Resume</span>
-                    </div>
-                    <div class="reject-arrow">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
-                    <div class="reject-result">
-                        <i class="fas fa-robot"></i>
-                        <span>Rejected by ATS</span>
-                    </div>
+                <div class="problem-card" data-animate="fade-up" data-delay="200">
+                    <div class="pc-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Missing Keywords</h3>
+                    <p>Without the right keywords from the job description, ATS filters you out automatically.</p>
                 </div>
+                <div class="problem-card" data-animate="fade-up" data-delay="300">
+                    <div class="pc-icon"><i class="fas fa-user-slash"></i></div>
+                    <h3>Generic Content</h3>
+                    <p>A one-size-fits-all resume doesn't speak to what each specific employer is looking for.</p>
+                </div>
+            </div>
+            <div class="problem-stat" data-animate="fade-up" data-delay="400">
+                <span class="ps-number">75%</span>
+                <span class="ps-text">of resumes are rejected by ATS before a human sees them</span>
             </div>
         </div>
     </section>
 
-    <section class="solution">
+    <section class="comparison">
         <div class="container">
-            <div class="solution-grid">
-                <div class="solution-visual">
-                    <div class="solution-card">
-                        <div class="sc-top">
-                            <div class="sc-avatar"></div>
-                            <div class="sc-check"><i class="fas fa-check"></i></div>
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Before & After</span>
+                <h2>See the Difference</h2>
+            </div>
+            <div class="compare-grid" data-animate="fade-up" data-delay="200">
+                <div class="compare-card before">
+                    <div class="compare-label">Before</div>
+                    <div class="compare-resume">
+                        <div class="cr-header">
+                            <div class="cr-avatar"></div>
+                            <div>
+                                <div class="cr-name">John Doe</div>
+                                <div class="cr-role">Software Developer</div>
+                            </div>
                         </div>
-                        <div class="sc-score">
-                            <span class="score-num">98</span>
-                            <span class="score-label">ATS Score</span>
-                        </div>
-                        <div class="sc-bar">
-                            <div class="sc-bar-fill"></div>
+                        <div class="cr-body">
+                            <div class="cr-line"></div>
+                            <div class="cr-line"></div>
+                            <div class="cr-line cr-short"></div>
                         </div>
                     </div>
+                    <div class="compare-result fail">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Rejected by ATS</span>
+                    </div>
                 </div>
-                <div class="solution-text">
-                    <span class="section-label">The Solution</span>
-                    <h2>AI-Optimized Resumes That Pass Every Time</h2>
-                    <p>ResumeAI Pro uses advanced AI to analyze job descriptions, extract critical keywords, and format your resume to perfection. The result? A resume that sails through ATS and lands on the hiring manager's desk.</p>
-                    <div class="solution-stats">
-                        <div>
-                            <span class="ss-num">93%</span>
-                            <span class="ss-label">Interview Rate</span>
+                <div class="compare-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="compare-card after">
+                    <div class="compare-label">After ResumeAI Pro</div>
+                    <div class="compare-resume">
+                        <div class="cr-header">
+                            <div class="cr-avatar cr-avatar-gold"></div>
+                            <div>
+                                <div class="cr-name">John Doe</div>
+                                <div class="cr-role">Senior Software Engineer</div>
+                            </div>
                         </div>
-                        <div>
-                            <span class="ss-num">3x</span>
-                            <span class="ss-label">More Callbacks</span>
+                        <div class="cr-body">
+                            <div class="cr-line cr-gold"></div>
+                            <div class="cr-line"></div>
+                            <div class="cr-line cr-short"></div>
                         </div>
-                        <div>
-                            <span class="ss-num">50K+</span>
-                            <span class="ss-label">Resumes Built</span>
-                        </div>
+                    </div>
+                    <div class="compare-result pass">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ATS Score: 98%</span>
                     </div>
                 </div>
             </div>
@@ -164,51 +213,39 @@
 
     <section class="features" id="features">
         <div class="container">
-            <div class="section-head">
+            <div class="section-head" data-animate="fade-up">
                 <span class="section-label">Features</span>
-                <h2>Everything You Need</h2>
-                <p>Powerful AI tools designed to give you the competitive edge.</p>
+                <h2>Everything You Need to Get Hired</h2>
+                <p class="section-sub">Powerful AI tools designed to give you the competitive edge.</p>
             </div>
             <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
                     <h3>AI Content Writer</h3>
                     <p>Our AI crafts professional bullet points and summaries tailored to your industry and target role.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-crosshairs"></i>
-                    </div>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon"><i class="fas fa-crosshairs"></i></div>
                     <h3>ATS Optimization</h3>
-                    <p>Real-time scoring and suggestions ensure your resume passes every Applicant Tracking System.</p>
+                    <p>Real-time scoring ensures your resume passes Applicant Tracking Systems with flying colors.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon"><i class="fas fa-key"></i></div>
                     <h3>Keyword Matching</h3>
                     <p>Paste any job description and we extract the exact keywords your resume needs.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
                     <h3>Pro Templates</h3>
                     <p>Choose from professionally designed templates vetted by hiring managers.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-signature"></i>
-                    </div>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon"><i class="fas fa-file-signature"></i></div>
                     <h3>Cover Letters</h3>
                     <p>Generate personalized cover letters that complement your resume perfectly.</p>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon"><i class="fab fa-linkedin"></i></div>
                     <h3>LinkedIn Optimizer</h3>
                     <p>Transform your resume into an attention-grabbing LinkedIn profile.</p>
                 </div>
@@ -218,33 +255,53 @@
 
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <div class="section-head">
+            <div class="section-head" data-animate="fade-up">
                 <span class="section-label">How It Works</span>
                 <h2>Three Steps to Your Dream Job</h2>
             </div>
             <div class="steps">
-                <div class="step">
+                <div class="step" data-animate="fade-up" data-delay="0">
                     <div class="step-num">01</div>
-                    <div class="step-content">
-                        <h3>Tell Us About You</h3>
-                        <p>Upload your existing resume or fill in your experience, education, and skills. Our AI understands unstructured data.</p>
-                    </div>
+                    <div class="step-icon"><i class="fas fa-user-edit"></i></div>
+                    <h3>Tell Us About You</h3>
+                    <p>Upload your existing resume or fill in your experience, education, and skills.</p>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step">
+                <div class="step-connector" data-animate="scale-x" data-delay="150"></div>
+                <div class="step" data-animate="fade-up" data-delay="200">
                     <div class="step-num">02</div>
-                    <div class="step-content">
-                        <h3>Add Your Target Job</h3>
-                        <p>Paste the job description. Our AI analyzes required skills and optimizes your resume with the right keywords.</p>
-                    </div>
+                    <div class="step-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Add Target Job</h3>
+                    <p>Paste the job description. Our AI optimizes your resume with the right keywords.</p>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step">
+                <div class="step-connector" data-animate="scale-x" data-delay="350"></div>
+                <div class="step" data-animate="fade-up" data-delay="400">
                     <div class="step-num">03</div>
-                    <div class="step-content">
-                        <h3>Download & Apply</h3>
-                        <p>Get your ATS-optimized resume in PDF, Word, or text format. Apply with confidence.</p>
-                    </div>
+                    <div class="step-icon"><i class="fas fa-download"></i></div>
+                    <h3>Download & Apply</h3>
+                    <p>Get your ATS-optimized resume in PDF, Word, or text format. Apply with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" data-animate="fade-up" data-delay="0">
+                    <span class="stat-number" data-target="93">0</span><span class="stat-suffix">%</span>
+                    <span class="stat-label">Interview Rate</span>
+                </div>
+                <div class="stat-item" data-animate="fade-up" data-delay="100">
+                    <span class="stat-number" data-target="50000">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Resumes Built</span>
+                </div>
+                <div class="stat-item" data-animate="fade-up" data-delay="200">
+                    <span class="stat-number" data-target="3">0</span><span class="stat-suffix">x</span>
+                    <span class="stat-label">More Callbacks</span>
+                </div>
+                <div class="stat-item" data-animate="fade-up" data-delay="300">
+                    <span class="stat-number" data-target="4.9">0</span>
+                    <span class="stat-label">User Rating</span>
                 </div>
             </div>
         </div>
@@ -252,12 +309,12 @@
 
     <section class="testimonials">
         <div class="container">
-            <div class="section-head">
+            <div class="section-head" data-animate="fade-up">
                 <span class="section-label">Testimonials</span>
                 <h2>Success Stories</h2>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial">
+                <div class="testimonial" data-animate="fade-up" data-delay="0">
                     <div class="testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
@@ -270,7 +327,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial" data-animate="fade-up" data-delay="100">
                     <div class="testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
@@ -283,7 +340,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial" data-animate="fade-up" data-delay="200">
                     <div class="testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
@@ -302,7 +359,7 @@
 
     <section class="cta">
         <div class="container">
-            <div class="cta-box">
+            <div class="cta-box" data-animate="fade-up">
                 <h2>Ready to Get Hired?</h2>
                 <p>Join 50,000+ professionals who've transformed their job search with AI-optimized resumes.</p>
                 <a href="app.html" class="btn-primary btn-large">Build Your Resume — Free</a>
@@ -321,7 +378,7 @@
                 <div class="footer-links">
                     <a href="app.html">Builder</a>
                     <a href="pricing.html">Pricing</a>
-                    <a href="index.html#features">Features</a>
+                    <a href="#features">Features</a>
                 </div>
             </div>
             <div class="footer-bottom">
