@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Marketplace — ResumeAI Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <nav class="nav" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="ai-templates.html">AI Agents</a>
+            <a href="templates.html">Templates</a>
+            <a href="ai-tools.html">AI Tools</a>
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
+        </div>
+        <div id="navAuth">
+            <a href="app.html" class="btn-nav">Get Started</a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero marketplace-hero">
+        <div class="hero-aurora"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    Template Marketplace
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                    <em>30+ Premium</em> Resume Templates
+                </h1>
+                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                    Handcrafted by our AI design team. Executive, creative, technical, minimalist — find the perfect template that speaks your professional language.
+                </p>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                    <a href="#all-templates" class="btn-primary">Browse All Templates</a>
+                    <a href="#categories" class="btn-text">Explore by Category <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="marketplace-stats" data-animate="fade-up" data-delay="400">
+                    <div class="mp-stat"><span class="mp-stat-num">30+</span><span class="mp-stat-label">Templates</span></div>
+                    <div class="mp-stat"><span class="mp-stat-num">8</span><span class="mp-stat-label">Categories</span></div>
+                    <div class="mp-stat"><span class="mp-stat-num">50K+</span><span class="mp-stat-label">Users</span></div>
+                    <div class="mp-stat"><span class="mp-stat-num">4.9★</span><span class="mp-stat-label">Rating</span></div>
+                </div>
+            </div>
+            <div class="hero-visual" data-animate="fade-in" data-delay="300">
+                <div class="marketplace-showcase">
+                    <div class="msc-card msc-card-1">
+                        <div class="msc-header" style="border-bottom:2px solid #c9a96e">
+                            <div class="msc-name">Executive</div>
+                            <div class="msc-role">Prime</div>
+                        </div>
+                        <div class="msc-body">
+                            <div class="msc-line"></div>
+                            <div class="msc-line msc-short"></div>
+                        </div>
+                    </div>
+                    <div class="msc-card msc-card-2">
+                        <div class="msc-sidebar" style="background:linear-gradient(180deg,#e8a0bf,#d484a8)"></div>
+                        <div class="msc-main">
+                            <div class="msc-name" style="color:#e8a0bf;font-size:0.7rem">Visionary</div>
+                        </div>
+                    </div>
+                    <div class="msc-card msc-card-3">
+                        <div class="msc-header" style="border-bottom:2px solid #22d3ee">
+                            <div class="msc-name" style="font-size:0.7rem">Stack</div>
+                        </div>
+                        <div class="msc-body">
+                            <div class="msc-skill-bar"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categories -->
+    <section class="template-categories" id="categories">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Browse</span>
+                <h2>Find Your Style</h2>
+            </div>
+            <div class="category-tabs" data-animate="fade-up" data-delay="100">
+                <button class="cat-tab active" data-filter="all">
+                    <i class="fas fa-th-large"></i> All
+                </button>
+                <button class="cat-tab" data-filter="executive">
+                    <i class="fas fa-crown"></i> Executive
+                </button>
+                <button class="cat-tab" data-filter="creative">
+                    <i class="fas fa-palette"></i> Creative
+                </button>
+                <button class="cat-tab" data-filter="technical">
+                    <i class="fas fa-code"></i> Technical
+                </button>
+                <button class="cat-tab" data-filter="minimal">
+                    <i class="fas fa-leaf"></i> Minimal
+                </button>
+                <button class="cat-tab" data-filter="career-change">
+                    <i class="fas fa-fire"></i> Career Change
+                </button>
+                <button class="cat-tab" data-filter="academic">
+                    <i class="fas fa-graduation-cap"></i> Academic
+                </button>
+                <button class="cat-tab" data-filter="industry">
+                    <i class="fas fa-briefcase"></i> Industry
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Templates Grid -->
+    <section class="template-marketplace" id="all-templates">
+        <div class="container">
+            <div class="marketplace-toolbar" data-animate="fade-up">
+                <div class="toolbar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="templateSearch" placeholder="Search templates...">
+                </div>
+                <div class="toolbar-sort">
+                    <select id="sortTemplates">
+                        <option value="popular">Most Popular</option>
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="marketplace-grid" id="marketplaceGrid">
+                <!-- Templates will be rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Preview Modal -->
+    <div class="template-modal" id="templateModal" style="display:none;">
+        <div class="tm-overlay" onclick="closeTemplateModal()"></div>
+        <div class="tm-container">
+            <button class="tm-close" onclick="closeTemplateModal()"><i class="fas fa-times"></i></button>
+            <div class="tm-content">
+                <div class="tm-preview" id="tmPreview"></div>
+                <div class="tm-info">
+                    <div class="tm-header">
+                        <h2 id="tmName">Template Name</h2>
+                        <span class="tm-agent" id="tmAgent">Agent</span>
+                    </div>
+                    <p class="tm-desc" id="tmDesc">Description</p>
+                    <div class="tm-features" id="tmFeatures"></div>
+                    <div class="tm-price-row">
+                        <div class="tm-price" id="tmPrice">$0</div>
+                        <div class="tm-price-note" id="tmPriceNote"></div>
+                    </div>
+                    <div class="tm-actions">
+                        <button class="btn-primary btn-full" id="tmBuyBtn" onclick="purchaseTemplate()">
+                            <i class="fas fa-shopping-cart"></i> Get This Template
+                        </button>
+                        <button class="btn-outline-full" onclick="previewTemplateLive()">
+                            <i class="fas fa-eye"></i> Live Preview
+                        </button>
+                    </div>
+                    <div class="tm-meta">
+                        <span><i class="fas fa-download"></i> <span id="tmDownloads">0</span> downloads</span>
+                        <span><i class="fas fa-star"></i> <span id="tmRating">0</span> rating</span>
+                        <span><i class="fas fa-check-circle"></i> ATS Optimized</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div class="purchase-modal" id="purchaseModal" style="display:none;">
+        <div class="pm-overlay" onclick="closePurchaseModal()"></div>
+        <div class="pm-container">
+            <button class="pm-close" onclick="closePurchaseModal()"><i class="fas fa-times"></i></button>
+            <div class="pm-content">
+                <div class="pm-icon"><i class="fas fa-gem"></i></div>
+                <h2>Unlock Premium Templates</h2>
+                <p>Get this template and all 30+ premium templates with a Pro subscription.</p>
+                <div class="pm-plans">
+                    <div class="pm-plan">
+                        <h3>Basic</h3>
+                        <div class="pm-plan-price">$9.99<span>/mo</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 10 premium templates</li>
+                            <li><i class="fas fa-check"></i> 25 AI generations/mo</li>
+                            <li><i class="fas fa-check"></i> ATS optimization</li>
+                        </ul>
+                        <a href="pricing.html" class="btn-outline-full">Choose Basic</a>
+                    </div>
+                    <div class="pm-plan pm-plan-popular">
+                        <div class="pm-popular-badge">Most Popular</div>
+                        <h3>Pro</h3>
+                        <div class="pm-plan-price">$19.99<span>/mo</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> All 30+ templates</li>
+                            <li><i class="fas fa-check"></i> 100 AI generations/mo</li>
+                            <li><i class="fas fa-check"></i> Cover letter AI</li>
+                            <li><i class="fas fa-check"></i> Interview prep</li>
+                        </ul>
+                        <a href="pricing.html" class="btn-primary btn-full">Choose Pro</a>
+                    </div>
+                    <div class="pm-plan">
+                        <h3>Enterprise</h3>
+                        <div class="pm-plan-price">$49.99<span>/mo</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Pro</li>
+                            <li><i class="fas fa-check"></i> 500 AI generations/mo</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                            <li><i class="fas fa-check"></i> Custom branding</li>
+                        </ul>
+                        <a href="pricing.html" class="btn-outline-full">Choose Enterprise</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box" data-animate="fade-up">
+                <h2>Can't Decide?</h2>
+                <p>Let our AI agents generate a custom template just for you in seconds.</p>
+                <a href="ai-templates.html" class="btn-primary btn-large">Try AI Template Studio</a>
+                <span class="cta-note">Free to try • No credit card required</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark">R</span>
+                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                </a>
+                <div class="footer-links">
+                    <a href="ai-templates.html">AI Agents</a>
+                    <a href="templates.html">Templates</a>
+                    <a href="ai-tools.html">AI Tools</a>
+                    <a href="app.html">Builder</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>ResumeAI Pro. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="ai-templates.html">AI Agents</a>
+        <a href="templates.html">Templates</a>
+        <a href="ai-tools.html">AI Tools</a>
+        <a href="app.html">Builder</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="index.html">Home</a>
+    </div>
+
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
+    <script src="js/app.js"></script>
+    <script src="js/templates-marketplace.js"></script>
+</body>
+</html>

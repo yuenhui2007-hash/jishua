@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub — ResumeAI Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <nav class="nav" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="ai-templates.html">AI Agents</a>
+            <a href="templates.html">Templates</a>
+            <a href="ai-tools.html">AI Tools</a>
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
+        </div>
+        <div id="navAuth">
+            <a href="app.html" class="btn-nav">Get Started</a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero tools-hero">
+        <div class="hero-aurora"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    AI Tools Hub
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                    Your <em>AI Career</em> Toolkit
+                </h1>
+                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                    15+ AI-powered tools to optimize every step of your job search — from resume writing to salary negotiation.
+                </p>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                    <a href="#tools-grid" class="btn-primary">Explore Tools</a>
+                    <a href="pricing.html" class="btn-text">View Plans <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual" data-animate="fade-in" data-delay="300">
+                <div class="tools-visual">
+                    <div class="tv-card tv-card-1"><i class="fas fa-robot"></i></div>
+                    <div class="tv-card tv-card-2"><i class="fas fa-sparkles"></i></div>
+                    <div class="tv-card tv-card-3"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <div class="tv-card tv-card-4"><i class="fas fa-brain"></i></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tools Grid -->
+    <section class="tools-hub" id="tools-grid">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">AI-Powered</span>
+                <h2>Career Acceleration Tools</h2>
+                <p class="section-sub">Every tool you need to land your dream job</p>
+            </div>
+
+            <div class="tools-grid">
+                <!-- Tool 1: Interview Prep -->
+                <div class="tool-card" data-animate="fade-up" data-delay="100">
+                    <div class="tool-icon tool-icon-purple"><i class="fas fa-comments"></i></div>
+                    <div class="tool-content">
+                        <h3>AI Interview Prep</h3>
+                        <p>Generate likely interview questions based on your resume + job description, with model answers.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag-popular">Popular</span>
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('interview')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Cover Letter -->
+                <div class="tool-card" data-animate="fade-up" data-delay="150">
+                    <div class="tool-icon tool-icon-blue"><i class="fas fa-envelope-open-text"></i></div>
+                    <div class="tool-content">
+                        <h3>Cover Letter Tailor</h3>
+                        <p>Paste a job description, AI rewrites your cover letter to match keywords and tone perfectly.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('coverletter')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 3: LinkedIn Bio -->
+                <div class="tool-card" data-animate="fade-up" data-delay="200">
+                    <div class="tool-icon tool-icon-cyan"><i class="fab fa-linkedin"></i></div>
+                    <div class="tool-content">
+                        <h3>LinkedIn Bio Generator</h3>
+                        <p>One-click generate an optimized LinkedIn "About" section from your resume content.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('linkedin')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 4: ATS Score -->
+                <div class="tool-card" data-animate="fade-up" data-delay="250">
+                    <div class="tool-icon tool-icon-green"><i class="fas fa-chart-bar"></i></div>
+                    <div class="tool-content">
+                        <h3>ATS Score Checker</h3>
+                        <p>AI analyzes how well your resume passes Applicant Tracking Systems. Get a score + fixes.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag-popular">Popular</span>
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('ats')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 5: Salary Negotiation -->
+                <div class="tool-card" data-animate="fade-up" data-delay="300">
+                    <div class="tool-icon tool-icon-gold"><i class="fas fa-hand-holding-dollar"></i></div>
+                    <div class="tool-content">
+                        <h3>Salary Negotiation Script</h3>
+                        <p>AI crafts negotiation talking points based on your experience level, location, and role.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('salary')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 6: Skills Gap -->
+                <div class="tool-card" data-animate="fade-up" data-delay="350">
+                    <div class="tool-icon tool-icon-rose"><i class="fas fa-puzzle-piece"></i></div>
+                    <div class="tool-content">
+                        <h3>Skills Gap Analyzer</h3>
+                        <p>Upload a job description, AI tells you exactly what skills you're missing and how to get them.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('skillsgap')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 7: Achievement Quantifier -->
+                <div class="tool-card" data-animate="fade-up" data-delay="400">
+                    <div class="tool-icon tool-icon-amber"><i class="fas fa-bullseye"></i></div>
+                    <div class="tool-content">
+                        <h3>Achievement Quantifier</h3>
+                        <p>"Improved performance" → "Improved load time by 40%." AI suggests metrics for vague bullets.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('quantify')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 8: Multi-Language -->
+                <div class="tool-card" data-animate="fade-up" data-delay="450">
+                    <div class="tool-icon tool-icon-indigo"><i class="fas fa-language"></i></div>
+                    <div class="tool-content">
+                        <h3>Multi-Language Resume</h3>
+                        <p>Translate your entire resume while keeping professional tone. 20+ languages supported.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('translate')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 9: Job Matcher -->
+                <div class="tool-card" data-animate="fade-up" data-delay="500">
+                    <div class="tool-icon tool-icon-teal"><i class="fas fa-briefcase"></i></div>
+                    <div class="tool-content">
+                        <h3>Job Description Matcher</h3>
+                        <p>Paste a job post, see your match percentage and get specific improvement suggestions.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag-popular">Popular</span>
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('jobmatch')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 10: Referral Generator -->
+                <div class="tool-card" data-animate="fade-up" data-delay="550">
+                    <div class="tool-icon tool-icon-pink"><i class="fas fa-user-plus"></i></div>
+                    <div class="tool-content">
+                        <h3>Referral Request Generator</h3>
+                        <p>AI drafts personalized messages asking your connections for job referrals at their companies.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('referral')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 11: Networking Icebreakers -->
+                <div class="tool-card" data-animate="fade-up" data-delay="600">
+                    <div class="tool-icon tool-icon-orange"><i class="fas fa-handshake"></i></div>
+                    <div class="tool-content">
+                        <h3>Networking Icebreakers</h3>
+                        <p>Generate conversation starters tailored to the person you're meeting at networking events.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('networking')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 12: Personal Brand Statement -->
+                <div class="tool-card" data-animate="fade-up" data-delay="650">
+                    <div class="tool-icon tool-icon-lime"><i class="fas fa-fingerprint"></i></div>
+                    <div class="tool-content">
+                        <h3>Personal Brand Statement</h3>
+                        <p>One-sentence "what you do" generator for bios, Twitter, conference introductions.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('brand')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 13: Resume Summarizer -->
+                <div class="tool-card" data-animate="fade-up" data-delay="700">
+                    <div class="tool-icon tool-icon-sky"><i class="fas fa-file-contract"></i></div>
+                    <div class="tool-content">
+                        <h3>Resume Summarizer</h3>
+                        <p>Generate a concise executive summary or elevator pitch from your full resume.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('summarize')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 14: Email Signature -->
+                <div class="tool-card" data-animate="fade-up" data-delay="750">
+                    <div class="tool-icon tool-icon-violet"><i class="fas fa-signature"></i></div>
+                    <div class="tool-content">
+                        <h3>Email Signature Generator</h3>
+                        <p>Branded HTML email signature with your resume link, social profiles, and contact info.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Pro</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('signature')">Try It</button>
+                    </div>
+                </div>
+
+                <!-- Tool 15: Elevator Pitch -->
+                <div class="tool-card" data-animate="fade-up" data-delay="800">
+                    <div class="tool-icon tool-icon-coral"><i class="fas fa-microphone"></i></div>
+                    <div class="tool-content">
+                        <h3>Elevator Pitch Builder</h3>
+                        <p>30-second, 60-second, and 2-minute versions of your pitch for different contexts.</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Free</span>
+                        </div>
+                        <button class="btn-tool" onclick="openToolModal('pitch')">Try It</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Modal -->
+    <div class="tool-modal" id="toolModal" style="display:none;">
+        <div class="tl-overlay" onclick="closeToolModal()"></div>
+        <div class="tl-container">
+            <button class="tl-close" onclick="closeToolModal()"><i class="fas fa-times"></i></button>
+            <div class="tl-header">
+                <h2 id="tlTitle">Tool Name</h2>
+                <p id="tlDesc">Tool description goes here.</p>
+            </div>
+            <div class="tl-body">
+                <div class="tl-input-section" id="tlInputSection">
+                    <!-- Dynamic inputs based on tool -->
+                </div>
+                <button class="btn-primary btn-full" id="tlGenerateBtn" onclick="generateToolOutput()">
+                    <span class="btn-text"><i class="fas fa-sparkles"></i> Generate</span>
+                    <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Generating...</span>
+                </button>
+                <div class="tl-output" id="tlOutput" style="display:none;">
+                    <div class="tl-output-header">
+                        <h4>Result</h4>
+                        <button class="tl-copy-btn" onclick="copyToolOutput()"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                    <div class="tl-output-content" id="tlOutputContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box" data-animate="fade-up">
+                <h2>Unlock All 15+ AI Tools</h2>
+                <p>Free users get 5 AI generations. Upgrade to Pro for 100/month.</p>
+                <a href="pricing.html" class="btn-primary btn-large">Upgrade to Pro</a>
+                <span class="cta-note">Start free • Cancel anytime</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark">R</span>
+                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                </a>
+                <div class="footer-links">
+                    <a href="ai-templates.html">AI Agents</a>
+                    <a href="templates.html">Templates</a>
+                    <a href="ai-tools.html">AI Tools</a>
+                    <a href="app.html">Builder</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>ResumeAI Pro. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="ai-templates.html">AI Agents</a>
+        <a href="templates.html">Templates</a>
+        <a href="ai-tools.html">AI Tools</a>
+        <a href="app.html">Builder</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="index.html">Home</a>
+    </div>
+
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
+    <script src="js/app.js"></script>
+    <script src="js/ai-tools.js"></script>
+</body>
+</html>
