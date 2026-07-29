@@ -19,7 +19,7 @@
             <a href="index.html" class="vertical-nav-brand"><span>YH</span> YH</a>
             <div class="vertical-nav-links">
                 <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-                <a href="ai-resume.html"><i class="fas fa-file-alt"></i> AI Resume</a>
+                <a href="ai-resume.html"><i class="fas fa-file-alt"></i> Resume</a>
                 <a href="recruitment.html"><i class="fas fa-building"></i> Recruitment</a>
                 <a href="student-career.html"><i class="fas fa-graduation-cap"></i> Student Career</a>
                 <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
@@ -29,21 +29,46 @@
 
     <header class="hero" style="padding-top: 120px; padding-bottom: 80px;">
         <div class="hero-aurora"></div>
-        <div class="container">
-            <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <div class="hero-label" data-animate="fade-up">
+        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div class="hero-content" data-animate="fade-up">
+                <div class="hero-label">
                     <span class="pulse-dot"></span>
                     AI-Powered Career Ecosystem
                 </div>
-                <h1 class="hero-title" data-animate="fade-up" data-delay="100" style="font-size: clamp(2.5rem, 5vw, 4rem);">
+                <h1 class="hero-title" style="text-align: left; font-size: clamp(2.2rem, 4.5vw, 3.5rem);">
                     One Platform.<br>
                     <em style="color: #A5A68F;">Every Career Need.</em>
                 </h1>
-                <p class="hero-desc" data-animate="fade-up" data-delay="200" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p class="hero-desc" style="text-align: left; max-width: 480px;">
                     Whether you're a job seeker, student, employer, or HR professional — YH has intelligent tools built specifically for you.
                 </p>
-                <div class="hero-actions" data-animate="fade-up" data-delay="300" style="justify-content: center;">
+                <div class="hero-actions" style="justify-content: flex-start;">
                     <a href="#services" class="btn-primary">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-illustration" data-animate="fade-up" data-delay="200" style="display: flex; justify-content: center; align-items: center;">
+                <div style="position: relative; width: 360px; height: 360px;">
+                    <!-- Decorative circles -->
+                    <div style="position: absolute; inset: 0; border-radius: 50%; border: 2px dashed rgba(165,166,143,0.2); animation: spinSlow 30s linear infinite;"></div>
+                    <div style="position: absolute; inset: 30px; border-radius: 50%; border: 1px solid rgba(165,166,143,0.15);"></div>
+                    <div style="position: absolute; inset: 60px; border-radius: 50%; background: linear-gradient(135deg, rgba(165,166,143,0.08), rgba(217,178,169,0.08));"></div>
+                    <!-- Floating elements -->
+                    <div style="position: absolute; top: 20px; left: -10px; width: 60px; height: 60px; border-radius: 16px; background: rgba(165,166,143,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #A5A68F; animation: floatY 6s ease-in-out infinite;">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div style="position: absolute; top: 50%; right: -15px; width: 50px; height: 50px; border-radius: 50%; background: rgba(217,178,169,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #D9B2A9; animation: floatY 8s ease-in-out infinite 1s;">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div style="position: absolute; bottom: 20px; left: 20px; width: 56px; height: 56px; border-radius: 14px; background: rgba(165,166,143,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #A5A68F; animation: floatY 7s ease-in-out infinite 0.5s;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div style="position: absolute; bottom: 60px; right: 30px; width: 48px; height: 48px; border-radius: 14px; background: rgba(217,178,169,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #D9B2A9; animation: floatY 9s ease-in-out infinite 1.5s;">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <!-- Center logo -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; border-radius: 28px; background: linear-gradient(135deg, #A5A68F, #D9B2A9); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; font-weight: 800; color: #fff; font-family: var(--font-serif); box-shadow: 0 16px 60px rgba(165,166,143,0.3); animation: floatY 5s ease-in-out infinite 0.3s;">
+                        YH
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,11 +139,6 @@
             </div>
             <div class="footer-bottom">
                 <p>© 2026 YH. All rights reserved.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                </div>
             </div>
         </div>
     </footer>
@@ -126,10 +146,25 @@
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
         <a href="index.html">🏠 Home</a>
-        <a href="ai-resume.html">📝 AI Resume</a>
+        <a href="ai-resume.html">📝 Resume</a>
         <a href="recruitment.html">🏢 Recruitment</a>
         <a href="student-career.html">🎓 Student Career</a>
         <a href="hr-services.html">👥 HR Services</a>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget" id="aiChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleChat()"><i class="fas fa-robot"></i><span class="chat-badge">1</span></div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info"><i class="fas fa-robot"></i><div><h4>YH Career Assistant</h4><span><span class="status-dot"></span> Online</span></div></div>
+                <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-msg chat-msg-bot"><div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble"><p>Hi there! 👋 I'm your AI career assistant. I can help with resumes, recruitment, student careers, or HR services. What brings you here today?</p></div></div>
+            </div>
+            <div class="chat-input-area"><input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)"><button id="chatSendBtn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button></div>
+        </div>
     </div>
 
     <div id="authModalContainer"></div>
@@ -137,106 +172,12 @@
     <script>window.API_BASE_URL = '';</script>
     <script src="frontend/src/api/client.js"></script>
     <script>
-    fetch('frontend/src/components/auth-modal.html')
-        .then(r => r.text())
-        .then(html => {
-            document.getElementById('authModalContainer').innerHTML = html;
-            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
-            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
-        });
-    document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', () => { card.style.transform = 'translateY(-8px)'; card.style.boxShadow = '0 25px 60px rgba(0,0,0,0.08)'; });
-        card.addEventListener('mouseleave', () => { card.style.transform = 'translateY(0)'; card.style.boxShadow = 'none'; });
-    });
-    </script>
-    <!-- AI Chat Widget -->
-    <div class="ai-chat-widget" id="aiChatWidget">
-        <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
-            <i class="fas fa-robot"></i>
-            <span class="chat-badge">1</span>
-        </div>
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">
-                <div class="chat-header-info">
-                    <i class="fas fa-robot"></i>
-                    <div>
-                        <h4>YH Career Assistant</h4>
-                        <span><span class="status-dot"></span> Online</span>
-                    </div>
-                </div>
-                <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="chat-msg chat-msg-bot">
-                    <div class="chat-msg-avatar"><i class="fas fa-robot"></i></div>
-                    <div class="chat-msg-bubble">
-                        <p>Hi there! 👋 I'm your AI career assistant. I can help with resumes, recruitment, student careers, or HR services. What brings you here today?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
-                <button id="chatSendBtn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    function toggleChat() {
-        document.getElementById('chatWindow').classList.toggle('active');
-        document.querySelector('.chat-badge').style.display = 'none';
-    }
-    function handleChatKey(e) {
-        if (e.key === 'Enter') sendChatMessage();
-    }
-    const chatResponses = {
-        'resume': 'I can help you build a professional resume! Head over to our <a href="ai-resume.html">Resume Builder</a>.',
-        'template': 'We have 30+ premium resume templates! Check out the <a href="templates.html">Template Marketplace</a>.',
-        'interview': 'Our AI Interview Prep tool generates likely questions and model answers.',
-        'ats': 'Our ATS Score Checker analyzes your resume against Applicant Tracking Systems.',
-        'price': 'We have a free plan for students and basic users. Pro starts at $9.99/mo. See <a href="payment-portal.html">Payment Portal</a>.',
-        'student': 'Our <a href="student-career.html">Student Career Hub</a> is free forever!',
-        'hire': 'Looking to hire? Our <a href="recruitment.html">AI Recruitment</a> can help you find candidates 70% faster.',
-        'hr': 'Our <a href="hr-services.html">AI HR Services</a> offer smart screening and workforce analytics.',
-        'payment': 'You can pay via Touch \'n Go, Online Banking, or Card. Visit our <a href="payment-portal.html">Payment Portal</a>.',
-        'help': 'I can help with resumes, recruitment, student careers, HR services, or payments. Just ask!',
-        'hello': 'Hello! 👋 How can I help you today?',
-        'hi': 'Hi there! What can I do for you?',
-    };
-    function sendChatMessage() {
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (!text) return;
-        addChatMessage(text, true);
-        input.value = '';
-        const messages = document.getElementById('chatMessages');
-        const typingId = 'typing-' + Date.now();
-        const typingDiv = document.createElement('div');
-        typingDiv.id = typingId;
-        typingDiv.className = 'chat-msg chat-msg-bot chat-typing';
-        typingDiv.innerHTML = '<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>';
-        messages.appendChild(typingDiv);
-        messages.scrollTop = messages.scrollHeight;
-        setTimeout(() => {
-            document.getElementById(typingId)?.remove();
-            const lower = text.toLowerCase();
-            let response = 'I\'m here to help! You can ask me about building resumes, recruitment, student careers, HR services, or payments.';
-            for (const [key, val] of Object.entries(chatResponses)) {
-                if (lower.includes(key)) { response = val; break; }
-            }
-            addChatMessage(response, false);
-        }, 1200 + Math.random() * 800);
-    }
-    function addChatMessage(text, isUser) {
-        const messages = document.getElementById('chatMessages');
-        const div = document.createElement('div');
-        div.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
-        div.innerHTML = isUser
-            ? `<div class="chat-msg-bubble">${text}</div>`
-            : `<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble">${text}</div>`;
-        messages.appendChild(div);
-        messages.scrollTop = messages.scrollHeight;
-    }
+    fetch('frontend/src/components/auth-modal.html').then(r=>r.text()).then(html=>{document.getElementById('authModalContainer').innerHTML=html;document.getElementById('authModalContainer').querySelectorAll('script').forEach(s=>{const n=document.createElement('script');n.textContent=s.textContent;document.body.appendChild(n)})});
+    document.querySelectorAll('.service-card').forEach(c=>{c.addEventListener('mouseenter',()=>{c.style.transform='translateY(-8px)';c.style.boxShadow='0 25px 60px rgba(0,0,0,0.08)'});c.addEventListener('mouseleave',()=>{c.style.transform='translateY(0)';c.style.boxShadow='none'})});
+    function toggleChat(){document.getElementById('chatWindow').classList.toggle('active');document.querySelector('.chat-badge').style.display='none'}
+    function handleChatKey(e){if(e.key==='Enter')sendChatMessage()}
+    const cr={'resume':'Head over to <a href="ai-resume.html">Resume Builder</a>!','template':'Check out <a href="templates.html">Templates</a>.','student':'Our <a href="student-career.html">Student Career Hub</a> is free!','hire':'<a href="recruitment.html">AI Recruitment</a> finds candidates 70% faster.','hr':'<a href="hr-services.html">AI HR Services</a> for your team.','payment':'Visit <a href="payment-portal.html">Payment Portal</a>.','hello':'Hello! 👋','hi':'Hi there!'};
+    function sendChatMessage(){const i=document.getElementById('chatInput');const t=i.value.trim();if(!t)return;const m=document.getElementById('chatMessages');const u=document.createElement('div');u.className='chat-msg chat-msg-user';u.innerHTML=`<div class="chat-msg-bubble">${t}</div>`;m.appendChild(u);i.value='';const tyid='typing-'+Date.now();const ty=document.createElement('div');ty.id=tyid;ty.className='chat-msg chat-msg-bot chat-typing';ty.innerHTML='<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>';m.appendChild(ty);m.scrollTop=m.scrollHeight;setTimeout(()=>{document.getElementById(tyid)?.remove();const l=t.toLowerCase();let r='I\'m here to help! Ask me about resumes, recruitment, student careers, or HR.';for(const[k,v]of Object.entries(cr)){if(l.includes(k)){r=v;break}}const d=document.createElement('div');d.className='chat-msg chat-msg-bot';d.innerHTML=`<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble">${r}</div>`;m.appendChild(d);m.scrollTop=m.scrollHeight},1200+Math.random()*800)}
     </script>
 </body>
 </html>
