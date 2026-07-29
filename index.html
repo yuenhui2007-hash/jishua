@@ -14,17 +14,12 @@
     <div class="noise-overlay" style="opacity: 0.015;"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Top Announcement Bar -->
-    <div class="top-bar" style="background: #A5A68F; color: #fff; text-align: center; padding: 8px 16px; font-size: 0.85rem; font-weight: 500;">
-        <i class="fas fa-sparkles" style="margin-right: 6px;"></i> YH is now serving 4 verticals — Resumes, Recruitment, Student Career & HR Services
-    </div>
-
     <div class="vertical-nav">
         <div class="container">
             <a href="index.html" class="vertical-nav-brand"><span>YH</span> YH</a>
             <div class="vertical-nav-links">
                 <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-                <a href="#ai-resume"><i class="fas fa-file-alt"></i> AI Resume</a>
+                <a href="ai-resume.html"><i class="fas fa-file-alt"></i> AI Resume</a>
                 <a href="recruitment.html"><i class="fas fa-building"></i> Recruitment</a>
                 <a href="student-career.html"><i class="fas fa-graduation-cap"></i> Student Career</a>
                 <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
@@ -32,8 +27,7 @@
         </div>
     </div>
 
-    <!-- Hero Section: Main Services -->
-    <header class="hero" style="padding-top: 80px; padding-bottom: 60px;">
+    <header class="hero" style="padding-top: 120px; padding-bottom: 80px;">
         <div class="hero-aurora"></div>
         <div class="container">
             <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
@@ -50,13 +44,11 @@
                 </p>
                 <div class="hero-actions" data-animate="fade-up" data-delay="300" style="justify-content: center;">
                     <a href="#services" class="btn-primary">Explore Services</a>
-                    <a href="#ai-resume" class="btn-text">Build a Resume <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Services Grid -->
     <section class="services-section" id="services" style="padding: 80px 0;">
         <div class="container">
             <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
@@ -65,8 +57,7 @@
                 <p class="section-sub">Four powerful AI verticals designed for every stage of the career journey.</p>
             </div>
             <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
-                <!-- Service 1: AI Resume -->
-                <a href="#ai-resume" class="service-card" data-animate="fade-up" data-delay="0" style="display: block; background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 36px 32px; transition: all 0.4s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
+                <a href="ai-resume.html" class="service-card" data-animate="fade-up" data-delay="0" style="display: block; background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 36px 32px; transition: all 0.4s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #A5A68F;"></div>
                     <div class="service-icon" style="width: 56px; height: 56px; border-radius: 16px; background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #A5A68F; margin-bottom: 20px;">
                         <i class="fas fa-file-alt"></i>
@@ -75,8 +66,6 @@
                     <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">Build ATS-optimized resumes with AI-generated content, professional templates, and real-time scoring.</p>
                     <span style="font-size: 0.9rem; font-weight: 500; color: #A5A68F;">Build Your Resume <i class="fas fa-arrow-right" style="margin-left: 4px;"></i></span>
                 </a>
-
-                <!-- Service 2: Recruitment -->
                 <a href="recruitment.html" class="service-card" data-animate="fade-up" data-delay="100" style="display: block; background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 36px 32px; transition: all 0.4s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #D9B2A9;"></div>
                     <div class="service-icon" style="width: 56px; height: 56px; border-radius: 16px; background: rgba(217,178,169,0.15); border: 1px solid rgba(217,178,169,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #D9B2A9; margin-bottom: 20px;">
@@ -86,8 +75,6 @@
                     <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">For employers: AI candidate matching, automated screening, predictive analytics, and bias-free hiring.</p>
                     <span style="font-size: 0.9rem; font-weight: 500; color: #D9B2A9;">For Employers <i class="fas fa-arrow-right" style="margin-left: 4px;"></i></span>
                 </a>
-
-                <!-- Service 3: Student Career -->
                 <a href="student-career.html" class="service-card" data-animate="fade-up" data-delay="200" style="display: block; background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 36px 32px; transition: all 0.4s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #A5A68F;"></div>
                     <div class="service-icon" style="width: 56px; height: 56px; border-radius: 16px; background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #A5A68F; margin-bottom: 20px;">
@@ -97,8 +84,6 @@
                     <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">For students: First resume builder, internship matcher, mock interviews, career roadmaps — all free.</p>
                     <span style="font-size: 0.9rem; font-weight: 500; color: #A5A68F;">For Students <i class="fas fa-arrow-right" style="margin-left: 4px;"></i></span>
                 </a>
-
-                <!-- Service 4: HR Services -->
                 <a href="hr-services.html" class="service-card" data-animate="fade-up" data-delay="300" style="display: block; background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 36px 32px; transition: all 0.4s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #D9B2A9;"></div>
                     <div class="service-icon" style="width: 56px; height: 56px; border-radius: 16px; background: rgba(217,178,169,0.15); border: 1px solid rgba(217,178,169,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #D9B2A9; margin-bottom: 20px;">
@@ -112,238 +97,6 @@
         </div>
     </section>
 
-    <!-- AI Resume Builder Section (Moved from Hero) -->
-    <section class="ai-resume-section" id="ai-resume" style="padding: 100px 0; background: #ffffff;">
-        <div class="container">
-            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
-                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">AI Resume Builder</span>
-                <h2>The Resume That Gets You Hired</h2>
-                <p class="section-sub">Our flagship AI-powered resume builder. Analyze, optimize, and download in minutes.</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-                <div data-animate="fade-up" data-delay="100">
-                    <div class="resume-card" style="position: relative;">
-                        <div class="rc-glass"></div>
-                        <div class="rc-content">
-                            <div class="rc-header">
-                                <div class="rc-avatar"></div>
-                                <div class="rc-info">
-                                    <div class="rc-name">Sarah Chen</div>
-                                    <div class="rc-role">Product Manager</div>
-                                </div>
-                                <div class="rc-score-badge">
-                                    <span class="rc-score-num">98</span>
-                                    <span class="rc-score-label">ATS</span>
-                                </div>
-                            </div>
-                            <div class="rc-section">
-                                <div class="rc-sec-title"></div>
-                                <div class="rc-line rc-line-short"></div>
-                                <div class="rc-line"></div>
-                                <div class="rc-line rc-line-med"></div>
-                            </div>
-                            <div class="rc-section">
-                                <div class="rc-sec-title"></div>
-                                <div class="rc-line"></div>
-                                <div class="rc-line rc-line-short"></div>
-                            </div>
-                            <div class="rc-section">
-                                <div class="rc-sec-title"></div>
-                                <div class="rc-skill"><span></span><span></span><span></span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="floating-tag tag-1">
-                        <div class="ft-icon"><i class="fas fa-sparkles"></i></div>
-                        <div class="ft-text">
-                            <strong>AI Generated</strong>
-                            <span>Optimized content</span>
-                        </div>
-                    </div>
-                    <div class="floating-tag tag-2">
-                        <div class="ft-icon"><i class="fas fa-shield-alt"></i></div>
-                        <div class="ft-text">
-                            <strong>ATS Ready</strong>
-                            <span>Passes every system</span>
-                        </div>
-                    </div>
-                </div>
-                <div data-animate="fade-up" data-delay="200">
-                    <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 24px; font-family: var(--font-serif);">Why Our AI Resume Builder?</h3>
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <div style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); display: flex; align-items: center; justify-content: center; color: #A5A68F; flex-shrink: 0;"><i class="fas fa-brain"></i></div>
-                            <div>
-                                <h4 style="font-weight: 600; margin-bottom: 4px;">AI Content Writer</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Crafts professional bullet points tailored to your industry and target role.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); display: flex; align-items: center; justify-content: center; color: #A5A68F; flex-shrink: 0;"><i class="fas fa-crosshairs"></i></div>
-                            <div>
-                                <h4 style="font-weight: 600; margin-bottom: 4px;">ATS Optimization</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Real-time scoring ensures your resume passes every Applicant Tracking System.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); display: flex; align-items: center; justify-content: center; color: #A5A68F; flex-shrink: 0;"><i class="fas fa-key"></i></div>
-                            <div>
-                                <h4 style="font-weight: 600; margin-bottom: 4px;">Keyword Matching</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Paste any job description and we extract the exact keywords you need.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; gap: 16px; align-items: flex-start;">
-                            <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); display: flex; align-items: center; justify-content: center; color: #A5A68F; flex-shrink: 0;"><i class="fas fa-palette"></i></div>
-                            <div>
-                                <h4 style="font-weight: 600; margin-bottom: 4px;">30+ Pro Templates</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Professionally designed templates vetted by hiring managers across industries.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 32px;">
-                        <a href="app.html" class="btn-primary">Build Your Resume Now</a>
-                        <a href="templates.html" class="btn-text" style="margin-left: 20px;">Browse Templates <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works" style="padding: 80px 0;">
-        <div class="container">
-            <div class="section-head" data-animate="fade-up" style="text-align: center;">
-                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">How It Works</span>
-                <h2>Three Steps to Your Dream Job</h2>
-            </div>
-            <div class="steps">
-                <div class="step" data-animate="fade-up" data-delay="0">
-                    <div class="step-num">01</div>
-                    <div class="step-icon"><i class="fas fa-user-edit"></i></div>
-                    <h3>Tell Us About You</h3>
-                    <p>Upload your existing resume or fill in your experience, education, and skills.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="150"></div>
-                <div class="step" data-animate="fade-up" data-delay="200">
-                    <div class="step-num">02</div>
-                    <div class="step-icon"><i class="fas fa-bullseye"></i></div>
-                    <h3>Add Target Job</h3>
-                    <p>Paste the job description. Our AI optimizes your resume with the right keywords.</p>
-                </div>
-                <div class="step-connector" data-animate="scale-x" data-delay="350"></div>
-                <div class="step" data-animate="fade-up" data-delay="400">
-                    <div class="step-num">03</div>
-                    <div class="step-icon"><i class="fas fa-download"></i></div>
-                    <h3>Download & Apply</h3>
-                    <p>Get your ATS-optimized resume in PDF, Word, or text format. Apply with confidence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats" style="padding: 60px 0;">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item" data-animate="fade-up" data-delay="0">
-                    <span class="stat-number" data-target="93">0</span><span class="stat-suffix">%</span>
-                    <span class="stat-label">Interview Rate</span>
-                </div>
-                <div class="stat-item" data-animate="fade-up" data-delay="100">
-                    <span class="stat-number" data-target="50000">0</span><span class="stat-suffix">+</span>
-                    <span class="stat-label">Resumes Built</span>
-                </div>
-                <div class="stat-item" data-animate="fade-up" data-delay="200">
-                    <span class="stat-number" data-target="3">0</span><span class="stat-suffix">x</span>
-                    <span class="stat-label">More Callbacks</span>
-                </div>
-                <div class="stat-item" data-animate="fade-up" data-delay="300">
-                    <span class="stat-number" data-target="4.9">0</span>
-                    <span class="stat-label">User Rating</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" style="padding: 80px 0;">
-        <div class="container">
-            <div class="section-head" data-animate="fade-up" style="text-align: center;">
-                <span class="section-label" style="background: rgba(217,178,169,0.15); color: #a08078;">Testimonials</span>
-                <h2>Success Stories</h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial" data-animate="fade-up" data-delay="0">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"I applied to 50 jobs with my old resume and got zero callbacks. After YH, I got 8 interviews in 2 weeks."</p>
-                    <div class="testimonial-author">
-                        <div class="ta-avatar">SJ</div>
-                        <div class="ta-info">
-                            <strong>Sarah Johnson</strong>
-                            <span>Marketing Manager at TechCorp</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial" data-animate="fade-up" data-delay="100">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"The keyword matching is incredible. I could see exactly which skills the job wanted and how to highlight them."</p>
-                    <div class="testimonial-author">
-                        <div class="ta-avatar">MC</div>
-                        <div class="ta-info">
-                            <strong>Michael Chen</strong>
-                            <span>Software Engineer at Google</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial" data-animate="fade-up" data-delay="200">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"As a career changer from teaching to tech, YH helped me frame my transferable skills perfectly."</p>
-                    <div class="testimonial-author">
-                        <div class="ta-avatar">EP</div>
-                        <div class="ta-info">
-                            <strong>Emily Park</strong>
-                            <span>UX Designer at Spotify</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta" style="padding: 80px 0;">
-        <div class="container">
-            <div class="cta-box" data-animate="fade-up" style="background: linear-gradient(135deg, rgba(165,166,143,0.08), rgba(217,178,169,0.05)); border: 1px solid rgba(165,166,143,0.2);">
-                <h2>Ready to Get Hired?</h2>
-                <p>Join 50,000+ professionals who've transformed their job search with AI-optimized resumes.</p>
-                <a href="app.html" class="btn-primary btn-large">Build Your Resume — Free</a>
-                <span class="cta-note">No credit card required</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brands -->
-    <section class="brands" style="padding: 40px 0; border-top: 1px solid var(--border);">
-        <div class="container">
-            <p class="brands-label" data-animate="fade-up">Our users land jobs at</p>
-            <div class="brands-logos" data-animate="fade-up" data-delay="100">
-                <span>Google</span>
-                <span>Microsoft</span>
-                <span>Amazon</span>
-                <span>Meta</span>
-                <span>Apple</span>
-                <span>Netflix</span>
-            </div>
-        </div>
-    </section>
-
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -352,13 +105,11 @@
                     <span class="logo-text">YH</span>
                 </a>
                 <div class="footer-links">
-                    <a href="#ai-resume">AI Resume</a>
+                    <a href="ai-resume.html">AI Resume</a>
                     <a href="recruitment.html">Recruitment</a>
                     <a href="student-career.html">Student Career</a>
                     <a href="hr-services.html">HR Services</a>
-                    <a href="templates.html">Templates</a>
-                    <a href="app.html">Builder</a>
-                    <a href="pricing.html">Pricing</a>
+                    <a href="index.html">Home</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -372,49 +123,20 @@
         </div>
     </footer>
 
-    <!-- AI Chat Widget -->
-    <div class="ai-chat-widget" id="aiChatWidget">
-        <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
-            <i class="fas fa-robot"></i>
-            <span class="chat-badge">1</span>
-        </div>
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">
-                <div class="chat-header-info">
-                    <i class="fas fa-robot"></i>
-                    <div>
-                        <h4>YH Career Assistant</h4>
-                        <span><span class="status-dot"></span> Online</span>
-                    </div>
-                </div>
-                <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="chat-msg chat-msg-bot">
-                    <div class="chat-msg-avatar"><i class="fas fa-robot"></i></div>
-                    <div class="chat-msg-bubble">
-                        <p>Hi there! 👋 I'm your AI career assistant. I can help with resumes, recruitment, student careers, or HR services. What brings you here today?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
-                <button id="chatSendBtn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="index.html">🏠 Home</a>
+        <a href="ai-resume.html">📝 AI Resume</a>
+        <a href="recruitment.html">🏢 Recruitment</a>
+        <a href="student-career.html">🎓 Student Career</a>
+        <a href="hr-services.html">👥 HR Services</a>
     </div>
-
-    <!-- Theme Toggle -->
-    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle theme">
-        <i class="fas fa-sun" id="themeIcon"></i>
-    </button>
 
     <div id="authModalContainer"></div>
     <script src="js/app.js"></script>
     <script>window.API_BASE_URL = '';</script>
     <script src="frontend/src/api/client.js"></script>
     <script>
-    // Load auth modal
     fetch('frontend/src/components/auth-modal.html')
         .then(r => r.text())
         .then(html => {
@@ -422,100 +144,9 @@
             const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
             scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
         });
-
-    // Theme Toggle
-    function toggleTheme() {
-        const body = document.body;
-        const icon = document.getElementById('themeIcon');
-        const current = body.getAttribute('data-theme');
-        const next = current === 'light' ? 'dark' : 'light';
-        body.setAttribute('data-theme', next);
-        icon.className = next === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-        localStorage.setItem('theme', next);
-    }
-
-    // Load saved theme
-    (function() {
-        const saved = localStorage.getItem('theme');
-        if (saved === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-            document.getElementById('themeIcon').className = 'fas fa-moon';
-        }
-    })();
-
-    // AI Chat Widget Logic
-    function toggleChat() {
-        document.getElementById('chatWindow').classList.toggle('active');
-        document.querySelector('.chat-badge').style.display = 'none';
-    }
-
-    function handleChatKey(e) {
-        if (e.key === 'Enter') sendChatMessage();
-    }
-
-    const chatResponses = {
-        'resume': 'I can help you build a professional resume! Head over to our <a href="app.html">Resume Builder</a> or check out <a href="templates.html">Templates</a>.',
-        'template': 'We have 30+ premium resume templates! Check out the <a href="templates.html">Template Marketplace</a>.',
-        'interview': 'Our <a href="ai-tools.html">AI Interview Prep tool</a> generates likely questions and model answers based on your resume and the job description.',
-        'ats': 'Our <a href="ai-tools.html">ATS Score Checker</a> analyzes your resume against Applicant Tracking Systems and tells you exactly what to fix.',
-        'price': 'We have a free plan for students and basic users. Pro starts at $9.99/mo with unlimited AI generations. See all plans on our <a href="pricing.html">Pricing page</a>.',
-        'student': 'Our <a href="student-career.html">Student Career Hub</a> is free forever! Build your first resume, find internships, and practice interviews with AI.',
-        'hire': 'Looking to hire? Our <a href="recruitment.html">AI Recruitment Agency</a> can help you find and screen candidates 70% faster.',
-        'hr': 'Our <a href="hr-services.html">AI HR Services</a> offer smart resume screening, automated onboarding, and workforce analytics for teams of all sizes.',
-        'help': 'I can help with resumes, templates, interviews, ATS optimization, pricing, recruitment, student careers, and HR services. Just ask!',
-        'hello': 'Hello! 👋 How can I help you today?',
-        'hi': 'Hi there! What can I do for you?',
-    };
-
-    function sendChatMessage() {
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (!text) return;
-
-        addChatMessage(text, true);
-        input.value = '';
-
-        const messages = document.getElementById('chatMessages');
-        const typingId = 'typing-' + Date.now();
-        const typingDiv = document.createElement('div');
-        typingDiv.id = typingId;
-        typingDiv.className = 'chat-msg chat-msg-bot chat-typing';
-        typingDiv.innerHTML = '<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>';
-        messages.appendChild(typingDiv);
-        messages.scrollTop = messages.scrollHeight;
-
-        setTimeout(() => {
-            document.getElementById(typingId)?.remove();
-            const lower = text.toLowerCase();
-            let response = 'I\'m here to help! You can ask me about building resumes, recruitment, student careers, HR services, or any of our tools.';
-            for (const [key, val] of Object.entries(chatResponses)) {
-                if (lower.includes(key)) { response = val; break; }
-            }
-            addChatMessage(response, false);
-        }, 1200 + Math.random() * 800);
-    }
-
-    function addChatMessage(text, isUser) {
-        const messages = document.getElementById('chatMessages');
-        const div = document.createElement('div');
-        div.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
-        div.innerHTML = isUser
-            ? `<div class="chat-msg-bubble">${text}</div>`
-            : `<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble">${text}</div>`;
-        messages.appendChild(div);
-        messages.scrollTop = messages.scrollHeight;
-    }
-
-    // Service card hover effects
     document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-8px)';
-            card.style.boxShadow = '0 25px 60px rgba(0,0,0,0.08)';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = 'none';
-        });
+        card.addEventListener('mouseenter', () => { card.style.transform = 'translateY(-8px)'; card.style.boxShadow = '0 25px 60px rgba(0,0,0,0.08)'; });
+        card.addEventListener('mouseleave', () => { card.style.transform = 'translateY(0)'; card.style.boxShadow = 'none'; });
     });
     </script>
 </body>

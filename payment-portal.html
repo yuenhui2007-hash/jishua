@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YH Payment Portal — Secure Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body data-theme="light" style="background: #FAF4E3;">
+    <div class="noise-overlay" style="opacity: 0.015;"></div>
+
+    <div class="vertical-nav">
+        <div class="container">
+            <a href="index.html" class="vertical-nav-brand"><span>YH</span> YH</a>
+            <div class="vertical-nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="ai-resume.html"><i class="fas fa-file-alt"></i> AI Resume</a>
+                <a href="recruitment.html"><i class="fas fa-building"></i> Recruitment</a>
+                <a href="student-career.html"><i class="fas fa-graduation-cap"></i> Student Career</a>
+                <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav nav-with-vertical" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark" style="background: #A5A68F;">YH</span>
+            <span class="logo-text">YH</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>
+        <div id="navAuth">
+            <a href="index.html" class="btn-nav">Back to Home</a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <section style="padding: 140px 0 80px;">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 50px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">🔒 Secure Checkout</span>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-serif);">YH Payment Portal</h1>
+                <p class="section-sub">Choose your preferred payment method and complete your purchase securely.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto;">
+                <!-- Order Summary -->
+                <div data-animate="fade-up" data-delay="100" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px; height: fit-content;">
+                    <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);">📋 Order Summary</h3>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--text-secondary);">Plan</span>
+                        <span style="font-weight: 500;">YH Pro</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--text-secondary);">Billing</span>
+                        <span style="font-weight: 500;">Monthly</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--text-secondary);">Subtotal</span>
+                        <span style="font-weight: 500;">$9.99</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="color: var(--text-secondary);">Tax</span>
+                        <span style="font-weight: 500;">$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 16px;">
+                        <span style="font-weight: 600;">Total</span>
+                        <span style="font-weight: 700; font-size: 1.2rem; color: #A5A68F;">$9.99</span>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div data-animate="fade-up" data-delay="200" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 24px;">💳 Payment Method</h3>
+
+                    <!-- Method Tabs -->
+                    <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+                        <button onclick="showMethod('tng')" id="tab-tng" style="flex: 1; padding: 12px; border: 2px solid #A5A68F; border-radius: 12px; background: var(--accent-glow); cursor: pointer; font-weight: 500; font-size: 0.85rem;">📱 Touch 'n Go</button>
+                        <button onclick="showMethod('fpx')" id="tab-fpx" style="flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: #fff; cursor: pointer; font-weight: 500; font-size: 0.85rem;">🏦 Online Banking</button>
+                        <button onclick="showMethod('card')" id="tab-card" style="flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: #fff; cursor: pointer; font-weight: 500; font-size: 0.85rem;">💳 Card</button>
+                    </div>
+
+                    <!-- Touch 'n Go Form -->
+                    <div id="form-tng">
+                        <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;">Scan the QR code with your Touch 'n Go eWallet app or enter your TNG ID.</p>
+                        <div style="background: var(--bg-elevated); border-radius: 12px; padding: 40px; text-align: center; margin-bottom: 20px;">
+                            <div style="width: 160px; height: 160px; background: linear-gradient(135deg, #A5A68F, #D9B2A9); border-radius: 16px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem;">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-muted);">Scan with Touch 'n Go app</p>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">Or enter TNG ID</label>
+                            <input type="text" placeholder="TNG-XXXX-XXXX" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                        </div>
+                    </div>
+
+                    <!-- FPX Form -->
+                    <div id="form-fpx" style="display: none;">
+                        <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;">Select your bank and complete payment via FPX.</p>
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">Select Bank</label>
+                            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                                <option>Maybank2u</option>
+                                <option>CIMB Clicks</option>
+                                <option>Public Bank</option>
+                                <option>RHB Now</option>
+                                <option>Hong Leong Connect</option>
+                                <option>Ambank</option>
+                                <option>Bank Islam</option>
+                                <option>OCBC</option>
+                                <option>HSBC</option>
+                                <option>UOB</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">Full Name</label>
+                            <input type="text" placeholder="As per bank account" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                        </div>
+                    </div>
+
+                    <!-- Card Form -->
+                    <div id="form-card" style="display: none;">
+                        <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;">Pay securely with your debit or credit card.</p>
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">Card Number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                            <div class="form-group">
+                                <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">Expiry Date</label>
+                                <input type="text" placeholder="MM / YY" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">CVV</label>
+                                <input type="text" placeholder="123" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label style="display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary);">Cardholder Name</label>
+                            <input type="text" placeholder="Name on card" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); color: var(--text); font-size: 0.9rem;">
+                        </div>
+                    </div>
+
+                    <button onclick="alert('This is a demo payment portal. 🎉 No actual payment will be processed.')" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #A5A68F, #8a8b75); color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 8px;">🔒 Pay $9.99 Securely</button>
+                    <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 12px;"><i class="fas fa-shield-alt"></i> Secured by 256-bit SSL encryption</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark" style="background: #A5A68F;">YH</span>
+                    <span class="logo-text">YH</span>
+                </a>
+                <div class="footer-links">
+                    <a href="ai-resume.html">AI Resume</a>
+                    <a href="recruitment.html">Recruitment</a>
+                    <a href="student-career.html">Student Career</a>
+                    <a href="hr-services.html">HR Services</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 YH. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function showMethod(method) {
+        ['tng','fpx','card'].forEach(m => {
+            document.getElementById('form-'+m).style.display = m === method ? 'block' : 'none';
+            document.getElementById('tab-'+m).style.border = m === method ? '2px solid #A5A68F' : '1px solid var(--border)';
+            document.getElementById('tab-'+m).style.background = m === method ? 'var(--accent-glow)' : '#fff';
+        });
+    }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

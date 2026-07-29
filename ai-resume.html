@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YH AI Resume Builder — The Resume That Gets You Hired</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body data-theme="light" style="background: #FAF4E3;">
+    <div class="noise-overlay" style="opacity: 0.015;"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="vertical-nav">
+        <div class="container">
+            <a href="index.html" class="vertical-nav-brand"><span>YH</span> YH</a>
+            <div class="vertical-nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="ai-resume.html" class="active"><i class="fas fa-file-alt"></i> AI Resume</a>
+                <a href="recruitment.html"><i class="fas fa-building"></i> Recruitment</a>
+                <a href="student-career.html"><i class="fas fa-graduation-cap"></i> Student Career</a>
+                <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav nav-with-vertical" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark" style="background: #A5A68F;">YH</span>
+            <span class="logo-text">YH</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#payment">Payment</a>
+            <a href="app.html">Build Resume</a>
+        </div>
+        <div id="navAuth">
+            <a href="app.html" class="btn-nav">Get Started</a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" style="padding-top: 120px; padding-bottom: 60px;">
+        <div class="hero-aurora"></div>
+        <div class="container">
+            <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    📝 AI Resume Builder
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100" style="font-size: clamp(2.5rem, 5vw, 4rem);">
+                    The Resume That<br>
+                    <em style="color: #A5A68F;">Gets You Hired</em>
+                </h1>
+                <p class="hero-desc" data-animate="fade-up" data-delay="200" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Our AI analyzes your experience and the job you want, then crafts a perfectly optimized resume that passes ATS systems and impresses hiring managers.
+                </p>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300" style="justify-content: center;">
+                    <a href="app.html" class="btn-primary">🚀 Build Your Resume</a>
+                    <a href="#features" class="btn-text">See Features <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;" data-animate="fade-up" data-delay="400">
+                    <div style="text-align: center;"><span style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">93%</span><span style="font-size: 0.9rem; color: var(--text-secondary);">🎯 Interview Rate</span></div>
+                    <div style="text-align: center;"><span style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">50K+</span><span style="font-size: 0.9rem; color: var(--text-secondary);">📄 Resumes Built</span></div>
+                    <div style="text-align: center;"><span style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">3x</span><span style="font-size: 0.9rem; color: var(--text-secondary);">📞 More Callbacks</span></div>
+                    <div style="text-align: center;"><span style="font-size: 2rem; font-weight: 700; color: #A5A68F; display: block;">4.9</span><span style="font-size: 0.9rem; color: var(--text-secondary);">⭐ User Rating</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features" id="features" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">🚀 Features</span>
+                <h2>Everything You Need to Get Hired</h2>
+                <p class="section-sub">Powerful AI tools designed to give you the competitive edge.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-brain"></i></div>
+                    <h3>🤖 AI Content Writer</h3>
+                    <p>Our AI crafts professional bullet points and summaries tailored to your industry and target role.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-crosshairs"></i></div>
+                    <h3>🎯 ATS Optimization</h3>
+                    <p>Real-time scoring ensures your resume passes Applicant Tracking Systems with flying colors.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-key"></i></div>
+                    <h3>🔑 Keyword Matching</h3>
+                    <p>Paste any job description and we extract the exact keywords your resume needs.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="0">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-palette"></i></div>
+                    <h3>🎨 Pro Templates</h3>
+                    <p>Choose from professionally designed templates vetted by hiring managers.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fas fa-file-signature"></i></div>
+                    <h3>✉️ Cover Letters</h3>
+                    <p>Generate personalized cover letters that complement your resume perfectly.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon" style="background: rgba(165,166,143,0.12); border: 1px solid rgba(165,166,143,0.2); color: #A5A68F;"><i class="fab fa-linkedin"></i></div>
+                    <h3>💼 LinkedIn Optimizer</h3>
+                    <p>Transform your resume into an attention-grabbing LinkedIn profile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works" style="padding: 80px 0; background: linear-gradient(180deg, rgba(165,166,143,0.04), transparent);">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">📋 How It Works</span>
+                <h2>Three Steps to Your Dream Job</h2>
+            </div>
+            <div class="steps">
+                <div class="step" data-animate="fade-up" data-delay="0">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="fas fa-user-edit"></i></div>
+                    <h3>Tell Us About You</h3>
+                    <p>Upload your existing resume or fill in your experience, education, and skills.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="150"></div>
+                <div class="step" data-animate="fade-up" data-delay="200">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Add Target Job</h3>
+                    <p>Paste the job description. Our AI optimizes your resume with the right keywords.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="350"></div>
+                <div class="step" data-animate="fade-up" data-delay="400">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="fas fa-download"></i></div>
+                    <h3>Download & Apply</h3>
+                    <p>Get your ATS-optimized resume in PDF, Word, or text format. Apply with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="ai-resume-pricing" id="pricing" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">💎 Pricing</span>
+                <h2>Resume Builder Plans</h2>
+                <p class="section-sub">Choose the plan that fits your career goals</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card" data-animate="fade-up" data-delay="100" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px;">
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🆓 Free</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For casual job seekers</p>
+                    </div>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$0</span>
+                        <span class="period" style="color: var(--text-muted);">/month</span>
+                    </div>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> 1 resume</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Basic templates</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> ATS check</li>
+                        <li style="padding: 8px 0; color: var(--text-muted);"><i class="fas fa-times" style="margin-right: 8px;"></i> AI writer</li>
+                        <li style="padding: 8px 0; color: var(--text-muted);"><i class="fas fa-times" style="margin-right: 8px;"></i> Cover letter</li>
+                    </ul>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="app.html" class="btn-outline-full" style="display: block; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-weight: 500;">Get Started</a>
+                    </div>
+                </div>
+                <div class="plan-card popular" data-animate="fade-up" data-delay="200" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; position: relative; overflow: hidden;">
+                    <div class="popular-badge" style="position: absolute; top: 16px; right: -40px; background: #A5A68F; color: #fff; padding: 6px 40px; font-size: 0.75rem; font-weight: 600; transform: rotate(45deg);">🔥 Most Popular</div>
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>⭐ Pro</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For serious job seekers</p>
+                    </div>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$9.99</span>
+                        <span class="period" style="color: var(--text-muted);">/month</span>
+                    </div>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Unlimited resumes</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> All premium templates</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> AI writer</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Cover letter</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> LinkedIn optimizer</li>
+                    </ul>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="app.html" class="btn-primary btn-full" style="display: block; text-align: center; padding: 14px; border-radius: 12px; text-decoration: none; color: #fff; font-weight: 500; background: linear-gradient(135deg, #A5A68F, #8a8b75);">Upgrade to Pro</a>
+                    </div>
+                </div>
+                <div class="plan-card" data-animate="fade-up" data-delay="300" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px;">
+                    <div class="plan-header" style="padding: 28px; border-bottom: 1px solid var(--border);">
+                        <h3>🏆 Premium</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">For career coaches & agencies</p>
+                    </div>
+                    <div class="plan-price" style="padding: 24px 28px;">
+                        <span class="price" style="font-size: 2.5rem; font-weight: 700; color: var(--text);">$19.99</span>
+                        <span class="period" style="color: var(--text-muted);">/month</span>
+                    </div>
+                    <ul class="plan-features" style="padding: 0 28px 28px; list-style: none;">
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Everything in Pro</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Mock interview AI</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Salary insights</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Priority support</li>
+                        <li style="padding: 8px 0; color: var(--text-secondary);"><i class="fas fa-check" style="color: #A5A68F; margin-right: 8px;"></i> Portfolio builder</li>
+                    </ul>
+                    <div style="padding: 0 28px 28px;">
+                        <a href="app.html" class="btn-outline-full" style="display: block; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); font-weight: 500;">Go Premium</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-section" id="payment">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label" style="background: rgba(217,178,169,0.15); color: #a08078;">💳 Payment Options</span>
+                <h2>Flexible Payment Methods</h2>
+                <p class="section-sub">Choose the payment method that works best for you</p>
+            </div>
+            <div class="payment-methods-grid" data-animate="fade-up" data-delay="100">
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">📱</div>
+                    <h4>Touch 'n Go eWallet</h4>
+                    <p>Fast & secure mobile payments via Malaysia's leading e-wallet</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Instant</span>
+                        <span class="payment-badge">No Fees</span>
+                    </div>
+                </div>
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">🏦</div>
+                    <h4>Online Banking / FPX</h4>
+                    <p>Direct bank transfer from all major Malaysian banks</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Secure</span>
+                        <span class="payment-badge">Real-time</span>
+                    </div>
+                </div>
+                <div class="payment-method-card">
+                    <div class="payment-method-icon" style="color: #A5A68F;">💳</div>
+                    <h4>Debit / Credit Card</h4>
+                    <p>Visa, Mastercard, Amex accepted worldwide with 3D Secure</p>
+                    <div class="payment-badges">
+                        <span class="payment-badge">Visa</span>
+                        <span class="payment-badge">Mastercard</span>
+                        <span class="payment-badge">Amex</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" style="padding: 80px 0; background: linear-gradient(180deg, rgba(165,166,143,0.04), transparent);">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 60px;">
+                <span class="section-label" style="background: rgba(217,178,169,0.15); color: #a08078;">⭐ Success Stories</span>
+                <h2>What Our Users Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial" data-animate="fade-up" data-delay="0" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <div class="testimonial-stars" style="color: #A5A68F; margin-bottom: 16px;">★★★★★</div>
+                    <p class="testimonial-text" style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">"I applied to 50 jobs with my old resume and got zero callbacks. After YH, I got 8 interviews in 2 weeks. 🎉"</p>
+                    <div class="testimonial-author" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="ta-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #A5A68F;">SJ</div>
+                        <div class="ta-info">
+                            <strong style="color: var(--text);">Sarah Johnson</strong>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; display: block;">Marketing Manager at TechCorp</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial" data-animate="fade-up" data-delay="100" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <div class="testimonial-stars" style="color: #A5A68F; margin-bottom: 16px;">★★★★★</div>
+                    <p class="testimonial-text" style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">"The keyword matching is incredible. I could see exactly which skills the job wanted and how to highlight them. 💪"</p>
+                    <div class="testimonial-author" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="ta-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #A5A68F;">MC</div>
+                        <div class="ta-info">
+                            <strong style="color: var(--text);">Michael Chen</strong>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; display: block;">Software Engineer at Google</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial" data-animate="fade-up" data-delay="200" style="background: #ffffff; border: 1px solid var(--border); border-radius: 20px; padding: 32px;">
+                    <div class="testimonial-stars" style="color: #A5A68F; margin-bottom: 16px;">★★★★★</div>
+                    <p class="testimonial-text" style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">"As a career changer from teaching to tech, YH helped me frame my transferable skills perfectly. 🚀"</p>
+                    <div class="testimonial-author" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="ta-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #A5A68F;">EP</div>
+                        <div class="ta-info">
+                            <strong style="color: var(--text);">Emily Park</strong>
+                            <span style="color: var(--text-muted); font-size: 0.85rem; display: block;">UX Designer at Spotify</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" style="padding: 80px 0;">
+        <div class="container">
+            <div class="cta-box" data-animate="fade-up" style="background: linear-gradient(135deg, rgba(165,166,143,0.08), rgba(217,178,169,0.05)); border: 1px solid rgba(165,166,143,0.2);">
+                <h2>🚀 Ready to Get Hired?</h2>
+                <p>Join 50,000+ professionals who've transformed their job search with AI-optimized resumes.</p>
+                <a href="app.html" class="btn-primary btn-large">📝 Build Your Resume — Free</a>
+                <span class="cta-note">No credit card required</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark" style="background: #A5A68F;">YH</span>
+                    <span class="logo-text">YH</span>
+                </a>
+                <div class="footer-links">
+                    <a href="ai-resume.html">AI Resume</a>
+                    <a href="recruitment.html">Recruitment</a>
+                    <a href="student-career.html">Student Career</a>
+                    <a href="hr-services.html">HR Services</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 YH. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="index.html">🏠 Home</a>
+        <a href="ai-resume.html">📝 AI Resume</a>
+        <a href="recruitment.html">🏢 Recruitment</a>
+        <a href="student-career.html">🎓 Student Career</a>
+        <a href="hr-services.html">👥 HR Services</a>
+    </div>
+
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>
