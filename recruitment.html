@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recruitment Agency — ResumeAI Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <!-- Sub-nav for verticals -->
+    <div class="vertical-nav">
+        <div class="container">
+            <div class="vertical-nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="recruitment.html" class="active"><i class="fas fa-building"></i> Recruitment</a>
+                <a href="student-career.html"><i class="fas fa-graduation-cap"></i> Student Career</a>
+                <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
+                <a href="ai-tools.html"><i class="fas fa-robot"></i> AI Tools</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav nav-with-vertical" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="ai-templates.html">AI Agents</a>
+            <a href="templates.html">Templates</a>
+            <a href="ai-tools.html">AI Tools</a>
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
+        </div>
+        <div id="navAuth">
+            <a href="app.html" class="btn-nav">For Employers</a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero recruitment-hero">
+        <div class="hero-aurora"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    AI Recruitment Agency
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                    Hire Smarter with <em>AI-Powered</em> Recruitment
+                </h1>
+                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                    Our AI vets candidates, matches them to your culture, and predicts performance — cutting your time-to-hire by 70%.
+                </p>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                    <a href="#post-job" class="btn-primary">Post a Job Free</a>
+                    <a href="#how-it-works" class="btn-text">See how it works <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="recruitment-stats" data-animate="fade-up" data-delay="400">
+                    <div class="rec-stat"><span class="rec-stat-num">50K+</span><span class="rec-stat-label">Candidates</span></div>
+                    <div class="rec-stat"><span class="rec-stat-num">2,400+</span><span class="rec-stat-label">Companies</span></div>
+                    <div class="rec-stat"><span class="rec-stat-num">70%</span><span class="rec-stat-label">Faster Hiring</span></div>
+                    <div class="rec-stat"><span class="rec-stat-num">94%</span><span class="rec-stat-label">Retention Rate</span></div>
+                </div>
+            </div>
+            <div class="hero-visual" data-animate="fade-in" data-delay="300">
+                <div class="recruitment-visual">
+                    <div class="rv-card rv-candidate">
+                        <div class="rv-avatar"></div>
+                        <div class="rv-info">
+                            <div class="rv-name">Sarah Chen</div>
+                            <div class="rv-role">Senior Product Manager</div>
+                            <div class="rv-match"><i class="fas fa-check-circle"></i> 96% Match</div>
+                        </div>
+                    </div>
+                    <div class="rv-card rv-candidate">
+                        <div class="rv-avatar rv-avatar-2"></div>
+                        <div class="rv-info">
+                            <div class="rv-name">Marcus Johnson</div>
+                            <div class="rv-role">Full-Stack Engineer</div>
+                            <div class="rv-match"><i class="fas fa-check-circle"></i> 91% Match</div>
+                        </div>
+                    </div>
+                    <div class="rv-card rv-candidate">
+                        <div class="rv-avatar rv-avatar-3"></div>
+                        <div class="rv-info">
+                            <div class="rv-name">Priya Patel</div>
+                            <div class="rv-role">UX Research Lead</div>
+                            <div class="rv-match"><i class="fas fa-check-circle"></i> 89% Match</div>
+                        </div>
+                    </div>
+                    <div class="rv-connector"></div>
+                    <div class="rv-company">
+                        <i class="fas fa-building"></i>
+                        <span>Your Company</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">The Process</span>
+                <h2>AI Recruitment in 4 Steps</h2>
+            </div>
+            <div class="steps">
+                <div class="step" data-animate="fade-up" data-delay="100">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Post Your Job</h3>
+                    <p>Describe the role. Our AI analyzes requirements, culture fit markers, and success predictors.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="200"></div>
+                <div class="step" data-animate="fade-up" data-delay="200">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Matches Candidates</h3>
+                    <p>Our algorithm scores candidates on skills, experience, culture fit, and growth potential.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="300"></div>
+                <div class="step" data-animate="fade-up" data-delay="300">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Screen & Interview</h3>
+                    <p>AI-generated interview questions tailored to each candidate. Video screening with sentiment analysis.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="400"></div>
+                <div class="step" data-animate="fade-up" data-delay="400">
+                    <div class="step-num">04</div>
+                    <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Hire & Onboard</h3>
+                    <p>AI-generated offer letters, onboarding plans, and 90-day success roadmaps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Capabilities</span>
+                <h2>Why Recruiters Choose Us</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Candidate Matching</h3>
+                    <p>Our AI scores candidates on 50+ dimensions — not just keywords, but culture fit, growth trajectory, and team compatibility.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="150">
+                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Automated Screening</h3>
+                    <p>AI phone screens and video interviews with real-time sentiment analysis, competency scoring, and bias detection.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Predictive Analytics</h3>
+                    <p>Predict candidate success, time-to-productivity, and retention likelihood before you make an offer.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="250">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Talent Pool Building</h3>
+                    <p>Automatically build and nurture passive candidate pipelines. AI reaches out to engage top talent before you need them.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="300">
+                    <div class="feature-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Bias Reduction</h3>
+                    <p>Blind screening options, structured interview generation, and diversity analytics to build fairer hiring practices.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="350">
+                    <div class="feature-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>Offer Optimization</h3>
+                    <p>AI suggests competitive compensation packages based on market data, candidate profile, and your budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section class="recruitment-pricing" id="pricing">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Pricing</span>
+                <h2>Recruitment Plans</h2>
+                <p class="section-sub">Pay per hire or subscribe for unlimited access</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card" data-animate="fade-up" data-delay="100">
+                    <div class="plan-header">
+                        <h3>Pay Per Hire</h3>
+                        <p>For occasional hiring needs</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$499</span>
+                        <span class="period">per successful hire</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> AI candidate matching</li>
+                        <li><i class="fas fa-check"></i> Up to 5 job postings</li>
+                        <li><i class="fas fa-check"></i> Basic screening</li>
+                        <li><i class="fas fa-check"></i> 30-day replacement guarantee</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Talent pool access</li>
+                    </ul>
+                    <a href="#post-job" class="btn-outline-full">Get Started</a>
+                </div>
+                <div class="plan-card popular" data-animate="fade-up" data-delay="200">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Growth</h3>
+                        <p>For growing teams</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$999</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Unlimited job postings</li>
+                        <li><i class="fas fa-check"></i> Advanced AI matching</li>
+                        <li><i class="fas fa-check"></i> Video screening</li>
+                        <li><i class="fas fa-check"></i> Talent pool access</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    </ul>
+                    <a href="#post-job" class="btn-primary btn-full">Start Free Trial</a>
+                </div>
+                <div class="plan-card" data-animate="fade-up" data-delay="300">
+                    <div class="plan-header">
+                        <h3>Enterprise</h3>
+                        <p>For large organizations</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">Custom</span>
+                        <span class="period">tailored pricing</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Everything in Growth</li>
+                        <li><i class="fas fa-check"></i> White-label options</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                        <li><i class="fas fa-check"></i> Custom integrations</li>
+                        <li><i class="fas fa-check"></i> SLA guarantee</li>
+                    </ul>
+                    <a href="#contact" class="btn-outline-full">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Job CTA -->
+    <section class="cta" id="post-job">
+        <div class="container">
+            <div class="cta-box" data-animate="fade-up">
+                <h2>Ready to Find Your Next Hire?</h2>
+                <p>Post your first job for free. Our AI will start matching candidates within minutes.</p>
+                <form class="post-job-form" onsubmit="event.preventDefault(); alert('Thank you! Our team will contact you shortly.');">
+                    <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 16px; max-width: 600px; margin: 0 auto 20px;">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Work Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Company Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Job Title You're Hiring For" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary btn-large">Post Job — Start Free</button>
+                    <span class="cta-note">No credit card required • Free for first 3 candidates</span>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark">R</span>
+                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                </a>
+                <div class="footer-links">
+                    <a href="recruitment.html">Recruitment</a>
+                    <a href="student-career.html">Student Career</a>
+                    <a href="hr-services.html">HR Services</a>
+                    <a href="ai-templates.html">AI Agents</a>
+                    <a href="templates.html">Templates</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>ResumeAI Pro. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="recruitment.html">Recruitment</a>
+        <a href="student-career.html">Student Career</a>
+        <a href="hr-services.html">HR Services</a>
+        <a href="ai-templates.html">AI Agents</a>
+        <a href="templates.html">Templates</a>
+        <a href="index.html">Home</a>
+    </div>
+
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

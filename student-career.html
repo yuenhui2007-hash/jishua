@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Career — ResumeAI Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <div class="vertical-nav">
+        <div class="container">
+            <div class="vertical-nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="recruitment.html"><i class="fas fa-building"></i> Recruitment</a>
+                <a href="student-career.html" class="active"><i class="fas fa-graduation-cap"></i> Student Career</a>
+                <a href="hr-services.html"><i class="fas fa-users-cog"></i> HR Services</a>
+                <a href="ai-tools.html"><i class="fas fa-robot"></i> AI Tools</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav nav-with-vertical" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="ai-templates.html">AI Agents</a>
+            <a href="templates.html">Templates</a>
+            <a href="ai-tools.html">AI Tools</a>
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
+        </div>
+        <div id="navAuth">
+            <a href="app.html" class="btn-nav">Get Started Free</a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero student-hero">
+        <div class="hero-aurora"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label" data-animate="fade-up">
+                    <span class="pulse-dot"></span>
+                    AI Student Career Hub
+                </div>
+                <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                    From <em>Campus</em> to <em>Career</em> with AI
+                </h1>
+                <p class="hero-desc" data-animate="fade-up" data-delay="200">
+                    Built for students and fresh graduates. AI-powered resume building, internship matching, interview prep, and career roadmaps — all in one place.
+                </p>
+                <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                    <a href="app.html" class="btn-primary">Build Your First Resume</a>
+                    <a href="#features" class="btn-text">Explore Features <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="student-stats" data-animate="fade-up" data-delay="400">
+                    <div class="stu-stat"><span class="stu-stat-num">25K+</span><span class="stu-stat-label">Students Helped</span></div>
+                    <div class="stu-stat"><span class="stu-stat-num">4,200+</span><span class="stu-stat-label">Internships Matched</span></div>
+                    <div class="stu-stat"><span class="stu-stat-num">85%</span><span class="stu-stat-label">Interview Success</span></div>
+                </div>
+            </div>
+            <div class="hero-visual" data-animate="fade-in" data-delay="300">
+                <div class="student-visual">
+                    <div class="sv-path">
+                        <div class="sv-node sv-node-start"><i class="fas fa-graduation-cap"></i><span>Student</span></div>
+                        <div class="sv-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="sv-node"><i class="fas fa-file-alt"></i><span>AI Resume</span></div>
+                        <div class="sv-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="sv-node"><i class="fas fa-briefcase"></i><span>Internship</span></div>
+                        <div class="sv-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="sv-node sv-node-end"><i class="fas fa-trophy"></i><span>Dream Job</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Student Tools</span>
+                <h2>Everything You Need to Launch Your Career</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature" data-animate="fade-up" data-delay="100">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05)); color: #22c55e; border-color: rgba(34,197,94,0.2);"><i class="fas fa-file-alt"></i></div>
+                    <h3>First Resume Builder</h3>
+                    <p>No experience? No problem. Our AI helps you turn coursework, projects, and part-time jobs into a compelling professional resume.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="150">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); color: #60a5fa; border-color: rgba(59,130,246,0.2);"><i class="fas fa-briefcase"></i></div>
+                    <h3>Internship Matcher</h3>
+                    <p>AI matches your skills and interests with thousands of internships. Get personalized recommendations based on your major and career goals.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="200">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05)); color: #a78bfa; border-color: rgba(139,92,246,0.2);"><i class="fas fa-comments"></i></div>
+                    <h3>Mock Interview AI</h3>
+                    <p>Practice with our AI interviewer. Get real-time feedback on your answers, body language tips, and suggested improvements.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="250">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05)); color: #f59e0b; border-color: rgba(245,158,11,0.2);"><i class="fas fa-road"></i></div>
+                    <h3>Career Roadmap</h3>
+                    <p>AI creates a personalized career path from your current year to your dream job. Know exactly what skills to build and when.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="300">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(236,72,153,0.05)); color: #ec4899; border-color: rgba(236,72,153,0.2);"><i class="fas fa-network-wired"></i></div>
+                    <h3>LinkedIn & Portfolio</h3>
+                    <p>Generate an optimized LinkedIn profile and portfolio website from your resume. Stand out to recruiters from day one.</p>
+                </div>
+                <div class="feature" data-animate="fade-up" data-delay="350">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(14,165,233,0.05)); color: #38bdf8; border-color: rgba(14,165,233,0.2);"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Skill Courses</h3>
+                    <p>AI identifies skill gaps for your target role and recommends free courses, certifications, and projects to close them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" style="background: var(--bg-elevated);">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Your Journey</span>
+                <h2>4 Steps to Your Dream Job</h2>
+            </div>
+            <div class="steps">
+                <div class="step" data-animate="fade-up" data-delay="100">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Create Your Profile</h3>
+                    <p>Tell us your major, interests, and dream companies. Our AI builds your student profile.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="200"></div>
+                <div class="step" data-animate="fade-up" data-delay="200">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="fas fa-magic"></i></div>
+                    <h3>AI Builds Your Resume</h3>
+                    <p>Turn coursework, projects, and activities into a professional resume that passes ATS.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="300"></div>
+                <div class="step" data-animate="fade-up" data-delay="300">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Match & Apply</h3>
+                    <p>Get matched with internships and entry-level roles. Apply with one-click tailored applications.</p>
+                </div>
+                <div class="step-connector" data-animate="scale-x" data-delay="400"></div>
+                <div class="step" data-animate="fade-up" data-delay="400">
+                    <div class="step-num">04</div>
+                    <div class="step-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Interview & Land</h3>
+                    <p>Practice with AI mock interviews. Get offer negotiation tips. Land your first role.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Pricing -->
+    <section class="student-pricing">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Student Pricing</span>
+                <h2>Free for Students</h2>
+                <p class="section-sub">Because starting your career shouldn't cost a fortune</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card" data-animate="fade-up" data-delay="100">
+                    <div class="plan-header">
+                        <h3>Student Free</h3>
+                        <p>Forever free for students</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$0</span>
+                        <span class="period">forever</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 3 AI resume generations</li>
+                        <li><i class="fas fa-check"></i> Basic templates</li>
+                        <li><i class="fas fa-check"></i> Internship matcher</li>
+                        <li><i class="fas fa-check"></i> LinkedIn bio generator</li>
+                        <li><i class="fas fa-check"></i> Career roadmap</li>
+                    </ul>
+                    <a href="app.html" class="btn-outline-full">Get Started</a>
+                </div>
+                <div class="plan-card popular" data-animate="fade-up" data-delay="200">
+                    <div class="popular-badge">Best Value</div>
+                    <div class="plan-header">
+                        <h3>Student Pro</h3>
+                        <p>Supercharge your job search</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$4.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Unlimited AI generations</li>
+                        <li><i class="fas fa-check"></i> All premium templates</li>
+                        <li><i class="fas fa-check"></i> Mock interview AI</li>
+                        <li><i class="fas fa-check"></i> Cover letter tailor</li>
+                        <li><i class="fas fa-check"></i> Priority internship alerts</li>
+                    </ul>
+                    <a href="pricing.html" class="btn-primary btn-full">Upgrade to Pro</a>
+                </div>
+                <div class="plan-card" data-animate="fade-up" data-delay="300">
+                    <div class="plan-header">
+                        <h3>University Plan</h3>
+                        <p>For career centers</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">Custom</span>
+                        <span class="period">per student</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Campus-wide access</li>
+                        <li><i class="fas fa-check"></i> Career counselor dashboard</li>
+                        <li><i class="fas fa-check"></i> Employer network</li>
+                        <li><i class="fas fa-check"></i> Analytics & reporting</li>
+                        <li><i class="fas fa-check"></i> White-label option</li>
+                    </ul>
+                    <a href="#contact" class="btn-outline-full">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-head" data-animate="fade-up">
+                <span class="section-label">Success Stories</span>
+                <h2>Students Who Landed Their Dream Roles</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial" data-animate="fade-up" data-delay="100">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I had zero internship experience. ResumeAI helped me frame my coursework and club activities into a resume that got me 5 interview calls in 2 weeks. Now I'm interning at Google!"</p>
+                    <div class="testimonial-author">
+                        <div class="ta-avatar">JK</div>
+                        <div class="ta-info">
+                            <strong>Jason Kim</strong>
+                            <span>Computer Science, Stanford • Google Intern</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial" data-animate="fade-up" data-delay="200">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The mock interview feature saved me. I practiced 20+ times with the AI and walked into my real interview confident. Landed my first full-time offer at a Fortune 500 company."</p>
+                    <div class="testimonial-author">
+                        <div class="ta-avatar">MR</div>
+                        <div class="ta-info">
+                            <strong>Maria Rodriguez</strong>
+                            <span>Business Admin, NYU • Deloitte Analyst</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial" data-animate="fade-up" data-delay="300">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"As an international student, I struggled with US resume formats. The AI adapted my experience perfectly and even suggested skills I should highlight for visa sponsorship roles."</p>
+                    <div class="testimonial-author">
+                        <div class="ta-avatar">AP</div>
+                        <div class="ta-info">
+                            <strong>Aisha Patel</strong>
+                            <span>Data Science, CMU • Meta Data Scientist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box" data-animate="fade-up">
+                <h2>Start Building Your Future Today</h2>
+                <p>Join 25,000+ students who launched their careers with AI.</p>
+                <a href="app.html" class="btn-primary btn-large">Create Free Resume</a>
+                <span class="cta-note">No credit card required • Free forever plan available</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark">R</span>
+                    <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+                </a>
+                <div class="footer-links">
+                    <a href="recruitment.html">Recruitment</a>
+                    <a href="student-career.html">Student Career</a>
+                    <a href="hr-services.html">HR Services</a>
+                    <a href="ai-templates.html">AI Agents</a>
+                    <a href="templates.html">Templates</a>
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>ResumeAI Pro. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-toggle" id="mobileClose"><i class="fas fa-times"></i></button>
+        <a href="recruitment.html">Recruitment</a>
+        <a href="student-career.html">Student Career</a>
+        <a href="hr-services.html">HR Services</a>
+        <a href="ai-templates.html">AI Agents</a>
+        <a href="templates.html">Templates</a>
+        <a href="index.html">Home</a>
+    </div>
+
+    <div id="authModalContainer"></div>
+    <script>window.API_BASE_URL = '';</script>
+    <script src="frontend/src/api/client.js"></script>
+    <script>
+    fetch('frontend/src/components/auth-modal.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('authModalContainer').innerHTML = html;
+            const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
+            scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

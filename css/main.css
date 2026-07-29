@@ -1680,3 +1680,383 @@ body {
 @media (max-width: 480px) {
     .marketplace-grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================
+   VERTICAL NAVIGATION (Multi-Business)
+   ========================================== */
+.vertical-nav {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 101;
+}
+.vertical-nav-links {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.vertical-nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+.vertical-nav-links a:hover {
+    color: var(--text);
+    background: var(--bg-card);
+    border-color: var(--border);
+}
+.vertical-nav-links a.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+}
+.nav-with-vertical {
+    top: 50px !important;
+}
+.nav-with-vertical + .hero,
+.nav-with-vertical ~ .hero {
+    padding-top: 180px !important;
+}
+.nav-with-vertical ~ .app-layout {
+    padding-top: 130px !important;
+}
+
+/* ==========================================
+   RECRUITMENT PAGE
+   ========================================== */
+.recruitment-hero { min-height: 85vh; }
+.recruitment-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+}
+.rec-stat {
+    display: flex;
+    flex-direction: column;
+}
+.rec-stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+}
+.rec-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.recruitment-visual {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.rv-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 280px;
+    animation: rvFloat 5s ease-in-out infinite;
+}
+.rv-card:nth-child(2) { animation-delay: -1.5s; }
+.rv-card:nth-child(3) { animation-delay: -3s; }
+@keyframes rvFloat {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+.rv-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #a08030);
+    flex-shrink: 0;
+}
+.rv-avatar-2 { background: linear-gradient(135deg, #22d3ee, #0891b2); }
+.rv-avatar-3 { background: linear-gradient(135deg, #e8a0bf, #d484a8); }
+.rv-info { flex: 1; }
+.rv-name { font-size: 0.9rem; font-weight: 600; }
+.rv-role { font-size: 0.75rem; color: var(--text-muted); }
+.rv-match { font-size: 0.75rem; color: #22c55e; font-weight: 500; margin-top: 2px; }
+.rv-match i { margin-right: 4px; }
+.rv-connector {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--accent), transparent);
+}
+.rv-company {
+    background: var(--accent-glow);
+    border: 1px solid rgba(212,175,55,0.2);
+    color: var(--accent);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.recruitment-pricing,
+.hr-pricing,
+.student-pricing {
+    padding: 100px 0;
+    background: var(--bg-elevated);
+}
+
+/* Post Job Form */
+.post-job-form {
+    margin-top: 32px;
+}
+.post-job-form .form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.post-job-form .form-group input:focus {
+    outline: none;
+    border-color: rgba(212,175,55,0.3);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.post-job-form .form-group input::placeholder {
+    color: var(--text-muted);
+}
+
+/* ==========================================
+   STUDENT CAREER PAGE
+   ========================================== */
+.student-hero { min-height: 85vh; }
+.student-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+}
+.stu-stat {
+    display: flex;
+    flex-direction: column;
+}
+.stu-stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+}
+.stu-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.student-visual {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sv-path {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.sv-node {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    min-width: 100px;
+    transition: var(--transition);
+}
+.sv-node:hover {
+    border-color: rgba(212,175,55,0.3);
+    transform: translateY(-4px);
+}
+.sv-node i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+}
+.sv-node span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text);
+}
+.sv-node-start { border-color: rgba(34,197,94,0.3); }
+.sv-node-start i { color: #22c55e; }
+.sv-node-end { border-color: rgba(212,175,55,0.5); background: var(--accent-glow); }
+.sv-node-end i { color: var(--accent); }
+.sv-arrow {
+    color: var(--accent);
+    font-size: 1rem;
+    animation: arrowPulse 2s infinite;
+}
+@keyframes arrowPulse {
+    0%, 100% { opacity: 1; transform: translateX(0); }
+    50% { opacity: 0.5; transform: translateX(4px); }
+}
+
+/* ==========================================
+   HR SERVICES PAGE
+   ========================================== */
+.hr-hero { min-height: 85vh; }
+.hr-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+}
+.hr-stat {
+    display: flex;
+    flex-direction: column;
+}
+.hr-stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+}
+.hr-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.hr-visual {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hr-dashboard {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    width: 320px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.hr-d-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.hr-d-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #22c55e;
+    font-weight: 500;
+}
+.hr-d-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.hr-d-stat {
+    background: var(--bg-elevated);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+}
+.hr-d-num {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+}
+.hr-d-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+.hr-d-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 80px;
+    padding: 0 4px;
+}
+.hr-d-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--accent), rgba(212,175,55,0.3));
+    border-radius: 4px 4px 0 0;
+    min-height: 20%;
+    animation: barGrow 2s ease forwards;
+}
+@keyframes barGrow {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+.enterprise-features {
+    padding: 100px 0;
+}
+
+/* ==========================================
+   RESPONSIVE VERTICAL NAV
+   ========================================== */
+@media (max-width: 768px) {
+    .vertical-nav { display: none; }
+    .nav-with-vertical { top: 0 !important; }
+    .nav-with-vertical + .hero,
+    .nav-with-vertical ~ .hero { padding-top: 140px !important; }
+
+    .recruitment-stats,
+    .student-stats,
+    .hr-stats {
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+    .rec-stat-num,
+    .stu-stat-num,
+    .hr-stat-num {
+        font-size: 1.6rem;
+    }
+
+    .sv-path { flex-direction: column; }
+    .sv-arrow { transform: rotate(90deg); }
+
+    .recruitment-visual { height: auto; padding: 20px 0; }
+    .rv-card { width: 100%; max-width: 280px; }
+
+    .post-job-form .form-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
