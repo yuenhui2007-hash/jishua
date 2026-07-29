@@ -149,5 +149,94 @@
         card.addEventListener('mouseleave', () => { card.style.transform = 'translateY(0)'; card.style.boxShadow = 'none'; });
     });
     </script>
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget" id="aiChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+            <i class="fas fa-robot"></i>
+            <span class="chat-badge">1</span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h4>YH Career Assistant</h4>
+                        <span><span class="status-dot"></span> Online</span>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-msg chat-msg-bot">
+                    <div class="chat-msg-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="chat-msg-bubble">
+                        <p>Hi there! 👋 I'm your AI career assistant. I can help with resumes, recruitment, student careers, or HR services. What brings you here today?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
+                <button id="chatSendBtn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function toggleChat() {
+        document.getElementById('chatWindow').classList.toggle('active');
+        document.querySelector('.chat-badge').style.display = 'none';
+    }
+    function handleChatKey(e) {
+        if (e.key === 'Enter') sendChatMessage();
+    }
+    const chatResponses = {
+        'resume': 'I can help you build a professional resume! Head over to our <a href="ai-resume.html">AI Resume Builder</a>.',
+        'template': 'We have 30+ premium resume templates! Check out the <a href="templates.html">Template Marketplace</a>.',
+        'interview': 'Our AI Interview Prep tool generates likely questions and model answers.',
+        'ats': 'Our ATS Score Checker analyzes your resume against Applicant Tracking Systems.',
+        'price': 'We have a free plan for students and basic users. Pro starts at $9.99/mo. See <a href="payment-portal.html">Payment Portal</a>.',
+        'student': 'Our <a href="student-career.html">Student Career Hub</a> is free forever!',
+        'hire': 'Looking to hire? Our <a href="recruitment.html">AI Recruitment</a> can help you find candidates 70% faster.',
+        'hr': 'Our <a href="hr-services.html">AI HR Services</a> offer smart screening and workforce analytics.',
+        'payment': 'You can pay via Touch \'n Go, Online Banking, or Card. Visit our <a href="payment-portal.html">Payment Portal</a>.',
+        'help': 'I can help with resumes, recruitment, student careers, HR services, or payments. Just ask!',
+        'hello': 'Hello! 👋 How can I help you today?',
+        'hi': 'Hi there! What can I do for you?',
+    };
+    function sendChatMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+        addChatMessage(text, true);
+        input.value = '';
+        const messages = document.getElementById('chatMessages');
+        const typingId = 'typing-' + Date.now();
+        const typingDiv = document.createElement('div');
+        typingDiv.id = typingId;
+        typingDiv.className = 'chat-msg chat-msg-bot chat-typing';
+        typingDiv.innerHTML = '<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>';
+        messages.appendChild(typingDiv);
+        messages.scrollTop = messages.scrollHeight;
+        setTimeout(() => {
+            document.getElementById(typingId)?.remove();
+            const lower = text.toLowerCase();
+            let response = 'I\'m here to help! You can ask me about building resumes, recruitment, student careers, HR services, or payments.';
+            for (const [key, val] of Object.entries(chatResponses)) {
+                if (lower.includes(key)) { response = val; break; }
+            }
+            addChatMessage(response, false);
+        }, 1200 + Math.random() * 800);
+    }
+    function addChatMessage(text, isUser) {
+        const messages = document.getElementById('chatMessages');
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
+        div.innerHTML = isUser
+            ? `<div class="chat-msg-bubble">${text}</div>`
+            : `<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble">${text}</div>`;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+    </script>
 </body>
 </html>
