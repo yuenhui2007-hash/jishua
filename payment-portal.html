@@ -267,7 +267,7 @@
         });
     }
 
-    function submitPayment() {
+    async function submitPayment() {
         const name = document.getElementById('custName').value.trim();
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
@@ -278,8 +278,28 @@
             return;
         }
 
-        const price = planPrices[plan] || 9.99;
-        alert('Thank you, ' + name + '! 🎉\n\nYour payment of $' + price.toFixed(2) + ' is being processed.\n\nFor Touch \'n Go / Bank Transfer, please upload your receipt and we will verify within 24 hours.\n\nFor card payments, you will receive a confirmation email at ' + email + '.');
+        const btn = document.querySelector('#form-card, #form-tng, #form-fpx').closest('div').querySelector('button[onclick*="submitPayment"]');
+        if(btn) { btn.textContent = '⏳ Processing...'; btn.disabled = true; }
+
+        try {
+            const res = await fetch((window.API_BASE_URL || '') + '/api/orders', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name, phone, email, plan, payment_method: document.querySelector('[style*="border: 2px solid #A5A68F"]')?.textContent.trim() || 'Card'}),
+            });
+            const data = await res.json();
+            if(data.success) {
+                alert('🎉 Thank you, ' + name + '!\n\nYour order has been received!\nOrder ID: ' + data.orderId + '\n\nWe will process your order within 24 hours and send confirmation to ' + email + '.');
+            } else {
+                alert('⚠️ ' + (data.message || 'Something went wrong. Please try again.'));
+            }
+        } catch(e) {
+            // Offline fallback
+            const price = planPrices[plan] || 9.99;
+            alert('Thank you, ' + name + '! 🎉\n\nYour order for $' + price.toFixed(2) + ' has been received.\n\nFor Touch \'n Go (+6012-696 1003) or Bank Transfer (0072 5527 1471), please upload your receipt and we will verify within 24 hours.\n\nConfirmation will be sent to ' + email + '.');
+        }
+
+        if(btn) { btn.textContent = '🔒 Complete Payment'; btn.disabled = false; }
     }
 
     function toggleChat() {
