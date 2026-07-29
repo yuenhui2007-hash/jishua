@@ -9,6 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script>
+        // ==========================================
+        // BACKEND CONFIG — UPDATE THIS WHEN DEPLOYING
+        // Local dev:  http://localhost:5000
+        // Production: https://your-backend-domain.com
+        // ==========================================
+        window.API_BASE_URL = 'http://localhost:5000';
+    </script>
 </head>
 <body data-theme="light" style="background: #FAF4E3;">
     <div class="noise-overlay" style="opacity: 0.015;"></div>
@@ -40,12 +48,16 @@
         <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
     </nav>
 
+    <!-- Connection Status Banner -->
+    <div id="connBanner" style="position:fixed;top:0;left:0;right:0;z-index:9999;padding:10px 20px;text-align:center;font-size:0.85rem;display:none;"></div>
+
     <section style="padding: 140px 0 80px;">
         <div class="container">
             <div class="section-head" data-animate="fade-up" style="text-align: center; margin-bottom: 50px;">
                 <span class="section-label" style="background: rgba(165,166,143,0.12); color: #7a7b68;">🔒 Secure Checkout</span>
                 <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-serif);">YH Payment Portal</h1>
                 <p class="section-sub">Complete your purchase securely. All transactions are encrypted.</p>
+                <div id="connStatus" style="margin-top:12px;font-size:0.85rem;color:var(--text-muted);"><i class="fas fa-circle-notch fa-spin"></i> Checking backend connection...</div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 960px; margin: 0 auto;">
@@ -267,6 +279,29 @@
         });
     }
 
+    // Connection health check
+    async function checkBackend() {
+        const statusEl = document.getElementById('connStatus');
+        const banner = document.getElementById('connBanner');
+        try {
+            const res = await fetch(window.API_BASE_URL + '/api/health', { method: 'GET', mode: 'cors' });
+            if (res.ok) {
+                statusEl.innerHTML = '<i class="fas fa-check-circle" style="color:#22c55e;"></i> Backend connected — orders will be saved live';
+                statusEl.style.color = '#22c55e';
+            } else {
+                throw new Error('Not OK');
+            }
+        } catch (e) {
+            statusEl.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#f59e0b;"></i> Backend offline — orders saved locally (please start backend with <code>npm run dev</code>)';
+            statusEl.style.color = '#f59e0b';
+            banner.style.display = 'block';
+            banner.style.background = '#fffbeb';
+            banner.style.color = '#92400e';
+            banner.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Backend not reachable at <code>' + window.API_BASE_URL + '</code>. Start it with <strong>npm run dev</strong> in the backend folder, then refresh this page.';
+        }
+    }
+    checkBackend();
+
     async function submitPayment() {
         const name = document.getElementById('custName').value.trim();
         const phone = document.getElementById('custPhone').value.trim();
@@ -278,28 +313,38 @@
             return;
         }
 
-        const btn = document.querySelector('#form-card, #form-tng, #form-fpx').closest('div').querySelector('button[onclick*="submitPayment"]');
+        const btn = document.querySelector('button[onclick*="submitPayment"]');
+        const originalText = btn ? btn.textContent : '';
         if(btn) { btn.textContent = '⏳ Processing...'; btn.disabled = true; }
 
+        // Detect payment method from active tab
+        let paymentMethod = 'Card';
+        if(document.getElementById('form-tng').style.display !== 'none') paymentMethod = 'Touch n Go';
+        else if(document.getElementById('form-bank').style.display !== 'none') paymentMethod = 'Bank Transfer';
+
         try {
-            const res = await fetch((window.API_BASE_URL || '') + '/api/orders', {
+            const res = await fetch(window.API_BASE_URL + '/api/orders', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({name, phone, email, plan, payment_method: document.querySelector('[style*="border: 2px solid #A5A68F"]')?.textContent.trim() || 'Card'}),
+                body: JSON.stringify({name, phone, email, plan, payment_method: paymentMethod}),
             });
             const data = await res.json();
             if(data.success) {
                 alert('🎉 Thank you, ' + name + '!\n\nYour order has been received!\nOrder ID: ' + data.orderId + '\n\nWe will process your order within 24 hours and send confirmation to ' + email + '.');
+                // Reset form
+                document.getElementById('custName').value = '';
+                document.getElementById('custPhone').value = '';
+                document.getElementById('custEmail').value = '';
             } else {
                 alert('⚠️ ' + (data.message || 'Something went wrong. Please try again.'));
             }
         } catch(e) {
-            // Offline fallback
+            // Offline fallback — still show confirmation but warn
             const price = planPrices[plan] || 9.99;
-            alert('Thank you, ' + name + '! 🎉\n\nYour order for $' + price.toFixed(2) + ' has been received.\n\nFor Touch \'n Go (+6012-696 1003) or Bank Transfer (0072 5527 1471), please upload your receipt and we will verify within 24 hours.\n\nConfirmation will be sent to ' + email + '.');
+            alert('⚠️ Backend is offline. Your order details could not be saved to the server.\n\nPlease:\n1. Start the backend: npm run dev\n2. Or screenshot this page and contact us\n\nOrder: ' + name + ' | ' + email + ' | ' + plan + ' ($' + price.toFixed(2) + ')');
         }
 
-        if(btn) { btn.textContent = '🔒 Complete Payment'; btn.disabled = false; }
+        if(btn) { btn.textContent = originalText; btn.disabled = false; }
     }
 
     function toggleChat() {

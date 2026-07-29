@@ -169,7 +169,41 @@ function initTables() {
     )
   `);
 
-  logger.info('✅ Database tables initialized');
+  // ===== ORDERS TABLES (frontend ↔ backend sync) =====
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS orders (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      order_id TEXT UNIQUE NOT NULL,
+      customer_name TEXT NOT NULL,
+      customer_email TEXT NOT NULL,
+      customer_phone TEXT,
+      company TEXT,
+      plan TEXT NOT NULL,
+      service_type TEXT NOT NULL,
+      payment_method TEXT,
+      message TEXT,
+      status TEXT DEFAULT 'pending',
+      admin_notes TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS order_concepts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      order_id INTEGER NOT NULL,
+      concept_content TEXT NOT NULL,
+      ai_agent TEXT,
+      tokens_used INTEGER DEFAULT 0,
+      duration_ms INTEGER DEFAULT 0,
+      status TEXT DEFAULT 'draft',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+    )
+  `);
+
+  logger.info('✅ Database tables initialized (including orders)');
   seedTemplates();
 }
 
@@ -244,50 +278,3 @@ function seedTemplates() {
 }
 
 module.exports = { connectDB, getDB };
-
-// Orders table for client submissions
-function initOrdersTables() {
-  const db = getDB();
-
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS orders (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      order_id TEXT UNIQUE NOT NULL,
-      customer_name TEXT NOT NULL,
-      customer_email TEXT NOT NULL,
-      customer_phone TEXT,
-      company TEXT,
-      plan TEXT NOT NULL,
-      service_type TEXT NOT NULL,
-      payment_method TEXT,
-      message TEXT,
-      status TEXT DEFAULT 'pending',
-      admin_notes TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS order_concepts (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      order_id INTEGER NOT NULL,
-      concept_content TEXT NOT NULL,
-      ai_agent TEXT,
-      tokens_used INTEGER DEFAULT 0,
-      duration_ms INTEGER DEFAULT 0,
-      status TEXT DEFAULT 'draft',
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
-    )
-  `);
-
-  logger.info('✅ Orders tables initialized');
-}
-
-// Override initTables to include orders
-const originalInitTables = initTables;
-initTables = function() {
-  originalInitTables();
-  initOrdersTables();
-};

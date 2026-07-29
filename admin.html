@@ -9,6 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script>
+        // ==========================================
+        // BACKEND CONFIG — UPDATE THIS WHEN DEPLOYING
+        // Local dev:  http://localhost:5000
+        // Production: https://your-backend-domain.com
+        // ==========================================
+        window.API_BASE_URL = 'http://localhost:5000';
+    </script>
     <style>
         body { background: #FAF4E3; font-family: 'Inter', sans-serif; }
         .admin-wrapper { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
@@ -137,7 +145,10 @@
         <div id="section-dashboard">
             <div class="admin-header">
                 <h1>📊 Dashboard</h1>
-                <span style="color: var(--text-muted); font-size: 0.9rem;">Real-time overview</span>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <span id="connDot" style="display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--text-muted);"><span style="width:8px;height:8px;border-radius:50%;background:#d1d5db;"></span> Checking...</span>
+                    <button class="btn-sm" onclick="loadDashboard()" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+                </div>
             </div>
             <div class="stats-cards" id="statsCards">
                 <div class="stat-card"><div class="stat-value">—</div><div class="stat-label">Total Orders</div></div>
@@ -222,6 +233,7 @@
 
 <script>
 const API = window.API_BASE_URL || '';
+let backendConnected = false;
 
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 function showSection(name) {
@@ -240,17 +252,54 @@ async function apiFetch(path, opts={}) {
     const url = API + path;
     try {
         const res = await fetch(url, {headers:{'Content-Type':'application/json','Authorization': 'Bearer '+localStorage.getItem('token')}, ...opts});
+        if(res.status === 401) {
+            return { success: false, error: 'unauthorized', message: 'Please log in as admin.' };
+        }
         return await res.json();
     } catch(e) {
-        return null;
+        return { success: false, error: 'network', message: 'Backend unreachable at ' + API };
     }
 }
 
+async function checkBackend() {
+    const data = await apiFetch('/api/health');
+    if(data && data.status === 'ok') {
+        backendConnected = true;
+        return true;
+    }
+    backendConnected = false;
+    return false;
+}
+
+function showOfflineState(containerId, message) {
+    const html = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);">' +
+        '<i class="fas fa-plug" style="font-size:2.5rem;display:block;margin-bottom:16px;opacity:0.4;"></i>' +
+        '<div style="font-weight:600;margin-bottom:8px;">' + message + '</div>' +
+        '<div style="font-size:0.85rem;">Start backend: <code style="background:var(--bg-elevated);padding:4px 8px;border-radius:6px;">cd backend && npm run dev</code></div>' +
+        '<div style="font-size:0.8rem;margin-top:8px;">API: <code>' + API + '</code></div>' +
+        '</div>';
+    const el = document.getElementById(containerId);
+    if(el) el.innerHTML = html;
+}
+
 async function loadDashboard() {
+    const dot = document.getElementById('connDot');
+    const isUp = await checkBackend();
+    if(!isUp) {
+        if(dot) dot.innerHTML = '<span style="width:8px;height:8px;border-radius:50%;background:#ef4444;"></span> Offline';
+        showOfflineState('statsCards', 'Backend Offline');
+        document.getElementById('recentOrdersTable').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-muted);">Waiting for backend connection...</td></tr>';
+        return;
+    }
+    if(dot) dot.innerHTML = '<span style="width:8px;height:8px;border-radius:50%;background:#22c55e;"></span> Connected';
     const data = await apiFetch('/api/admin/stats');
     if(!data || !data.success) {
-        document.getElementById('statsCards').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);"><i class="fas fa-plug" style="font-size:2rem;display:block;margin-bottom:12px;"></i>Backend server not connected. Start with <code>npm run dev</code> in backend/</div>';
-        document.getElementById('recentOrdersTable').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-muted);">Connect backend to see live data</td></tr>';
+        if(data && data.error === 'unauthorized') {
+            document.getElementById('statsCards').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;"><i class="fas fa-lock" style="font-size:2rem;display:block;margin-bottom:12px;color:var(--text-muted);"></i>Admin authentication required. <a href="app.html">Log in</a> with an admin account.</div>';
+        } else {
+            showOfflineState('statsCards', 'Backend Error');
+        }
+        document.getElementById('recentOrdersTable').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-muted);">Could not load data</td></tr>';
         return;
     }
     const s = data.stats;
@@ -264,13 +313,15 @@ async function loadDashboard() {
 }
 
 async function loadOrders() {
+    if(!backendConnected) { showOfflineState('allOrdersTable', 'Backend Offline'); return; }
     const status = document.getElementById('statusFilter').value;
     const data = await apiFetch('/api/orders?status='+status);
-    if(!data || !data.orders) { document.getElementById('allOrdersTable').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted);">No orders or backend offline</td></tr>'; return; }
+    if(!data || !data.orders) { document.getElementById('allOrdersTable').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text-muted);">No orders found</td></tr>'; return; }
     renderOrdersTable(data.orders, 'allOrdersTable');
 }
 
 async function loadClients() {
+    if(!backendConnected) { showOfflineState('clientsTable', 'Backend Offline'); return; }
     const data = await apiFetch('/api/admin/clients');
     if(!data || !data.clients) { document.getElementById('clientsTable').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-muted);">No clients yet</td></tr>'; return; }
     document.getElementById('clientsTable').innerHTML = data.clients.map(c =>
@@ -295,6 +346,7 @@ function renderOrdersTable(orders, tbodyId, recent=false) {
 }
 
 async function viewOrder(id) {
+    if(!backendConnected) { showToast('❌ Backend offline'); return; }
     const data = await apiFetch('/api/orders/'+id);
     if(!data || !data.order) { showToast('Could not load order'); return; }
     const o = data.order;
@@ -339,16 +391,18 @@ async function viewOrder(id) {
 }
 
 async function updateOrderStatus(id, status) {
+    if(!backendConnected) { showToast('❌ Backend offline'); return; }
     const data = await apiFetch('/api/orders/'+id+'/status', {method:'PUT', body:JSON.stringify({status})});
     if(data && data.success) { showToast('✅ Status updated to: '+status.replace('_',' ')); viewOrder(id); loadDashboard(); }
-    else showToast('❌ Failed to update');
+    else showToast('❌ Failed to update: '+(data?.message||''));
 }
 
 async function generateConcept(id) {
+    if(!backendConnected) { showToast('❌ Backend offline'); return; }
     const btn = document.querySelector('.order-detail.active .btn-sm.primary');
     if(btn) { btn.textContent = '⏳ Generating...'; btn.disabled = true; }
     const data = await apiFetch('/api/orders/'+id+'/concept', {method:'POST'});
-    if(btn) { btn.textContent = '<i class="fas fa-magic"></i> Generate AI Concept'; btn.disabled = false; }
+    if(btn) { btn.innerHTML = '<i class="fas fa-magic"></i> Generate AI Concept'; btn.disabled = false; }
     if(data && data.success) { showToast('✅ AI concept generated!'); viewOrder(id); }
     else showToast('❌ Generation failed: '+(data?.message||'API error'));
 }
