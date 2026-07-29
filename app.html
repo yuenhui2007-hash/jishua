@@ -4,38 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Builder — ResumeAI Pro</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
-                        <rect width="40" height="40" rx="10" fill="url(#logoGrad)"/>
-                        <path d="M12 14h16M12 20h12M12 26h8" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                        <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-                    </svg>
-                </div>
-                <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="app.html" class="active">Resume Builder</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="index.html#features">Features</a>
-            </div>
-            <div class="nav-actions">
-                <a href="pricing.html" class="btn btn-primary">Upgrade to Pro</a>
-            </div>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
         </div>
+        <a href="pricing.html" class="btn-nav">Upgrade to Pro</a>
     </nav>
 
     <div class="app-layout">
-        <!-- Sidebar -->
         <aside class="app-sidebar">
             <div class="sidebar-header">
                 <h3>Build Your Resume</h3>
@@ -63,74 +52,37 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="app-main">
             <div class="form-section active" id="personal">
                 <h2><i class="fas fa-user"></i> Personal Information</h2>
-                <p class="section-desc">Let's start with the basics. This information will appear at the top of your resume.</p>
+                <p class="section-desc">Let's start with the basics.</p>
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="e.g. Yuen Hui" id="fullName">
-                    </div>
-                    <div class="form-group">
-                        <label>Job Title</label>
-                        <input type="text" placeholder="e.g. AI Engineer" id="jobTitle">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="hello@example.com" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" placeholder="+1 234 567 890" id="phone">
-                    </div>
-                    <div class="form-group">
-                        <label>Location</label>
-                        <input type="text" placeholder="City, Country" id="location">
-                    </div>
-                    <div class="form-group">
-                        <label>LinkedIn</label>
-                        <input type="url" placeholder="linkedin.com/in/username" id="linkedin">
-                    </div>
-                    <div class="form-group full">
-                        <label>Website / Portfolio</label>
-                        <input type="url" placeholder="https://yourportfolio.com" id="website">
-                    </div>
+                    <div class="form-group"><label>Full Name</label><input type="text" placeholder="e.g. Yuen Hui" id="fullName"></div>
+                    <div class="form-group"><label>Job Title</label><input type="text" placeholder="e.g. AI Engineer" id="jobTitle"></div>
+                    <div class="form-group"><label>Email</label><input type="email" placeholder="hello@example.com" id="email"></div>
+                    <div class="form-group"><label>Phone</label><input type="tel" placeholder="+1 234 567 890" id="phone"></div>
+                    <div class="form-group"><label>Location</label><input type="text" placeholder="City, Country" id="location"></div>
+                    <div class="form-group"><label>LinkedIn</label><input type="url" placeholder="linkedin.com/in/username" id="linkedin"></div>
+                    <div class="form-group full"><label>Website / Portfolio</label><input type="url" placeholder="https://yourportfolio.com" id="website"></div>
                 </div>
             </div>
 
             <div class="form-section" id="experience">
                 <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
-                <p class="section-desc">Add your work history. Our AI will help you write powerful bullet points.</p>
+                <p class="section-desc">Add your work history.</p>
                 <div class="experience-list" id="experienceList">
                     <div class="exp-card">
                         <div class="form-grid">
-                            <div class="form-group">
-                                <label>Job Title</label>
-                                <input type="text" placeholder="e.g. Senior AI Engineer">
-                            </div>
-                            <div class="form-group">
-                                <label>Company</label>
-                                <input type="text" placeholder="e.g. TechCorp AI Labs">
-                            </div>
-                            <div class="form-group">
-                                <label>Start Date</label>
-                                <input type="month">
-                            </div>
-                            <div class="form-group">
-                                <label>End Date</label>
-                                <input type="month">
-                            </div>
-                            <div class="form-group full">
-                                <label>Description <span class="ai-badge"><i class="fas fa-sparkles"></i> AI Assist</span></label>
-                                <textarea rows="4" placeholder="Describe your responsibilities and achievements..."></textarea>
-                            </div>
+                            <div class="form-group"><label>Job Title</label><input type="text" placeholder="e.g. Senior AI Engineer"></div>
+                            <div class="form-group"><label>Company</label><input type="text" placeholder="e.g. TechCorp AI Labs"></div>
+                            <div class="form-group"><label>Start Date</label><input type="month"></div>
+                            <div class="form-group"><label>End Date</label><input type="month"></div>
+                            <div class="form-group full"><label>Description <span class="ai-badge"><i class="fas fa-sparkles"></i> AI Assist</span></label><textarea rows="4" placeholder="Describe your responsibilities..."></textarea></div>
                         </div>
                         <button class="btn-remove"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
-                <button class="btn btn-outline btn-add" id="addExperience"><i class="fas fa-plus"></i> Add Experience</button>
+                <button class="btn-add" id="addExperience"><i class="fas fa-plus"></i> Add Experience</button>
             </div>
 
             <div class="form-section" id="education">
@@ -139,66 +91,51 @@
                 <div class="education-list" id="educationList">
                     <div class="edu-card">
                         <div class="form-grid">
-                            <div class="form-group">
-                                <label>Degree</label>
-                                <input type="text" placeholder="e.g. B.S. Computer Science">
-                            </div>
-                            <div class="form-group">
-                                <label>School / University</label>
-                                <input type="text" placeholder="e.g. University of Technology">
-                            </div>
-                            <div class="form-group">
-                                <label>Graduation Year</label>
-                                <input type="number" placeholder="2021">
-                            </div>
-                            <div class="form-group">
-                                <label>GPA (Optional)</label>
-                                <input type="text" placeholder="3.8/4.0">
-                            </div>
+                            <div class="form-group"><label>Degree</label><input type="text" placeholder="e.g. B.S. Computer Science"></div>
+                            <div class="form-group"><label>School / University</label><input type="text" placeholder="e.g. University of Technology"></div>
+                            <div class="form-group"><label>Graduation Year</label><input type="number" placeholder="2021"></div>
+                            <div class="form-group"><label>GPA (Optional)</label><input type="text" placeholder="3.8/4.0"></div>
                         </div>
                         <button class="btn-remove"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
-                <button class="btn btn-outline btn-add" id="addEducation"><i class="fas fa-plus"></i> Add Education</button>
+                <button class="btn-add" id="addEducation"><i class="fas fa-plus"></i> Add Education</button>
             </div>
 
             <div class="form-section" id="skills">
                 <h2><i class="fas fa-code"></i> Skills</h2>
-                <p class="section-desc">Add your technical and soft skills. Our AI will suggest relevant keywords.</p>
-                <div class="skills-input-area">
-                    <div class="form-group">
-                        <label>Add Skills <span class="hint">Press Enter to add</span></label>
-                        <input type="text" id="skillInput" placeholder="e.g. Python, React, Project Management...">
-                    </div>
-                    <div class="skills-tags" id="skillsTags">
-                        <span class="skill-tag">Python <i class="fas fa-times"></i></span>
-                        <span class="skill-tag">React <i class="fas fa-times"></i></span>
-                        <span class="skill-tag">Machine Learning <i class="fas fa-times"></i></span>
-                        <span class="skill-tag">Data Analysis <i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="ai-suggestions">
-                        <span class="suggestion-label"><i class="fas fa-sparkles"></i> AI Suggested:</span>
-                        <button class="suggestion-chip">PyTorch</button>
-                        <button class="suggestion-chip">TensorFlow</button>
-                        <button class="suggestion-chip">NLP</button>
-                        <button class="suggestion-chip">AWS</button>
-                    </div>
+                <p class="section-desc">Add your technical and soft skills.</p>
+                <div class="form-group">
+                    <label>Add Skills <span style="color:var(--text-muted);font-weight:400">Press Enter to add</span></label>
+                    <input type="text" id="skillInput" placeholder="e.g. Python, React, Project Management...">
+                </div>
+                <div class="skills-tags" id="skillsTags">
+                    <span class="skill-tag">Python <i class="fas fa-times"></i></span>
+                    <span class="skill-tag">React <i class="fas fa-times"></i></span>
+                    <span class="skill-tag">Machine Learning <i class="fas fa-times"></i></span>
+                </div>
+                <div class="ai-suggestions">
+                    <span class="suggestion-label"><i class="fas fa-sparkles"></i> AI Suggested:</span>
+                    <button class="suggestion-chip">PyTorch</button>
+                    <button class="suggestion-chip">TensorFlow</button>
+                    <button class="suggestion-chip">NLP</button>
+                    <button class="suggestion-chip">AWS</button>
                 </div>
             </div>
 
             <div class="form-section" id="summary">
                 <h2><i class="fas fa-align-left"></i> Professional Summary</h2>
-                <p class="section-desc">A brief overview of your professional background. Our AI can generate this for you.</p>
+                <p class="section-desc">A brief overview of your professional background.</p>
                 <div class="form-group">
                     <label>Summary <span class="ai-badge"><i class="fas fa-sparkles"></i> AI Generate</span></label>
-                    <textarea rows="6" id="summaryText" placeholder="Write a 2-3 sentence summary of your professional experience..."></textarea>
+                    <textarea rows="6" id="summaryText" placeholder="Write a 2-3 sentence summary..."></textarea>
                 </div>
-                <button class="btn btn-primary" id="generateSummary"><i class="fas fa-wand-magic-sparkles"></i> Generate with AI</button>
+                <button class="btn-primary" id="generateSummary" style="margin-top:16px"><i class="fas fa-wand-magic-sparkles"></i> Generate with AI</button>
             </div>
 
             <div class="form-section" id="job-target">
                 <h2><i class="fas fa-bullseye"></i> Target Job Description</h2>
-                <p class="section-desc">Paste the job description you're applying for. Our AI will optimize your resume with the right keywords.</p>
+                <p class="section-desc">Paste the job description you're applying for.</p>
                 <div class="form-group">
                     <label>Job Description</label>
                     <textarea rows="10" id="jobDesc" placeholder="Paste the job description here..."></textarea>
@@ -215,13 +152,12 @@
             </div>
 
             <div class="form-actions">
-                <button class="btn btn-outline" id="prevBtn"><i class="fas fa-arrow-left"></i> Previous</button>
-                <button class="btn btn-primary" id="nextBtn">Next <i class="fas fa-arrow-right"></i></button>
-                <button class="btn btn-primary hidden" id="finishBtn"><i class="fas fa-download"></i> Download Resume</button>
+                <button class="btn-text" id="prevBtn" style="visibility:hidden"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="btn-primary" id="nextBtn">Next <i class="fas fa-arrow-right"></i></button>
+                <button class="btn-primary hidden" id="finishBtn"><i class="fas fa-download"></i> Download Resume</button>
             </div>
         </main>
 
-        <!-- Preview Panel -->
         <aside class="preview-panel">
             <div class="preview-header">
                 <h3>Live Preview</h3>
@@ -240,12 +176,11 @@
                             <span><i class="fas fa-envelope"></i> hello@yuenhui.dev</span>
                             <span><i class="fas fa-phone"></i> +1 234 567 890</span>
                             <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
-                            <span><i class="fab fa-linkedin"></i> linkedin.com/in/yuenhui</span>
                         </div>
                     </div>
                     <div class="rp-section">
                         <h4>Professional Summary</h4>
-                        <p id="previewSummary">Experienced AI Engineer with 5+ years building intelligent systems, full-stack applications, and automation solutions. Specialized in LLM integration, NLP, and modern web development.</p>
+                        <p id="previewSummary">Experienced AI Engineer with 5+ years building intelligent systems and scalable applications.</p>
                     </div>
                     <div class="rp-section">
                         <h4>Experience</h4>
@@ -255,7 +190,7 @@
                                 <span>TechCorp AI Labs | 2023 - Present</span>
                             </div>
                             <ul>
-                                <li>Led development of AI-powered customer support system serving 1M+ users</li>
+                                <li>Led development of AI-powered customer support system</li>
                                 <li>Built and deployed LLM pipelines with 95% accuracy</li>
                             </ul>
                         </div>
@@ -267,7 +202,7 @@
                     <div class="rp-section">
                         <h4>Skills</h4>
                         <div class="rp-skills" id="previewSkills">
-                            <span>Python</span><span>React</span><span>Machine Learning</span><span>Data Analysis</span>
+                            <span>Python</span><span>React</span><span>Machine Learning</span>
                         </div>
                     </div>
                 </div>

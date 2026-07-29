@@ -4,119 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing — ResumeAI Pro</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
-                        <rect width="40" height="40" rx="10" fill="url(#logoGrad)"/>
-                        <path d="M12 14h16M12 20h12M12 26h8" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                        <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-                    </svg>
-                </div>
-                <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="app.html">Resume Builder</a>
-                <a href="pricing.html" class="active">Pricing</a>
-                <a href="index.html#features">Features</a>
-            </div>
-            <div class="nav-actions">
-                <a href="app.html" class="btn btn-primary">Get Started</a>
-            </div>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="app.html">Builder</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="index.html#features">Features</a>
         </div>
+        <a href="app.html" class="btn-nav">Get Started</a>
     </nav>
 
     <section class="pricing-hero">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Pricing</span>
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Start free. Upgrade when you're ready to supercharge your job search.</p>
-            </div>
+            <span class="section-label">Pricing</span>
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Start free. Upgrade when you're ready to supercharge your job search.</p>
         </div>
     </section>
 
-    <section class="pricing-plans">
-        <div class="container">
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h3>Free</h3>
-                        <p>For getting started</p>
-                    </div>
-                    <div class="plan-price">
-                        <span class="price">$0</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 1 AI-generated resume</li>
-                        <li><i class="fas fa-check"></i> Basic templates</li>
-                        <li><i class="fas fa-check"></i> ATS score check</li>
-                        <li><i class="fas fa-check"></i> PDF download</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Cover letter generator</li>
-                        <li class="disabled"><i class="fas fa-times"></i> LinkedIn optimization</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Keyword matching</li>
-                    </ul>
-                    <a href="app.html" class="btn btn-outline btn-full">Get Started Free</a>
+    <section class="container">
+        <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Free</h3>
+                    <p>For getting started</p>
                 </div>
+                <div class="plan-price">
+                    <span class="price">$0</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 1 AI-generated resume</li>
+                    <li><i class="fas fa-check"></i> Basic templates</li>
+                    <li><i class="fas fa-check"></i> ATS score check</li>
+                    <li><i class="fas fa-check"></i> PDF download</li>
+                    <li class="disabled"><i class="fas fa-times"></i> Cover letter generator</li>
+                    <li class="disabled"><i class="fas fa-times"></i> LinkedIn optimization</li>
+                    <li class="disabled"><i class="fas fa-times"></i> Keyword matching</li>
+                </ul>
+                <a href="app.html" class="btn-outline-full">Get Started Free</a>
+            </div>
 
-                <div class="plan-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="plan-header">
-                        <h3>Pro</h3>
-                        <p>For serious job seekers</p>
-                    </div>
-                    <div class="plan-price">
-                        <span class="price">$9.99</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Unlimited AI resumes</li>
-                        <li><i class="fas fa-check"></i> All premium templates</li>
-                        <li><i class="fas fa-check"></i> Advanced ATS optimization</li>
-                        <li><i class="fas fa-check"></i> PDF, Word, TXT exports</li>
-                        <li><i class="fas fa-check"></i> AI cover letters</li>
-                        <li><i class="fas fa-check"></i> LinkedIn profile optimizer</li>
-                        <li><i class="fas fa-check"></i> Job description keyword match</li>
-                    </ul>
-                    <a href="app.html" class="btn btn-primary btn-full">Start Pro Trial</a>
+            <div class="plan-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="plan-header">
+                    <h3>Pro</h3>
+                    <p>For serious job seekers</p>
                 </div>
+                <div class="plan-price">
+                    <span class="price">$9.99</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Unlimited AI resumes</li>
+                    <li><i class="fas fa-check"></i> All premium templates</li>
+                    <li><i class="fas fa-check"></i> Advanced ATS optimization</li>
+                    <li><i class="fas fa-check"></i> PDF, Word, TXT exports</li>
+                    <li><i class="fas fa-check"></i> AI cover letters</li>
+                    <li><i class="fas fa-check"></i> LinkedIn profile optimizer</li>
+                    <li><i class="fas fa-check"></i> Job description keyword match</li>
+                </ul>
+                <a href="app.html" class="btn-primary btn-full">Start Pro Trial</a>
+            </div>
 
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <h3>Career Bundle</h3>
-                        <p>For complete career transformation</p>
-                    </div>
-                    <div class="plan-price">
-                        <span class="price">$19.99</span>
-                        <span class="period">/month</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Everything in Pro</li>
-                        <li><i class="fas fa-check"></i> 1-on-1 resume review</li>
-                        <li><i class="fas fa-check"></i> Interview prep toolkit</li>
-                        <li><i class="fas fa-check"></i> Salary negotiation guide</li>
-                        <li><i class="fas fa-check"></i> Job application tracker</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                        <li><i class="fas fa-check"></i> Career coaching session</li>
-                    </ul>
-                    <a href="app.html" class="btn btn-outline btn-full">Get Career Bundle</a>
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Career Bundle</h3>
+                    <p>For complete transformation</p>
                 </div>
+                <div class="plan-price">
+                    <span class="price">$19.99</span>
+                    <span class="period">/month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Everything in Pro</li>
+                    <li><i class="fas fa-check"></i> 1-on-1 resume review</li>
+                    <li><i class="fas fa-check"></i> Interview prep toolkit</li>
+                    <li><i class="fas fa-check"></i> Salary negotiation guide</li>
+                    <li><i class="fas fa-check"></i> Job application tracker</li>
+                    <li><i class="fas fa-check"></i> Priority support</li>
+                    <li><i class="fas fa-check"></i> Career coaching session</li>
+                </ul>
+                <a href="app.html" class="btn-outline-full">Get Career Bundle</a>
             </div>
         </div>
     </section>
 
     <section class="faq">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">FAQ</span>
+            <div class="section-head">
+                <span class="section-label">FAQ</span>
                 <h2>Frequently Asked Questions</h2>
             </div>
             <div class="faq-grid">
@@ -142,46 +129,23 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 40 40" fill="none" width="32" height="32">
-                            <rect width="40" height="40" rx="10" fill="url(#fLogoGrad)"/>
-                            <path d="M12 14h16M12 20h12M12 26h8" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                            <defs><linearGradient id="fLogoGrad" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-                        </svg>
-                    </div>
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-mark">R</span>
                     <span class="logo-text">ResumeAI<span class="pro">Pro</span></span>
-                    <p>AI-powered resume builder that gets you hired.</p>
-                </div>
+                </a>
                 <div class="footer-links">
-                    <h4>Product</h4>
-                    <a href="app.html">Resume Builder</a>
+                    <a href="app.html">Builder</a>
                     <a href="pricing.html">Pricing</a>
                     <a href="index.html#features">Features</a>
-                    <a href="#">Templates</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <a href="#">About</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Contact</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Security</a>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2026 ResumeAI Pro. All rights reserved.</p>
-                <div class="social-links">
+                <div class="footer-social">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 /**
- * ResumeAI Pro — Main Application JavaScript
+ * ResumeAI Pro — Application JavaScript
  */
 
 // ==========================================
@@ -14,22 +14,18 @@ if (mobileToggle) {
             menu.className = 'mobile-menu';
             menu.innerHTML = `
                 <a href="index.html">Home</a>
-                <a href="app.html">Resume Builder</a>
+                <a href="app.html">Builder</a>
                 <a href="pricing.html">Pricing</a>
-                <a href="index.html#features">Features</a>
-                <button class="btn btn-outline" onclick="this.parentElement.classList.remove('active')">Close</button>
+                <button class="btn-primary" onclick="this.parentElement.classList.remove('active')">Close</button>
             `;
             document.body.appendChild(menu);
         }
         menu.classList.toggle('active');
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => menu.classList.remove('active'));
-        });
     });
 }
 
 // ==========================================
-// APP NAVIGATION (Resume Builder)
+// APP NAVIGATION
 // ==========================================
 const navItems = document.querySelectorAll('.nav-item');
 const formSections = document.querySelectorAll('.form-section');
@@ -39,12 +35,8 @@ const finishBtn = document.getElementById('finishBtn');
 let currentSection = 0;
 
 function showSection(index) {
-    formSections.forEach((section, i) => {
-        section.classList.toggle('active', i === index);
-    });
-    navItems.forEach((item, i) => {
-        item.classList.toggle('active', i === index);
-    });
+    formSections.forEach((section, i) => section.classList.toggle('active', i === index));
+    navItems.forEach((item, i) => item.classList.toggle('active', i === index));
     currentSection = index;
     updateButtons();
     updateProgress();
@@ -53,66 +45,39 @@ function showSection(index) {
 function updateButtons() {
     if (!prevBtn || !nextBtn || !finishBtn) return;
     prevBtn.style.visibility = currentSection === 0 ? 'hidden' : 'visible';
-    if (currentSection === formSections.length - 1) {
-        nextBtn.classList.add('hidden');
-        finishBtn.classList.remove('hidden');
-    } else {
-        nextBtn.classList.remove('hidden');
-        finishBtn.classList.add('hidden');
-    }
+    nextBtn.classList.toggle('hidden', currentSection === formSections.length - 1);
+    finishBtn.classList.toggle('hidden', currentSection !== formSections.length - 1);
 }
 
 function updateProgress() {
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const atsScore = document.getElementById('atsScore');
-    if (!progressBar) return;
-    
+    const bar = document.getElementById('progressBar');
+    const text = document.getElementById('progressText');
+    const ats = document.getElementById('atsScore');
+    if (!bar) return;
     const progress = ((currentSection + 1) / formSections.length) * 100;
-    progressBar.setAttribute('stroke-dasharray', `${progress}, 100`);
-    progressText.textContent = `${Math.round(progress)}%`;
-    
-    // Simulate ATS score based on progress
-    if (atsScore) {
+    bar.setAttribute('stroke-dasharray', `${progress}, 100`);
+    text.textContent = `${Math.round(progress)}%`;
+    if (ats) {
         const score = Math.round(60 + (progress * 0.38));
-        atsScore.textContent = `${score}%`;
-        atsScore.style.color = score >= 85 ? 'var(--success)' : score >= 70 ? 'var(--warning)' : 'var(--danger)';
+        ats.textContent = `${score}%`;
     }
 }
 
 navItems.forEach((item, index) => {
-    item.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection(index);
-    });
+    item.addEventListener('click', (e) => { e.preventDefault(); showSection(index); });
 });
 
-if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-        if (currentSection > 0) showSection(currentSection - 1);
-    });
-}
-
-if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-        if (currentSection < formSections.length - 1) showSection(currentSection + 1);
-    });
-}
-
-if (finishBtn) {
-    finishBtn.addEventListener('click', () => {
-        alert('🎉 Your AI-optimized resume is ready for download!\n\nIn the full version, this would generate and download your resume.');
-    });
-}
+if (prevBtn) prevBtn.addEventListener('click', () => { if (currentSection > 0) showSection(currentSection - 1); });
+if (nextBtn) nextBtn.addEventListener('click', () => { if (currentSection < formSections.length - 1) showSection(currentSection + 1); });
+if (finishBtn) finishBtn.addEventListener('click', () => alert('Your AI-optimized resume is ready for download!'));
 
 // ==========================================
 // ADD EXPERIENCE / EDUCATION
 // ==========================================
-const addExperienceBtn = document.getElementById('addExperience');
-const experienceList = document.getElementById('experienceList');
-
-if (addExperienceBtn && experienceList) {
-    addExperienceBtn.addEventListener('click', () => {
+const addExpBtn = document.getElementById('addExperience');
+const expList = document.getElementById('experienceList');
+if (addExpBtn && expList) {
+    addExpBtn.addEventListener('click', () => {
         const card = document.createElement('div');
         card.className = 'exp-card';
         card.innerHTML = `
@@ -121,20 +86,18 @@ if (addExperienceBtn && experienceList) {
                 <div class="form-group"><label>Company</label><input type="text" placeholder="e.g. TechCorp AI Labs"></div>
                 <div class="form-group"><label>Start Date</label><input type="month"></div>
                 <div class="form-group"><label>End Date</label><input type="month"></div>
-                <div class="form-group full"><label>Description <span class="ai-badge"><i class="fas fa-sparkles"></i> AI Assist</span></label><textarea rows="4" placeholder="Describe your responsibilities and achievements..."></textarea></div>
+                <div class="form-group full"><label>Description <span class="ai-badge"><i class="fas fa-sparkles"></i> AI Assist</span></label><textarea rows="4" placeholder="Describe your responsibilities..."></textarea></div>
             </div>
-            <button class="btn-remove"><i class="fas fa-trash"></i></button>
-        `;
+            <button class="btn-remove"><i class="fas fa-trash"></i></button>`;
         card.querySelector('.btn-remove').addEventListener('click', () => card.remove());
-        experienceList.appendChild(card);
+        expList.appendChild(card);
     });
 }
 
-const addEducationBtn = document.getElementById('addEducation');
-const educationList = document.getElementById('educationList');
-
-if (addEducationBtn && educationList) {
-    addEducationBtn.addEventListener('click', () => {
+const addEduBtn = document.getElementById('addEducation');
+const eduList = document.getElementById('educationList');
+if (addEduBtn && eduList) {
+    addEduBtn.addEventListener('click', () => {
         const card = document.createElement('div');
         card.className = 'edu-card';
         card.innerHTML = `
@@ -144,43 +107,24 @@ if (addEducationBtn && educationList) {
                 <div class="form-group"><label>Graduation Year</label><input type="number" placeholder="2021"></div>
                 <div class="form-group"><label>GPA (Optional)</label><input type="text" placeholder="3.8/4.0"></div>
             </div>
-            <button class="btn-remove"><i class="fas fa-trash"></i></button>
-        `;
+            <button class="btn-remove"><i class="fas fa-trash"></i></button>`;
         card.querySelector('.btn-remove').addEventListener('click', () => card.remove());
-        educationList.appendChild(card);
+        eduList.appendChild(card);
     });
 }
 
-// Remove buttons (for initial cards)
 document.querySelectorAll('.btn-remove').forEach(btn => {
     btn.addEventListener('click', () => btn.closest('.exp-card, .edu-card').remove());
 });
 
 // ==========================================
-// SKILLS TAGS
+// SKILLS
 // ==========================================
 const skillInput = document.getElementById('skillInput');
 const skillsTags = document.getElementById('skillsTags');
 
-if (skillInput && skillsTags) {
-    skillInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const value = skillInput.value.trim();
-            if (value) {
-                addSkillTag(value);
-                skillInput.value = '';
-            }
-        }
-    });
-    
-    // Add click handlers to existing tags
-    skillsTags.querySelectorAll('.skill-tag i').forEach(icon => {
-        icon.addEventListener('click', () => icon.parentElement.remove());
-    });
-}
-
 function addSkillTag(text) {
+    if (!skillsTags) return;
     const tag = document.createElement('span');
     tag.className = 'skill-tag';
     tag.innerHTML = `${text} <i class="fas fa-times"></i>`;
@@ -188,75 +132,69 @@ function addSkillTag(text) {
     skillsTags.appendChild(tag);
 }
 
-// Suggestion chips
-document.querySelectorAll('.suggestion-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-        addSkillTag(chip.textContent);
+if (skillInput && skillsTags) {
+    skillInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const val = skillInput.value.trim();
+            if (val) { addSkillTag(val); skillInput.value = ''; }
+        }
     });
+    skillsTags.querySelectorAll('.skill-tag i').forEach(icon => {
+        icon.addEventListener('click', () => icon.parentElement.remove());
+    });
+}
+
+document.querySelectorAll('.suggestion-chip').forEach(chip => {
+    chip.addEventListener('click', () => addSkillTag(chip.textContent));
 });
 
 // ==========================================
-// AI SUMMARY GENERATION
+// AI SUMMARY
 // ==========================================
-const generateSummaryBtn = document.getElementById('generateSummary');
+const genSummaryBtn = document.getElementById('generateSummary');
 const summaryText = document.getElementById('summaryText');
 const previewSummary = document.getElementById('previewSummary');
 
-if (generateSummaryBtn && summaryText) {
-    generateSummaryBtn.addEventListener('click', () => {
-        generateSummaryBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-        generateSummaryBtn.disabled = true;
-        
+if (genSummaryBtn && summaryText) {
+    genSummaryBtn.addEventListener('click', () => {
+        genSummaryBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+        genSummaryBtn.disabled = true;
         setTimeout(() => {
             const summaries = [
-                "Results-driven AI Engineer with 5+ years of experience building intelligent systems and scalable applications. Proven track record of delivering production-ready ML models that drive business value.",
-                "Creative technologist specializing in AI-powered solutions and full-stack development. Passionate about leveraging cutting-edge technology to solve complex problems and enhance user experiences.",
-                "Dedicated software engineer with expertise in machine learning, natural language processing, and cloud architecture. Committed to writing clean, maintainable code and delivering high-quality products."
+                "Results-driven AI Engineer with 5+ years of experience building intelligent systems and scalable applications. Proven track record of delivering production-ready ML models.",
+                "Creative technologist specializing in AI-powered solutions and full-stack development. Passionate about leveraging cutting-edge technology to solve complex problems.",
+                "Dedicated software engineer with expertise in machine learning, natural language processing, and cloud architecture. Committed to delivering high-quality products."
             ];
-            const randomSummary = summaries[Math.floor(Math.random() * summaries.length)];
-            summaryText.value = randomSummary;
-            if (previewSummary) previewSummary.textContent = randomSummary;
-            generateSummaryBtn.innerHTML = '<i class="fas fa-check"></i> Generated!';
+            const s = summaries[Math.floor(Math.random() * summaries.length)];
+            summaryText.value = s;
+            if (previewSummary) previewSummary.textContent = s;
+            genSummaryBtn.innerHTML = '<i class="fas fa-check"></i> Generated!';
             setTimeout(() => {
-                generateSummaryBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Generate with AI';
-                generateSummaryBtn.disabled = false;
+                genSummaryBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Generate with AI';
+                genSummaryBtn.disabled = false;
             }, 2000);
         }, 1500);
     });
 }
 
 // ==========================================
-// LIVE PREVIEW UPDATES
+// LIVE PREVIEW
 // ==========================================
 const fullName = document.getElementById('fullName');
 const jobTitle = document.getElementById('jobTitle');
 const previewName = document.getElementById('previewName');
 const previewTitle = document.getElementById('previewTitle');
 
-if (fullName && previewName) {
-    fullName.addEventListener('input', () => {
-        previewName.textContent = fullName.value || 'Yuen Hui';
-    });
-}
-
-if (jobTitle && previewTitle) {
-    jobTitle.addEventListener('input', () => {
-        previewTitle.textContent = jobTitle.value || 'AI Engineer & Developer';
-    });
-}
-
-if (summaryText && previewSummary) {
-    summaryText.addEventListener('input', () => {
-        previewSummary.textContent = summaryText.value || 'Experienced AI Engineer with 5+ years building intelligent systems...';
-    });
-}
+if (fullName && previewName) fullName.addEventListener('input', () => previewName.textContent = fullName.value || 'Yuen Hui');
+if (jobTitle && previewTitle) jobTitle.addEventListener('input', () => previewTitle.textContent = jobTitle.value || 'AI Engineer & Developer');
+if (summaryText && previewSummary) summaryText.addEventListener('input', () => previewSummary.textContent = summaryText.value || 'Experienced AI Engineer...');
 
 // ==========================================
-// KEYWORD MATCHING SIMULATION
+// KEYWORDS
 // ==========================================
 const jobDesc = document.getElementById('jobDesc');
 const keywordMatch = document.getElementById('keywordMatch');
-
 if (jobDesc && keywordMatch) {
     jobDesc.addEventListener('input', () => {
         const text = jobDesc.value.toLowerCase();
@@ -265,63 +203,44 @@ if (jobDesc && keywordMatch) {
             { word: 'Machine Learning', found: text.includes('machine learning') || text.includes('ml') },
             { word: 'SQL', found: text.includes('sql') },
             { word: 'Docker', found: text.includes('docker') },
-            { word: 'AWS', found: text.includes('aws') || text.includes('amazon web') },
+            { word: 'AWS', found: text.includes('aws') },
             { word: 'React', found: text.includes('react') },
-            { word: 'Leadership', found: text.includes('leadership') || text.includes('lead') },
+            { word: 'Leadership', found: text.includes('leadership') },
         ];
-        
-        const keywordList = keywordMatch.querySelector('.keyword-list');
-        keywordList.innerHTML = keywords.map(kw => `
+        const list = keywordMatch.querySelector('.keyword-list');
+        list.innerHTML = keywords.map(kw => `
             <span class="${kw.found ? 'kw-match' : 'kw-missing'}">
                 <i class="fas ${kw.found ? 'fa-check' : 'fa-plus'}"></i> ${kw.word}
-            </span>
-        `).join('');
+            </span>`).join('');
     });
 }
 
 // ==========================================
 // SCROLL ANIMATIONS
 // ==========================================
-const observerOptions = { threshold: 0.1 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
             observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.market-card, .feature-card, .testimonial-card, .step, .plan-card, .faq-item').forEach(el => {
+document.querySelectorAll('.market-card, .feature, .testimonial, .step, .plan-card, .faq-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
     observer.observe(el);
 });
 
-// Add visible class style
-const style = document.createElement('style');
-style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
-document.head.appendChild(style);
-
 // ==========================================
-// NAVBAR SCROLL
-// ==========================================
-const navbar = document.querySelector('.navbar');
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        navbar.style.boxShadow = window.pageYOffset > 50 ? '0 4px 30px rgba(0,0,0,0.2)' : 'none';
-    });
-}
-
-// ==========================================
-// PAGE LOAD ANIMATION
+// INIT
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.4s ease';
-    setTimeout(() => { document.body.style.opacity = '1'; }, 50);
-    
-    // Initialize progress on app page
+    document.body.style.transition = 'opacity 0.5s ease';
+    setTimeout(() => document.body.style.opacity = '1', 50);
     updateProgress();
 });
