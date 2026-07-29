@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body data-theme="light">
     <div class="noise-overlay"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
     <div class="mouse-glow" id="mouseGlow"></div>
@@ -417,6 +417,43 @@
         </div>
     </footer>
 
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget" id="aiChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+            <i class="fas fa-robot"></i>
+            <span class="chat-badge">1</span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h4>ResumeAI Assistant</h4>
+                        <span><span class="status-dot"></span> Online</span>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-msg chat-msg-bot">
+                    <div class="chat-msg-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="chat-msg-bubble">
+                        <p>Hi there! 👋 I'm your AI resume assistant. I can help you build a resume, choose templates, prepare for interviews, or answer any career questions. What would you like to work on?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKey(event)">
+                <button id="chatSendBtn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle theme">
+        <i class="fas fa-sun" id="themeIcon"></i>
+    </button>
+
     <div id="authModalContainer"></div>
     <script src="js/app.js"></script>
     <script>window.API_BASE_URL = '';</script>
@@ -430,6 +467,90 @@
             const scripts = document.getElementById('authModalContainer').querySelectorAll('script');
             scripts.forEach(s => { const n = document.createElement('script'); n.textContent = s.textContent; document.body.appendChild(n); });
         });
+
+    // Theme Toggle
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('themeIcon');
+        const current = body.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        body.setAttribute('data-theme', next);
+        icon.className = next === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        localStorage.setItem('theme', next);
+    }
+
+    // Load saved theme
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            document.getElementById('themeIcon').className = 'fas fa-moon';
+        }
+    })();
+
+    // AI Chat Widget Logic
+    function toggleChat() {
+        document.getElementById('chatWindow').classList.toggle('active');
+        document.querySelector('.chat-badge').style.display = 'none';
+    }
+
+    function handleChatKey(e) {
+        if (e.key === 'Enter') sendChatMessage();
+    }
+
+    const chatResponses = {
+        'resume': 'I can help you build a professional resume! Head over to our <a href="app.html">Resume Builder</a> or try our <a href="ai-templates.html">AI Template Studio</a> to generate a custom template in seconds.',
+        'template': 'We have 30+ premium resume templates! Check out the <a href="templates.html">Template Marketplace</a> or let our <a href="ai-templates.html">AI Agents</a> create one for you.',
+        'interview': 'Our <a href="ai-tools.html">AI Interview Prep tool</a> generates likely questions and model answers based on your resume and the job description. Want to try it?',
+        'ats': 'Our <a href="ai-tools.html">ATS Score Checker</a> analyzes your resume against Applicant Tracking Systems and tells you exactly what to fix.',
+        'price': 'We have a free plan for students and basic users. Pro starts at $9.99/mo with unlimited AI generations. See all plans on our <a href="pricing.html">Pricing page</a>.',
+        'student': 'Our <a href="student-career.html">Student Career Hub</a> is free forever! Build your first resume, find internships, and practice interviews with AI.',
+        'hire': 'Looking to hire? Our <a href="recruitment.html">AI Recruitment Agency</a> can help you find and screen candidates 70% faster.',
+        'hr': 'Our <a href="hr-services.html">AI HR Services</a> offer smart resume screening, automated onboarding, and workforce analytics for teams of all sizes.',
+        'help': 'I can help with resumes, templates, interviews, ATS optimization, pricing, and more. Just ask me anything!',
+        'hello': 'Hello! 👋 How can I help you today?',
+        'hi': 'Hi there! What can I do for you?',
+    };
+
+    function sendChatMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        addChatMessage(text, true);
+        input.value = '';
+
+        // Simulate AI typing
+        const messages = document.getElementById('chatMessages');
+        const typingId = 'typing-' + Date.now();
+        const typingDiv = document.createElement('div');
+        typingDiv.id = typingId;
+        typingDiv.className = 'chat-msg chat-msg-bot chat-typing';
+        typingDiv.innerHTML = '<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>';
+        messages.appendChild(typingDiv);
+        messages.scrollTop = messages.scrollHeight;
+
+        setTimeout(() => {
+            document.getElementById(typingId)?.remove();
+            const lower = text.toLowerCase();
+            let response = 'I\'m here to help! You can ask me about building resumes, choosing templates, interview prep, ATS tips, or any of our services.';
+            for (const [key, val] of Object.entries(chatResponses)) {
+                if (lower.includes(key)) { response = val; break; }
+            }
+            addChatMessage(response, false);
+        }, 1200 + Math.random() * 800);
+    }
+
+    function addChatMessage(text, isUser) {
+        const messages = document.getElementById('chatMessages');
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
+        div.innerHTML = isUser
+            ? `<div class="chat-msg-bubble">${text}</div>`
+            : `<div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="chat-msg-bubble">${text}</div>`;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
     </script>
 </body>
 </html>
