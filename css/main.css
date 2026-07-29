@@ -1,20 +1,20 @@
 :root {
-    --bg: #09090c;
-    --bg-elevated: #111118;
-    --bg-card: #16161f;
-    --bg-glass: rgba(22, 22, 31, 0.7);
-    --text: #f0f0f5;
-    --text-secondary: #9a9aa8;
-    --text-muted: #5a5a6a;
-    --accent: #d4af37;
-    --accent-light: #e8c96e;
-    --accent-glow: rgba(212, 175, 55, 0.12);
-    --accent-glow-strong: rgba(212, 175, 55, 0.25);
-    --secondary: #807E79;
-    --secondary-light: #9a9893;
-    --secondary-glow: rgba(128, 126, 121, 0.12);
-    --border: rgba(255,255,255,0.05);
-    --border-light: rgba(255,255,255,0.08);
+    --bg: #FAF4E3;
+    --bg-elevated: #F4EEED;
+    --bg-card: #ffffff;
+    --bg-glass: rgba(244, 238, 237, 0.7);
+    --text: #4a4a42;
+    --text-secondary: #7a7a72;
+    --text-muted: #a0a098;
+    --accent: #A5A68F;
+    --accent-light: #b8b9a2;
+    --accent-glow: rgba(165, 166, 143, 0.15);
+    --accent-glow-strong: rgba(165, 166, 143, 0.25);
+    --secondary: #D9B2A9;
+    --secondary-light: #e4c4bc;
+    --secondary-glow: rgba(217, 178, 169, 0.15);
+    --border: rgba(165, 166, 143, 0.15);
+    --border-light: rgba(165, 166, 143, 0.08);
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', -apple-system, sans-serif;
     --radius: 16px;
@@ -2079,20 +2079,20 @@ body {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #b8941f);
+    background: linear-gradient(135deg, var(--accent), #8a8b75);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 6px 24px rgba(212,175,55,0.4), 0 0 0 3px rgba(212,175,55,0.1);
+    box-shadow: 0 6px 24px rgba(165,166,143,0.4), 0 0 0 3px rgba(165,166,143,0.1);
     transition: all 0.3s ease;
     position: relative;
 }
 .chat-toggle:hover {
     transform: scale(1.08);
-    box-shadow: 0 10px 32px rgba(212,175,55,0.5);
+    box-shadow: 0 10px 32px rgba(165,166,143,0.5);
 }
 .chat-badge {
     position: absolute;
@@ -2218,7 +2218,7 @@ body {
     height: 28px;
     border-radius: 8px;
     background: var(--accent-glow);
-    border: 1px solid rgba(212,175,55,0.2);
+    border: 1px solid rgba(165,166,143,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2227,7 +2227,7 @@ body {
     flex-shrink: 0;
 }
 .chat-msg-user .chat-msg-bubble {
-    background: linear-gradient(135deg, var(--accent), #b8941f);
+    background: linear-gradient(135deg, var(--accent), #8a8b75);
     color: #fff;
     border-radius: 14px 14px 4px 14px;
 }
@@ -2288,7 +2288,7 @@ body {
 }
 .chat-input-area input:focus {
     outline: none;
-    border-color: rgba(212,175,55,0.3);
+    border-color: rgba(165,166,143,0.3);
     box-shadow: 0 0 0 3px var(--accent-glow);
 }
 .chat-input-area input::placeholder {
@@ -2298,7 +2298,7 @@ body {
     width: 38px;
     height: 38px;
     border-radius: 10px;
-    background: linear-gradient(135deg, var(--accent), #b8941f);
+    background: linear-gradient(135deg, var(--accent), #8a8b75);
     border: none;
     color: #fff;
     font-size: 0.9rem;
@@ -2310,7 +2310,7 @@ body {
 }
 #chatSendBtn:hover {
     transform: scale(1.08);
-    box-shadow: 0 4px 16px rgba(212,175,55,0.4);
+    box-shadow: 0 4px 16px rgba(165,166,143,0.4);
 }
 
 /* ==========================================
@@ -2318,83 +2318,79 @@ body {
    ========================================== */
 
 [data-theme="light"] {
-    --bg: #ffffff;
-    --bg-card: #f8f9fa;
-    --bg-elevated: #f1f3f5;
-    --text: #1a1a2e;
-    --text-secondary: #495057;
-    --text-muted: #868e96;
-    --border: #dee2e6;
-    --border-light: #e9ecef;
-    --accent: #c9a96e;
-    --accent-light: #d4b87a;
-    --accent-glow: rgba(201,169,110,0.1);
-    --accent-glow-strong: rgba(201,169,110,0.15);
+    --bg: #FAF4E3;
+    --bg-card: #ffffff;
+    --bg-elevated: #F4EEED;
+    --text: #4a4a42;
+    --text-secondary: #7a7a72;
+    --text-muted: #a0a098;
+    --border: rgba(165,166,143,0.15);
+    --border-light: rgba(165,166,143,0.08);
+    --accent: #A5A68F;
+    --accent-light: #b8b9a2;
+    --accent-glow: rgba(165,166,143,0.15);
+    --accent-glow-strong: rgba(165,166,143,0.25);
 }
 
 [data-theme="light"] body {
-    background: #ffffff !important;
+    background: #FAF4E3 !important;
     color: var(--text);
 }
 [data-theme="light"] .noise-overlay {
     opacity: 0.01 !important;
 }
 
-[data-theme="light"] .noise-overlay {
-    opacity: 0.02;
-}
-
 [data-theme="light"] .hero-aurora {
-    background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.08), transparent 70%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(165,166,143,0.08), transparent 70%);
 }
 
 [data-theme="light"] .hero-glow {
-    opacity: 0.08;
+    opacity: 0.06;
 }
 
 [data-theme="light"] .nav {
-    background: rgba(255,255,255,0.85);
+    background: rgba(250,244,227,0.9);
     border-bottom: 1px solid var(--border);
 }
 
 [data-theme="light"] .nav.scrolled {
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    background: rgba(250,244,227,0.95);
+    box-shadow: 0 4px 30px rgba(74,74,66,0.06);
 }
 
 [data-theme="light"] .hero-label {
-    background: rgba(201,169,110,0.1);
-    color: #8a7030;
+    background: rgba(165,166,143,0.12);
+    color: #7a7b68;
 }
 
 [data-theme="light"] .section-label {
-    background: rgba(201,169,110,0.1);
-    color: #8a7030;
+    background: rgba(165,166,143,0.12);
+    color: #7a7b68;
 }
 
 [data-theme="light"] .section-label.secondary {
-    background: rgba(128,126,121,0.1);
-    color: #807E79;
+    background: rgba(217,178,169,0.15);
+    color: #a08078;
 }
 
 [data-theme="light"] .feature-icon {
-    background: linear-gradient(135deg, rgba(201,169,110,0.1), rgba(201,169,110,0.03)) !important;
-    color: #8a7030 !important;
-    border-color: rgba(201,169,110,0.15) !important;
+    background: linear-gradient(135deg, rgba(165,166,143,0.12), rgba(165,166,143,0.04)) !important;
+    color: #7a7b68 !important;
+    border-color: rgba(165,166,143,0.18) !important;
 }
 
 [data-theme="light"] .agent-card:hover,
 [data-theme="light"] .tool-card:hover,
 [data-theme="light"] .marketplace-card:hover {
-    box-shadow: 0 25px 60px rgba(0,0,0,0.08), 0 0 40px var(--accent-glow);
+    box-shadow: 0 25px 60px rgba(74,74,66,0.08), 0 0 40px var(--accent-glow);
 }
 
 [data-theme="light"] .chat-toggle {
-    box-shadow: 0 8px 32px rgba(201,169,110,0.3), 0 0 0 4px rgba(201,169,110,0.08);
+    box-shadow: 0 8px 32px rgba(165,166,143,0.3), 0 0 0 4px rgba(165,166,143,0.08);
 }
 
 [data-theme="light"] .chat-window {
-    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    box-shadow: 0 20px 60px rgba(74,74,66,0.12);
 }
 
 [data-theme="light"] .vertical-nav {
