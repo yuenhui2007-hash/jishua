@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Resume — Yuen Hui</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #666666;
+            --accent: #2563eb;
+            --border: #e5e5e5;
+        }
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #f0f0f0;
+            --text-light: #888888;
+            --accent: #60a5fa;
+            --border: #222222;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            transition: all 0.3s ease;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .header-left h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header-left p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        .header-right {
+            text-align: right;
+        }
+        .header-right a {
+            display: block;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text);
+            margin-top: 12px;
+        }
+        section { margin-bottom: 40px; }
+        h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+        .summary {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 24px;
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        .exp-header h3 { font-size: 1.1rem; font-weight: 600; }
+        .exp-date { color: var(--text-light); font-size: 0.85rem; }
+        .exp-company { color: var(--accent); font-size: 0.95rem; margin-bottom: 8px; }
+        .exp-desc { color: var(--text-light); font-size: 0.95rem; }
+        ul { margin-left: 20px; color: var(--text-light); }
+        li { margin-bottom: 4px; }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag {
+            background: var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Yuen Hui</h1>
+            <p>AI Engineer & Full-Stack Developer</p>
+        </div>
+        <div class="header-right">
+            <a href="mailto:hello@yuenhui.dev">hello@yuenhui.dev</a>
+            <a href="https://github.com/yuenhui2007-hash">github.com/yuenhui2007-hash</a>
+            <button class="theme-btn" onclick="toggleTheme()">🌓 Toggle Theme</button>
+        </div>
+    </header>
+
+    <section>
+        <h2>Summary</h2>
+        <p class="summary">
+            Passionate AI engineer with 5+ years of experience building intelligent systems, 
+            full-stack applications, and automation solutions. Specialized in LLM integration, 
+            NLP, and modern web development.
+        </p>
+    </section>
+
+    <section>
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Senior AI Engineer</h3>
+                <span class="exp-date">2023 — Present</span>
+            </div>
+            <div class="exp-company">TechCorp AI Labs</div>
+            <ul>
+                <li>Led development of AI-powered customer support system serving 1M+ users</li>
+                <li>Built and deployed LLM pipelines with 95% accuracy on classification tasks</li>
+                <li>Reduced inference costs by 40% through model optimization</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3>Full-Stack Developer</h3>
+                <span class="exp-date">2021 — 2023</span>
+            </div>
+            <div class="exp-company">Digital Innovations Studio</div>
+            <ul>
+                <li>Developed React/Node.js applications for enterprise clients</li>
+                <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
+                <li>Mentored junior developers and led code review processes</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <div class="education-item">
+            <div class="exp-header">
+                <h3>B.S. Computer Science</h3>
+                <span class="exp-date">2017 — 2021</span>
+            </div>
+            <div class="exp-company">University of Technology</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+        </div>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+    </script>
+</body>
+</html>
