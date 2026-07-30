@@ -1,9 +1,9 @@
 /**
- * Database Layer - SQLite with better-sqlite3
- * Fast, synchronous, embedded database perfect for this scale
+ * Database Layer - SQLite3 with async wrapper
+ * Uses sqlite3 (prebuilt binaries, no compilation needed)
  */
 
-const Database = require('better-sqlite3');
+const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
 const logger = require('../utils/logger');
@@ -12,19 +12,69 @@ const DB_PATH = process.env.DB_PATH || path.join(__dirname, '../../data/resumeai
 
 let db = null;
 
+// Promise wrapper for sqlite3
+class AsyncDatabase {
+  constructor(dbPath) {
+    this.db = new sqlite3.Database(dbPath, (err) => {
+      if (err) logger.error('❌ Database open error:', err.message);
+      else logger.info('📦 Connected to SQLite database');
+    });
+  }
+
+  run(sql, params = []) {
+    return new Promise((resolve, reject) => {
+      this.db.run(sql, params, function(err) {
+        if (err) reject(err);
+        else resolve({ lastID: this.lastID, changes: this.changes });
+      });
+    });
+  }
+
+  get(sql, params = []) {
+    return new Promise((resolve, reject) => {
+      this.db.get(sql, params, (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      });
+    });
+  }
+
+  all(sql, params = []) {
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, params, (err, rows) => {
+        if (err) reject(err);
+        else resolve(rows);
+      });
+    });
+  }
+
+  exec(sql) {
+    return new Promise((resolve, reject) => {
+      this.db.exec(sql, (err) => {
+        if (err) reject(err);
+        else resolve();
+      });
+    });
+  }
+
+  close() {
+    return new Promise((resolve, reject) => {
+      this.db.close((err) => {
+        if (err) reject(err);
+        else resolve();
+      });
+    });
+  }
+}
+
 function connectDB() {
   try {
-    // Ensure data directory exists
     const dataDir = path.dirname(DB_PATH);
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
 
-    db = new Database(DB_PATH);
-    db.pragma('journal_mode = WAL');
-    db.pragma('foreign_keys = ON');
-
-    logger.info('📦 Connected to SQLite database');
+    db = new AsyncDatabase(DB_PATH);
     initTables();
     return db;
   } catch (error) {
@@ -40,11 +90,11 @@ function getDB() {
   return db;
 }
 
-function initTables() {
-  const db = getDB();
+async function initTables() {
+  const d = getDB();
 
   // Users table
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT UNIQUE NOT NULL,
@@ -69,7 +119,7 @@ function initTables() {
   `);
 
   // Resumes table
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS resumes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -89,7 +139,7 @@ function initTables() {
   `);
 
   // Templates table
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS templates (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
@@ -108,7 +158,7 @@ function initTables() {
   `);
 
   // AI Generations log
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS ai_generations (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -124,7 +174,7 @@ function initTables() {
   `);
 
   // Payments table
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS payments (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -139,8 +189,8 @@ function initTables() {
     )
   `);
 
-  // Sessions / API Keys
-  db.exec(`
+  // API Keys
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS api_keys (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -155,7 +205,7 @@ function initTables() {
   `);
 
   // Activity log
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS activity_log (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER,
@@ -169,8 +219,8 @@ function initTables() {
     )
   `);
 
-  // ===== ORDERS TABLES (frontend ↔ backend sync) =====
-  db.exec(`
+  // Orders tables
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS orders (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       order_id TEXT UNIQUE NOT NULL,
@@ -189,7 +239,7 @@ function initTables() {
     )
   `);
 
-  db.exec(`
+  await d.exec(`
     CREATE TABLE IF NOT EXISTS order_concepts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       order_id INTEGER NOT NULL,
@@ -204,86 +254,39 @@ function initTables() {
   `);
 
   logger.info('✅ Database tables initialized (including orders)');
-  seedTemplates();
-  seedAdmin();
+  await seedTemplates();
+  await seedAdmin();
 }
 
-function seedTemplates() {
-  const db = getDB();
-  const count = db.prepare('SELECT COUNT(*) as count FROM templates').get();
+async function seedTemplates() {
+  const d = getDB();
+  const row = await d.get('SELECT COUNT(*) as count FROM templates');
 
-  if (count.count === 0) {
+  if (row.count === 0) {
     const templates = [
-      {
-        name: 'Executive Prime',
-        slug: 'executive-prime',
-        agent: 'aurelius',
-        category: 'executive',
-        description: 'Boardroom-ready template with commanding presence',
-        is_premium: 0,
-      },
-      {
-        name: 'Visionary Split',
-        slug: 'visionary-split',
-        agent: 'nova',
-        category: 'creative',
-        description: 'Bold split-layout for creative professionals',
-        is_premium: 0,
-      },
-      {
-        name: 'Stack Matrix',
-        slug: 'stack-matrix',
-        agent: 'cipher',
-        category: 'technical',
-        description: 'ATS-optimized template for tech roles',
-        is_premium: 0,
-      },
-      {
-        name: 'Swiss Pure',
-        slug: 'swiss-pure',
-        agent: 'luna',
-        category: 'minimal',
-        description: 'Swiss-inspired minimalist elegance',
-        is_premium: 1,
-      },
-      {
-        name: 'Narrative Flow',
-        slug: 'narrative-flow',
-        agent: 'phoenix',
-        category: 'career-change',
-        description: 'Designed for career pivots and reinventions',
-        is_premium: 1,
-      },
-      {
-        name: 'Scholar Formal',
-        slug: 'scholar-formal',
-        agent: 'atlas',
-        category: 'academic',
-        description: 'Formal credentials-forward academic CV',
-        is_premium: 1,
-      },
+      { name: 'Executive Prime', slug: 'executive-prime', agent: 'aurelius', category: 'executive', description: 'Boardroom-ready template with commanding presence', is_premium: 0 },
+      { name: 'Visionary Split', slug: 'visionary-split', agent: 'nova', category: 'creative', description: 'Bold split-layout for creative professionals', is_premium: 0 },
+      { name: 'Stack Matrix', slug: 'stack-matrix', agent: 'cipher', category: 'technical', description: 'ATS-optimized template for tech roles', is_premium: 0 },
+      { name: 'Swiss Pure', slug: 'swiss-pure', agent: 'luna', category: 'minimal', description: 'Swiss-inspired minimalist elegance', is_premium: 1 },
+      { name: 'Narrative Flow', slug: 'narrative-flow', agent: 'phoenix', category: 'career-change', description: 'Designed for career pivots and reinventions', is_premium: 1 },
+      { name: 'Scholar Formal', slug: 'scholar-formal', agent: 'atlas', category: 'academic', description: 'Formal credentials-forward academic CV', is_premium: 1 },
     ];
 
-    const insert = db.prepare(`
-      INSERT INTO templates (name, slug, agent, category, description, is_premium)
-      VALUES (@name, @slug, @agent, @category, @description, @is_premium)
-    `);
-
-    const insertMany = db.transaction((items) => {
-      for (const item of items) insert.run(item);
-    });
-
-    insertMany(templates);
+    for (const t of templates) {
+      await d.run(
+        'INSERT INTO templates (name, slug, agent, category, description, is_premium) VALUES (?, ?, ?, ?, ?, ?)',
+        [t.name, t.slug, t.agent, t.category, t.description, t.is_premium]
+      );
+    }
     logger.info('🌱 Seeded default templates');
   }
 }
 
 async function seedAdmin() {
-  const db = getDB();
+  const d = getDB();
   const bcrypt = require('bcryptjs');
 
-  // Check if admin already exists
-  const existing = db.prepare("SELECT id FROM users WHERE email = ?").get('admin@yh.studio');
+  const existing = await d.get('SELECT id FROM users WHERE email = ?', ['admin@yh.studio']);
   if (existing) {
     logger.info('👤 Default admin already exists');
     return;
@@ -293,11 +296,10 @@ async function seedAdmin() {
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash('YHStudio2024!', salt);
 
-    db.prepare(`
-      INSERT INTO users (email, password, first_name, last_name, role, plan, is_verified)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run('admin@yh.studio', hashedPassword, 'Admin', 'User', 'admin', 'enterprise', 1);
-
+    await d.run(
+      'INSERT INTO users (email, password, first_name, last_name, role, plan, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      ['admin@yh.studio', hashedPassword, 'Admin', 'User', 'admin', 'enterprise', 1]
+    );
     logger.info('👤 Default admin created: admin@yh.studio / YHStudio2024!');
   } catch (error) {
     logger.error('❌ Failed to seed admin:', error.message);

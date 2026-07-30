@@ -1,0 +1,33 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "order_id": "YH-MS6XH3YS-D8E19C",
+      "customer_name": "Test User",
+      "customer_email": "test@example.com",
+      "customer_phone": "+60123456789",
+      "company": null,
+      "plan": "resume-pro",
+      "service_type": "Resume Builder Pro",
+      "payment_method": "Touch n Go",
+      "message": null,
+      "status": "pending",
+      "admin_notes": null,
+      "created_at": "2026-07-30T03:02:18.196Z",
+      "updated_at": "2026-07-30T03:02:18.196Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@yh.studio",
+      "password": "$2a$12$mtY32jghPx8L5QDo1KwAAOLsgtqfOWIduls7t/S3XSausCFPhxKyO",
+      "first_name": "Admin",
+      "last_name": "User",
+      "role": "admin",
+      "plan": "enterprise",
+      "created_at": "2026-07-30T03:01:51.486Z"
+    }
+  ],
+  "concepts": []
+}
