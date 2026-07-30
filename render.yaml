@@ -1,5 +1,5 @@
 # Render.com Blueprint for YH Backend
-# This enables one-click deployment to Render.com
+# Place this file at REPO ROOT (not inside backend/)
 # See: https://render.com/docs/blueprint-spec
 
 services:
@@ -12,8 +12,6 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000
       - key: FRONTEND_URL
         value: https://yuenhui2007-hash.github.io
       - key: JWT_SECRET
@@ -34,10 +32,3 @@ services:
         value: 20
       - key: LOG_LEVEL
         value: info
-      # Add your API keys below after deployment:
-      # - key: OPENAI_API_KEY
-      #   sync: false
-      # - key: ANTHROPIC_API_KEY
-      #   sync: false
-      # - key: STRIPE_SECRET_KEY
-      #   sync: false
