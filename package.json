@@ -1,0 +1,12 @@
+{
+  "name": "yh-platform-root",
+  "version": "1.0.0",
+  "description": "YH Platform - Root package for Render deployment",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "install": "cd backend && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
