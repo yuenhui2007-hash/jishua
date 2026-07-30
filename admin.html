@@ -133,6 +133,34 @@
     </style>
 </head>
 <body>
+
+<!-- Login Overlay -->
+<div id="loginOverlay" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#FAF4E3 0%,#F4EEED 100%);display:flex;justify-content:center;align-items:center;">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px;max-width:400px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.06);">
+        <div style="text-align:center;margin-bottom:32px;">
+            <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#A5A68F,#D9B2A9);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:0 auto 16px;">YH</div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px;">YH Studio Admin</h2>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Sign in to access the back office</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+            <div>
+                <label style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;display:block;">Email</label>
+                <input type="email" id="loginEmail" value="admin@yh.studio" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;background:#fff;">
+            </div>
+            <div>
+                <label style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;display:block;">Password</label>
+                <input type="password" id="loginPassword" value="YHStudio2024!" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:inherit;background:#fff;">
+            </div>
+            <button onclick="doLogin()" style="width:100%;padding:14px;background:linear-gradient(135deg,#A5A68F,#8a8b75);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:4px;">Sign In</button>
+            <div id="loginError" style="color:#dc2626;font-size:0.85rem;text-align:center;display:none;"></div>
+        </div>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-light);text-align:center;">
+            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;">Default credentials:</p>
+            <code style="background:var(--bg-elevated);padding:8px 12px;border-radius:8px;font-size:0.8rem;display:block;">admin@yh.studio<br>YHStudio2024!</code>
+        </div>
+    </div>
+</div>
+
 <div class="admin-wrapper">
     <aside class="admin-sidebar">
         <h2><span>YH</span> YH Back Office</h2>
@@ -241,6 +269,35 @@ const API = window.API_BASE_URL || '';
 let backendConnected = false;
 
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+
+async function doLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const errEl = document.getElementById('loginError');
+    errEl.style.display = 'none';
+
+    try {
+        const res = await fetch(API + '/api/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email, password})
+        });
+        const data = await res.json();
+        if(data.success && data.token) {
+            localStorage.setItem('token', data.token);
+            document.getElementById('loginOverlay').style.display = 'none';
+            showToast('✅ Signed in as ' + data.user.first_name);
+            loadDashboard();
+        } else {
+            errEl.textContent = data.message || 'Login failed';
+            errEl.style.display = 'block';
+        }
+    } catch(e) {
+        errEl.textContent = 'Backend unreachable. Is the server running?';
+        errEl.style.display = 'block';
+    }
+}
+
 function showSection(name) {
     document.querySelectorAll('.admin-main > div').forEach(d => d.style.display = 'none');
     document.getElementById('section-'+name).style.display = 'block';

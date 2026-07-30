@@ -205,6 +205,7 @@ function initTables() {
 
   logger.info('✅ Database tables initialized (including orders)');
   seedTemplates();
+  seedAdmin();
 }
 
 function seedTemplates() {
@@ -274,6 +275,32 @@ function seedTemplates() {
 
     insertMany(templates);
     logger.info('🌱 Seeded default templates');
+  }
+}
+
+async function seedAdmin() {
+  const db = getDB();
+  const bcrypt = require('bcryptjs');
+
+  // Check if admin already exists
+  const existing = db.prepare("SELECT id FROM users WHERE email = ?").get('admin@yh.studio');
+  if (existing) {
+    logger.info('👤 Default admin already exists');
+    return;
+  }
+
+  try {
+    const salt = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash('YHStudio2024!', salt);
+
+    db.prepare(`
+      INSERT INTO users (email, password, first_name, last_name, role, plan, is_verified)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run('admin@yh.studio', hashedPassword, 'Admin', 'User', 'admin', 'enterprise', 1);
+
+    logger.info('👤 Default admin created: admin@yh.studio / YHStudio2024!');
+  } catch (error) {
+    logger.error('❌ Failed to seed admin:', error.message);
   }
 }
 
