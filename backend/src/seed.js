@@ -14,8 +14,8 @@ function seed() {
     const passwordHash = bcrypt.hashSync(adminPassword, 10);
 
     const result = db.prepare(
-      'INSERT INTO users (email, password_hash, first_name, last_name, role, subscription_tier) VALUES (?, ?, ?, ?, ?, ?)'
-    ).run(adminEmail, passwordHash, 'System', 'Admin', 'admin', 'enterprise');
+      'INSERT INTO users (email, password_hash, first_name, last_name, role, subscription_tier, subscription_status) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    ).run(adminEmail, passwordHash, 'System', 'Admin', 'admin', 'enterprise', 'active');
 
     console.log(`Admin user created:`);
     console.log(`  Email: ${adminEmail}`);

@@ -27,8 +27,8 @@ router.post('/register', [
 
   try {
     const result = db.prepare(
-      'INSERT INTO users (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)'
-    ).run(email, passwordHash, firstName || null, lastName || null);
+      'INSERT INTO users (email, password_hash, first_name, last_name, subscription_tier, subscription_status) VALUES (?, ?, ?, ?, ?, ?)'
+    ).run(email, passwordHash, firstName || null, lastName || null, 'free', 'inactive');
 
     const token = generateToken(result.lastInsertRowid);
     res.status(201).json({
