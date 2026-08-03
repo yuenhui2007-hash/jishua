@@ -4,18 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jishua Admin — Orders & Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root { --bg:#0a0a0a; --surface:#141414; --surface2:#1e1e1e; --border:#2a2a2a; --text:#e5e5e5; --muted:#888; --gold:#c9a84c; --green:#3ecf7a; --red:#e74c3c; }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+    body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
     .login-screen { display:flex; align-items:center; justify-content:center; min-height:100vh; }
     .login-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:48px; width:100%; max-width:420px; }
     .login-box h1 { color:var(--gold); font-size:28px; margin-bottom:8px; }
     .login-box p { color:var(--muted); margin-bottom:24px; font-size:14px; }
     .form-group { margin-bottom:18px; }
-    .form-group label { display:block; font-size:12px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+    .form-group label { display:block; font-size:13px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
     .form-group input { width:100%; padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:15px; }
     .form-group input:focus { outline:none; border-color:var(--gold); }
     .btn { width:100%; padding:13px; background:var(--gold); color:#000; border:none; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer; }
@@ -66,12 +64,6 @@
     .pagination button.active { background:var(--gold); color:#000; border-color:var(--gold); }
     .pagination button:disabled { opacity:0.3; cursor:not-allowed; }
 
-    .chart-container { display:flex; align-items:flex-end; gap:6px; height:200px; padding-top:20px; }
-    .chart-bar { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
-    .chart-bar-inner { width:100%; background:var(--gold); border-radius:4px 4px 0 0; opacity:0.8; }
-    .chart-bar-label { font-size:10px; color:#666; margin-top:4px; }
-    .chart-bar-value { font-size:11px; color:#aaa; margin-bottom:4px; }
-
     @media (max-width:768px) {
       .sidebar { width:100%; position:relative; height:auto; }
       .main { margin-left:0; max-width:100%; padding:20px; }
@@ -116,6 +108,7 @@
   </aside>
 
   <main class="main">
+    <!-- OVERVIEW -->
     <div id="view-overview" class="view active">
       <h2>Dashboard Overview</h2>
       <div class="stats">
@@ -132,6 +125,7 @@
       </div>
     </div>
 
+    <!-- ORDERS -->
     <div id="view-orders" class="view">
       <h2>Orders</h2>
       <div class="filters">
@@ -155,6 +149,7 @@
       </div>
     </div>
 
+    <!-- USERS -->
     <div id="view-users" class="view">
       <h2>Users</h2>
       <div class="filters">
@@ -172,167 +167,53 @@
       </div>
     </div>
 
+    <!-- ANALYTICS -->
     <div id="view-analytics" class="view">
       <h2>Analytics</h2>
-      <div class="card"><h3>Revenue Last 30 Days</h3><div id="chart-revenue" class="chart-container"></div></div>
+      <div class="card"><h3>Revenue Last 30 Days</h3><div id="chart-revenue" style="display:flex;align-items:flex-end;gap:6px;height:200px;padding-top:20px;"></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-        <div class="card"><h3>Revenue by Tier</h3><div id="chart-tier" class="chart-container"></div></div>
-        <div class="card"><h3>User Growth</h3><div id="chart-growth" class="chart-container"></div></div>
+        <div class="card"><h3>Revenue by Tier</h3><div id="chart-tier" style="display:flex;align-items:flex-end;gap:6px;height:200px;padding-top:20px;"></div></div>
+        <div class="card"><h3>User Growth</h3><div id="chart-growth" style="display:flex;align-items:flex-end;gap:6px;height:200px;padding-top:20px;"></div></div>
       </div>
     </div>
   </main>
 </div>
 
 <script>
-// ==========================================
-// BACKEND CONFIG — UPDATE AFTER DEPLOYING
-// ==========================================
-const API_BASE = (window.API_BASE_URL || 'http://localhost:5000') + '/api';
-// For production, set: window.API_BASE_URL = 'https://your-backend.onrender.com';
-// before this script, or replace the line above.
+const API = (() => {
+  const base = window.location.origin + '/api';
+  let token = localStorage.getItem('adminToken');
+  const headers = () => ({ 'Content-Type':'application/json', 'x-admin-token':token });
+  const req = async (path, opts={}) => { const r=await fetch(base+path,{...opts,headers:{...headers(),...opts.headers}}); if(r.status===401){logout();throw new Error('Session expired');} return r.json(); };
+  return { login: async (e,p) => { const r=await fetch(base+'/auth/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p})}); const d=await r.json(); if(r.ok){token=d.token;localStorage.setItem('adminToken',token);} return d; }, get: (path) => req(path), post: (path,body) => req(path,{method:'POST',body:JSON.stringify(body)}) };
+})();
 
-let adminToken = localStorage.getItem('adminToken');
-let ordersPage = 1, usersPage = 1;
+let ordersPage=1, usersPage=1;
 
-async function apiCall(path, opts = {}) {
-  const res = await fetch(API_BASE + path, {
-    ...opts,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-admin-token': adminToken,
-      ...opts.headers
-    }
-  });
-  if (res.status === 401 || res.status === 403) { logout(); throw new Error('Session expired'); }
-  return res.json();
-}
+async function login(e){ e.preventDefault(); document.getElementById('error').textContent=''; try{ const d=await API.login(document.getElementById('email').value,document.getElementById('password').value); if(d.error){document.getElementById('error').textContent=d.error;return;} document.getElementById('login-screen').classList.add('hidden'); document.getElementById('dashboard').classList.remove('hidden'); document.getElementById('admin-name').textContent=d.admin.firstName||d.admin.email; loadOverview(); }catch(err){document.getElementById('error').textContent='Login failed';} }
 
-async function handleLogin(e) {
-  e.preventDefault();
-  document.getElementById('error').textContent = '';
-  try {
-    const res = await fetch(API_BASE + '/auth/admin/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value
-      })
-    });
-    const data = await res.json();
-    if (data.error) { document.getElementById('error').textContent = data.error; return; }
-    adminToken = data.token;
-    localStorage.setItem('adminToken', adminToken);
-    document.getElementById('login-screen').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-    document.getElementById('admin-name').textContent = data.admin.firstName || data.admin.email;
-    loadOverview();
-  } catch (err) { document.getElementById('error').textContent = 'Network error'; }
-}
+function logout(){ localStorage.removeItem('adminToken'); location.reload(); }
 
-function logout() {
-  adminToken = null;
-  localStorage.removeItem('adminToken');
-  location.reload();
-}
+function nav(view){ document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.view===view)); document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view)); if(view==='overview')loadOverview(); if(view==='orders')loadOrders(); if(view==='users')loadUsers(); if(view==='analytics')loadAnalytics(); }
 
-function switchView(view) {
-  document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('active', a.dataset.view === view));
-  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
-  if (view === 'overview') loadOverview();
-  if (view === 'orders') loadOrders();
-  if (view === 'users') loadUsers();
-  if (view === 'analytics') loadAnalytics();
-}
+async function loadOverview(){ const s=await API.get('/admin/stats'); document.getElementById('st-users').textContent=s.totalUsers; document.getElementById('st-orders').textContent=s.totalOrders; document.getElementById('st-revenue').textContent='$'+(s.totalRevenue/100).toFixed(2); document.getElementById('st-subs').textContent=s.activeSubscriptions; document.getElementById('st-free').textContent=s.freeUsers; document.getElementById('st-resumes').textContent=s.totalResumes; document.getElementById('st-users-w').textContent='+'+s.recentUsers+' this week'; document.getElementById('st-orders-w').textContent='+'+s.recentOrders+' this week'; document.getElementById('st-revenue-w').textContent='+ $'+(s.recentRevenue/100).toFixed(2)+' this week'; const o=await API.get('/admin/orders?limit=5'); document.getElementById('recent-orders').innerHTML=o.orders.map(x=>`<tr><td>#${x.id}</td><td>${x.email}</td><td>$${(x.amount/100).toFixed(2)}</td><td><span class="badge badge-${x.status}">${x.status}</span></td></tr>`).join('')||'<tr><td colspan="4" style="color:#888;text-align:center;">No orders</td></tr>'; const u=await API.get('/admin/users?limit=5'); document.getElementById('recent-users').innerHTML=u.users.map(x=>`<tr><td>#${x.id}</td><td>${x.email}</td><td><span class="badge badge-${x.subscription_tier}">${x.subscription_tier}</span></td></tr>`).join('')||'<tr><td colspan="3" style="color:#888;text-align:center;">No users</td></tr>'; }
 
-async function loadOverview() {
-  const s = await apiCall('/admin/stats');
-  document.getElementById('st-users').textContent = s.totalUsers;
-  document.getElementById('st-orders').textContent = s.totalOrders;
-  document.getElementById('st-revenue').textContent = '$' + (s.totalRevenue / 100).toFixed(2);
-  document.getElementById('st-subs').textContent = s.activeSubscriptions;
-  document.getElementById('st-free').textContent = s.freeUsers;
-  document.getElementById('st-resumes').textContent = s.totalResumes;
-  document.getElementById('st-users-w').textContent = '+' + s.recentUsers + ' this week';
-  document.getElementById('st-orders-w').textContent = '+' + s.recentOrders + ' this week';
-  document.getElementById('st-revenue-w').textContent = '+ $' + (s.recentRevenue / 100).toFixed(2) + ' this week';
+async function loadOrders(){ const st=document.getElementById('f-status').value; const tier=document.getElementById('f-tier').value; const d=await API.get(`/admin/orders?page=${ordersPage}&limit=10&status=${st}&tier=${tier}`); document.getElementById('orders-list').innerHTML=d.orders.map(x=>`<tr><td>#${x.id}</td><td>${x.email}<br><small style="color:#888">${x.first_name||''} ${x.last_name||''}</small></td><td><span class="badge badge-${x.tier}">${x.tier}</span></td><td>$${(x.amount/100).toFixed(2)}</td><td><span class="badge badge-${x.status}">${x.status}</span></td><td>${x.description||'-'}</td><td>${new Date(x.created_at).toLocaleDateString()}</td></tr>`).join('')||'<tr><td colspan="7" style="color:#888;text-align:center;">No orders</td></tr>'; renderPage('orders-page',ordersPage,d.totalPages,'orders'); }
 
-  const o = await apiCall('/admin/orders?limit=5');
-  document.getElementById('recent-orders').innerHTML = o.orders.map(x =>
-    `<tr><td>#${x.id}</td><td>${x.email}</td><td>$${(x.amount/100).toFixed(2)}</td><td><span class="badge badge-${x.status}">${x.status}</span></td></tr>`
-  ).join('') || '<tr><td colspan="4" style="color:#888;text-align:center;">No orders</td></tr>';
+async function loadUsers(){ const search=document.getElementById('f-search').value; const tier=document.getElementById('f-utier').value; const d=await API.get(`/admin/users?page=${usersPage}&limit=10&search=${search}&tier=${tier}`); document.getElementById('users-list').innerHTML=d.users.map(x=>`<tr><td>#${x.id}</td><td>${x.email}</td><td>${x.first_name||''} ${x.last_name||''}</td><td><span class="badge badge-${x.subscription_tier}">${x.subscription_tier}</span></td><td><span class="badge badge-${x.subscription_status}">${x.subscription_status}</span></td><td>${new Date(x.created_at).toLocaleDateString()}</td></tr>`).join('')||'<tr><td colspan="6" style="color:#888;text-align:center;">No users</td></tr>'; renderPage('users-page',usersPage,d.totalPages,'users'); }
 
-  const u = await apiCall('/admin/users?limit=5');
-  document.getElementById('recent-users').innerHTML = u.users.map(x =>
-    `<tr><td>#${x.id}</td><td>${x.email}</td><td><span class="badge badge-${x.subscription_tier}">${x.subscription_tier}</span></td></tr>`
-  ).join('') || '<tr><td colspan="3" style="color:#888;text-align:center;">No users</td></tr>';
-}
+async function loadAnalytics(){ const r=await API.get('/admin/analytics/revenue'); const u=await API.get('/admin/analytics/users'); document.getElementById('chart-revenue').innerHTML=renderBars(r.daily.slice(-14),'revenue','$'); document.getElementById('chart-tier').innerHTML=renderBars(r.byTier,'revenue','$'); document.getElementById('chart-growth').innerHTML=renderBars(u.daily.slice(-14),'count',''); }
 
-async function loadOrders() {
-  const st = document.getElementById('f-status').value;
-  const tier = document.getElementById('f-tier').value;
-  const d = await apiCall('/admin/orders?page=' + ordersPage + '&limit=10&status=' + st + '&tier=' + tier);
-  document.getElementById('orders-list').innerHTML = d.orders.map(x =>
-    `<tr><td>#${x.id}</td><td>${x.email}<br><small style="color:#888">${x.first_name||''} ${x.last_name||''}</small></td><td><span class="badge badge-${x.tier}">${x.tier}</span></td><td>$${(x.amount/100).toFixed(2)}</td><td><span class="badge badge-${x.status}">${x.status}</span></td><td>${x.description||'-'}</td><td>${new Date(x.created_at).toLocaleDateString()}</td></tr>`
-  ).join('') || '<tr><td colspan="7" style="color:#888;text-align:center;">No orders</td></tr>';
-  renderPage('orders-page', ordersPage, d.totalPages, 'orders');
-}
+function renderBars(data,key,prefix){ if(!data||!data.length)return'<div style="color:#888;text-align:center;padding:40px;">No data</div>'; const max=Math.max(...data.map(d=>d[key]||0),1); return data.map(item=>{ const v=item[key]||0; const h=Math.max((v/max)*100,8); const l=item.date?item.date.slice(5):item.tier; return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;"><div style="font-size:11px;color:#aaa;margin-bottom:4px;">${prefix}${v}</div><div style="width:100%;background:var(--gold);border-radius:4px 4px 0 0;opacity:0.8;height:${h}%;"></div><div style="font-size:10px;color:#666;margin-top:4px;">${l}</div></div>`; }).join(''); }
 
-async function loadUsers() {
-  const search = document.getElementById('f-search').value;
-  const tier = document.getElementById('f-utier').value;
-  const d = await apiCall('/admin/users?page=' + usersPage + '&limit=10&search=' + search + '&tier=' + tier);
-  document.getElementById('users-list').innerHTML = d.users.map(x =>
-    `<tr><td>#${x.id}</td><td>${x.email}</td><td>${x.first_name||''} ${x.last_name||''}</td><td><span class="badge badge-${x.subscription_tier}">${x.subscription_tier}</span></td><td><span class="badge badge-${x.subscription_status}">${x.subscription_status}</span></td><td>${new Date(x.created_at).toLocaleDateString()}</td></tr>`
-  ).join('') || '<tr><td colspan="6" style="color:#888;text-align:center;">No users</td></tr>';
-  renderPage('users-page', usersPage, d.totalPages, 'users');
-}
+function renderPage(id,cur,total,type){ const el=document.getElementById(id); if(total<=1){el.innerHTML='';return;} let h=''; h+=`<button ${cur===1?'disabled':''} onclick="goPage(${cur-1},'${type}')">Prev</button>`; for(let i=1;i<=total;i++)if(i===1||i===total||(i>=cur-1&&i<=cur+1))h+=`<button class="${i===cur?'active':''}" onclick="goPage(${i},'${type}')">${i}</button>`; else if(i===cur-2||i===cur+2)h+=`<span style="color:#888;padding:8px;">...</span>`; h+=`<button ${cur===total?'disabled':''} onclick="goPage(${cur+1},'${type}')">Next</button>`; el.innerHTML=h; }
 
-async function loadAnalytics() {
-  const r = await apiCall('/admin/analytics/revenue');
-  const u = await apiCall('/admin/analytics/users');
-  document.getElementById('chart-revenue').innerHTML = renderBars(r.daily.slice(-14), 'revenue', '$');
-  document.getElementById('chart-tier').innerHTML = renderBars(r.byTier, 'revenue', '$');
-  document.getElementById('chart-growth').innerHTML = renderBars(u.daily.slice(-14), 'count', '');
-}
+function goPage(p,type){ if(type==='orders'){ordersPage=p;loadOrders();}else{usersPage=p;loadUsers();} }
 
-function renderBars(data, key, prefix) {
-  if (!data || !data.length) return '<div style="color:#888;text-align:center;padding:40px;">No data</div>';
-  const max = Math.max(...data.map(d => d[key] || 0), 1);
-  return data.map(item => {
-    const v = item[key] || 0;
-    const h = Math.max((v / max) * 100, 8);
-    const l = item.date ? item.date.slice(5) : item.tier;
-    return `<div class="chart-bar"><div class="chart-bar-value">${prefix}${v}</div><div class="chart-bar-inner" style="height:${h}%"></div><div class="chart-bar-label">${l}</div></div>`;
-  }).join('');
-}
+document.getElementById('login-form').addEventListener('submit',login);
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();nav(a.dataset.view);}));
 
-function renderPage(id, cur, total, type) {
-  const el = document.getElementById(id);
-  if (total <= 1) { el.innerHTML = ''; return; }
-  let h = '';
-  h += `<button ${cur === 1 ? 'disabled' : ''} onclick="goPage(${cur - 1},'${type}')">Prev</button>`;
-  for (let i = 1; i <= total; i++) {
-    if (i === 1 || i === total || (i >= cur - 1 && i <= cur + 1)) h += `<button class="${i === cur ? 'active' : ''}" onclick="goPage(${i},'${type}')">${i}</button>`;
-    else if (i === cur - 2 || i === cur + 2) h += `<span style="color:#888;padding:8px;">...</span>`;
-  }
-  h += `<button ${cur === total ? 'disabled' : ''} onclick="goPage(${cur + 1},'${type}')">Next</button>`;
-  el.innerHTML = h;
-}
-
-function goPage(p, type) {
-  if (type === 'orders') { ordersPage = p; loadOrders(); }
-  else { usersPage = p; loadUsers(); }
-}
-
-document.getElementById('login-form').addEventListener('submit', handleLogin);
-document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); switchView(a.dataset.view); }));
-
-if (adminToken) {
-  document.getElementById('login-screen').classList.add('hidden');
-  document.getElementById('dashboard').classList.remove('hidden');
-  loadOverview();
-}
+if(localStorage.getItem('adminToken')){ document.getElementById('login-screen').classList.add('hidden'); document.getElementById('dashboard').classList.remove('hidden'); loadOverview(); }
 </script>
 </body>
 </html>

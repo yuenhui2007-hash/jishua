@@ -1,56 +1,23 @@
-/**
- * Global Error Handler Middleware
- */
+function errorHandler(err, req, res, next) {
+  console.error('Error:', err);
 
-const logger = require('../utils/logger');
-
-const errorHandler = (err, req, res, next) => {
-  let error = { ...err };
-  error.message = err.message;
-
-  // Log error
-  logger.error(err.message, {
-    stack: err.stack,
-    url: req.originalUrl,
-    method: req.method,
-    ip: req.ip,
-    user: req.user?.id,
-  });
-
-  // Mongoose / SQLite bad ObjectId
-  if (err.name === 'CastError') {
-    const message = 'Resource not found';
-    error = { message, statusCode: 404 };
+  if (err.type === 'StripeCardError') {
+    return res.status(400).json({ error: err.message });
   }
 
-  // Duplicate key
-  if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
-    const message = 'Duplicate field value entered';
-    error = { message, statusCode: 400 };
-  }
-
-  // Validation error
   if (err.name === 'ValidationError') {
-    const message = Object.values(err.errors).map(val => val.message);
-    error = { message, statusCode: 400 };
+    return res.status(400).json({ error: err.message });
   }
 
-  // JWT errors
-  if (err.name === 'JsonWebTokenError') {
-    const message = 'Invalid token';
-    error = { message, statusCode: 401 };
+  if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+    return res.status(409).json({ error: 'Resource already exists' });
   }
 
-  if (err.name === 'TokenExpiredError') {
-    const message = 'Token expired';
-    error = { message, statusCode: 401 };
-  }
-
-  res.status(error.statusCode || 500).json({
-    success: false,
-    message: error.message || 'Server Error',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
+  res.status(err.status || 500).json({
+    error: process.env.NODE_ENV === 'production' 
+      ? 'Internal server error' 
+      : err.message || 'Something went wrong'
   });
-};
+}
 
 module.exports = errorHandler;

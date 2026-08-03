@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jishua Admin</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+      <div class="login-box">
+        <h1>Jishua Admin</h1>
+        <form id="login-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="login-email" required placeholder="admin@jishua.ai">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" required placeholder="Enter password">
+          </div>
+          <button type="submit" class="btn-primary">Sign In</button>
+          <div id="login-error" class="error"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen">
+      <nav class="sidebar">
+        <div class="brand">Jishua Admin</div>
+        <ul class="nav-menu">
+          <li><a href="#" class="nav-link active" data-view="overview">Overview</a></li>
+          <li><a href="#" class="nav-link" data-view="orders">Orders</a></li>
+          <li><a href="#" class="nav-link" data-view="users">Users</a></li>
+          <li><a href="#" class="nav-link" data-view="analytics">Analytics</a></li>
+        </ul>
+        <div class="nav-footer">
+          <span id="admin-name">Admin</span>
+          <button id="logout-btn" class="btn-text">Logout</button>
+        </div>
+      </nav>
+
+      <main class="main-content">
+        <!-- Overview View -->
+        <div id="view-overview" class="view active">
+          <h2>Dashboard Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Users</div>
+              <div class="stat-value" id="stat-users">0</div>
+              <div class="stat-change" id="stat-users-change">+0 this week</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Total Orders</div>
+              <div class="stat-value" id="stat-orders">0</div>
+              <div class="stat-change" id="stat-orders-change">+0 this week</div>
+            </div>
+            <div class="stat-card revenue">
+              <div class="stat-label">Total Revenue</div>
+              <div class="stat-value" id="stat-revenue">$0</div>
+              <div class="stat-change" id="stat-revenue-change">+$0 this week</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Active Subs</div>
+              <div class="stat-value" id="stat-subs">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Free Users</div>
+              <div class="stat-value" id="stat-free">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Total Resumes</div>
+              <div class="stat-value" id="stat-resumes">0</div>
+            </div>
+          </div>
+
+          <div class="charts-row">
+            <div class="chart-card">
+              <h3>Recent Orders</h3>
+              <table class="data-table">
+                <thead>
+                  <tr><th>ID</th><th>User</th><th>Tier</th><th>Amount</th><th>Status</th><th>Date</th></tr>
+                </thead>
+                <tbody id="recent-orders"></tbody>
+              </table>
+            </div>
+            <div class="chart-card">
+              <h3>Recent Users</h3>
+              <table class="data-table">
+                <thead>
+                  <tr><th>ID</th><th>Email</th><th>Tier</th><th>Date</th></tr>
+                </thead>
+                <tbody id="recent-users"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders View -->
+        <div id="view-orders" class="view">
+          <div class="view-header">
+            <h2>Orders</h2>
+            <div class="filters">
+              <select id="order-status-filter">
+                <option value="">All Status</option>
+                <option value="succeeded">Succeeded</option>
+                <option value="pending">Pending</option>
+                <option value="failed">Failed</option>
+                <option value="refunded">Refunded</option>
+              </select>
+              <select id="order-tier-filter">
+                <option value="">All Tiers</option>
+                <option value="pro">Pro</option>
+                <option value="enterprise">Enterprise</option>
+                <option value="free">Free</option>
+              </select>
+            </div>
+          </div>
+          <table class="data-table full-width">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Tier</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="orders-table"></tbody>
+          </table>
+          <div class="pagination" id="orders-pagination"></div>
+        </div>
+
+        <!-- Users View -->
+        <div id="view-users" class="view">
+          <div class="view-header">
+            <h2>Users</h2>
+            <div class="filters">
+              <input type="text" id="user-search" placeholder="Search users...">
+              <select id="user-tier-filter">
+                <option value="">All Tiers</option>
+                <option value="free">Free</option>
+                <option value="pro">Pro</option>
+                <option value="enterprise">Enterprise</option>
+              </select>
+            </div>
+          </div>
+          <table class="data-table full-width">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Tier</th>
+                <th>Status</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="users-table"></tbody>
+          </table>
+          <div class="pagination" id="users-pagination"></div>
+        </div>
+
+        <!-- Analytics View -->
+        <div id="view-analytics" class="view">
+          <h2>Analytics</h2>
+          <div class="charts-row">
+            <div class="chart-card wide">
+              <h3>Revenue (Last 30 Days)</h3>
+              <div id="revenue-chart" class="chart-placeholder"></div>
+            </div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card">
+              <h3>Revenue by Tier</h3>
+              <div id="tier-chart" class="chart-placeholder"></div>
+            </div>
+            <div class="chart-card">
+              <h3>User Growth (Last 30 Days)</h3>
+              <div id="growth-chart" class="chart-placeholder"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

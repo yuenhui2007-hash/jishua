@@ -1,129 +1,159 @@
-# ResumeAI Pro - Backend API
+# Jishua Backend + Admin Panel
 
-Full-stack backend for ResumeAI Pro with authentication, AI integration, payments, and security.
+Complete backend API and admin dashboard for the Jishua AI Resume Builder.
 
-## 🏗️ Architecture
+## Features
 
-```
-backend/
-├── src/
-│   ├── server.js           # Express server entry
-│   ├── routes/
-│   │   ├── auth.js         # Auth (register, login, reset)
-│   │   ├── users.js        # User profile & stats
-│   │   ├── resumes.js      # Resume CRUD
-│   │   ├── templates.js    # Template management
-│   │   ├── ai.js           # AI generation endpoints
-│   │   └── payments.js     # Stripe payments
-│   ├── middleware/
-│   │   ├── auth.js         # JWT protection
-│   │   ├── rateLimiter.js  # Rate limiting
-│   │   ├── validator.js    # Input validation
-│   │   └── errorHandler.js # Global error handling
-│   ├── models/
-│   │   └── database.js     # SQLite DB + schema
-│   ├── services/
-│   │   ├── ai.js           # OpenAI/Anthropic integration
-│   │   └── email.js        # SMTP email service
-│   └── utils/
-│       └── logger.js       # Winston logging
-├── config/
-│   └── .env.example        # Environment template
-├── package.json
-└── README.md
-```
+- **REST API** — Auth, resumes, AI generation, Stripe payments
+- **Admin Dashboard** — View users, orders, revenue analytics
+- **JWT Authentication** — Separate tokens for users and admins
+- **SQLite Database** — Zero-config, production-ready
+- **Stripe Integration** — Subscriptions and webhooks
+- **AI Integration** — OpenAI + Anthropic with fallback
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
-cd backend
+# 1. Install dependencies
 npm install
 
-# Copy and configure environment
+# 2. Configure environment
 cp .env.example .env
 # Edit .env with your API keys
 
-# Start server
+# 3. Seed admin user
+npm run seed
+
+# 4. Start server
 npm run dev
 ```
 
-Server runs on `http://localhost:5000`
+Server runs at `http://localhost:5000`
 
-## 🔌 API Endpoints
+Admin Panel: `http://localhost:5000/admin`
+
+## Default Admin Login
+
+- **Email:** `admin@jishua.ai` (or your ADMIN_EMAIL)
+- **Password:** `admin123` (or your ADMIN_PASSWORD)
+
+Change the password in production by hashing a new one:
+
+```bash
+node -e "console.log(require('bcryptjs').hashSync('newpassword', 10))"
+```
+
+Then set `ADMIN_PASSWORD_HASH` in `.env`.
+
+## API Endpoints
 
 ### Auth
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/register` | Create account |
-| POST | `/api/auth/login` | Sign in |
-| GET | `/api/auth/me` | Get current user |
-| POST | `/api/auth/forgot-password` | Request reset |
-| POST | `/api/auth/reset-password` | Reset password |
-
-### Users
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/users/profile` | Get profile |
-| PUT | `/api/users/profile` | Update profile |
-| GET | `/api/users/stats` | Dashboard stats |
-| DELETE | `/api/users/account` | Delete account |
+| POST | `/api/auth/register` | User registration |
+| POST | `/api/auth/login` | User login |
+| GET | `/api/auth/me` | Current user |
+| POST | `/api/auth/admin/login` | Admin login |
 
 ### Resumes
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/resumes` | List resumes |
+| GET | `/api/resumes` | List user resumes |
 | POST | `/api/resumes` | Create resume |
 | GET | `/api/resumes/:id` | Get resume |
 | PUT | `/api/resumes/:id` | Update resume |
 | DELETE | `/api/resumes/:id` | Delete resume |
-| POST | `/api/resumes/:id/duplicate` | Duplicate |
-
-### AI
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/ai/generate` | AI content generation |
-| POST | `/api/ai/optimize-ats` | ATS optimization |
-| POST | `/api/ai/extract-keywords` | JD keyword extraction |
-| GET | `/api/ai/generations` | Generation history |
-
-### Templates
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/templates` | List templates |
-| GET | `/api/templates/:id` | Get template |
 
 ### Payments
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/payments/plans` | Available plans |
-| POST | `/api/payments/create-intent` | Create payment |
+| POST | `/api/payments/create-checkout-session` | Stripe checkout |
+| POST | `/api/payments/create-payment-intent` | One-time payment |
 | GET | `/api/payments/history` | Payment history |
-| POST | `/api/payments/cancel` | Cancel subscription |
+| POST | `/api/payments/webhook` | Stripe webhook |
 
-## 🔐 Security Features
+### AI
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/ai/generate` | Generate content |
+| POST | `/api/ai/optimize-ats` | ATS optimization |
 
-- **Helmet** - Secure HTTP headers
-- **CORS** - Cross-origin configuration
-- **Rate Limiting** - API & AI endpoint protection
-- **Input Validation** - express-validator
-- **Password Hashing** - bcrypt (12 rounds)
-- **JWT Auth** - Stateless authentication
-- **HPP Protection** - Parameter pollution prevention
-- **SQL Injection Prevention** - Parameterized queries
+### Admin
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/admin/stats` | Dashboard stats |
+| GET | `/api/admin/users` | List users |
+| GET | `/api/admin/users/:id` | User details |
+| GET | `/api/admin/orders` | List orders |
+| GET | `/api/admin/orders/:id` | Order details |
+| GET | `/api/admin/analytics/revenue` | Revenue data |
+| GET | `/api/admin/analytics/users` | User growth |
+| GET | `/api/admin/analytics/ai` | AI usage |
 
-## 🤖 AI Providers
+## Environment Variables
 
-Supports OpenAI and Anthropic with automatic fallback:
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `PORT` | No | Server port (default: 5000) |
+| `JWT_SECRET` | Yes | Secret for user tokens |
+| `ADMIN_JWT_SECRET` | Yes | Secret for admin tokens |
+| `OPENAI_API_KEY` | Yes* | OpenAI API key |
+| `ANTHROPIC_API_KEY` | No | Anthropic API key (fallback) |
+| `STRIPE_SECRET_KEY` | Yes* | Stripe secret key |
+| `STRIPE_WEBHOOK_SECRET` | Yes* | Stripe webhook secret |
+| `STRIPE_PRICE_ID_PRO` | Yes* | Stripe price ID for Pro tier |
+| `STRIPE_PRICE_ID_ENTERPRISE` | Yes* | Stripe price ID for Enterprise tier |
+| `ADMIN_EMAIL` | No | Default admin email |
+| `ADMIN_PASSWORD` | No | Default admin password (seed only) |
 
-```env
-AI_PROVIDER=openai
-OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...
+*Required for respective features to work.
+
+## Deployment
+
+### Using Render/Railway
+
+1. Push code to GitHub
+2. Connect repository to Render/Railway
+3. Set environment variables
+4. Add build command: `npm install && npm run seed`
+5. Start command: `npm start`
+
+### Stripe Webhook Setup
+
+For local development, use Stripe CLI:
+
+```bash
+stripe login
+stripe listen --forward-to localhost:5000/api/payments/webhook
 ```
 
-## 💳 Payments
+Copy the webhook signing secret to `STRIPE_WEBHOOK_SECRET`.
 
-Stripe integration for subscriptions:
-- Free, Basic ($9.99), Pro ($19.99), Enterprise ($49.99)
-- Webhook handling for payment events
-- Subscription lifecycle management
+### Frontend Integration
+
+Update your frontend API client to point to this backend:
+
+```javascript
+const API_BASE = 'http://localhost:5000/api';
+```
+
+## Database
+
+SQLite database stored at `./data/jishua.db`. To migrate to PostgreSQL:
+
+1. Install `pg` and update `database.js`
+2. Replace `better-sqlite3` queries with PostgreSQL syntax
+3. The schema remains identical
+
+## Security
+
+- Helmet headers
+- Rate limiting on auth endpoints
+- JWT with expiration
+- Admin session tracking
+- Input validation on all routes
+- Stripe webhook signature verification
+
+## License
+
+MIT

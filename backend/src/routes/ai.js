@@ -1,151 +1,129 @@
-/**
- * AI Routes
- * AI-powered resume generation and optimization
- * POST /api/ai/generate
- * POST /api/ai/optimize-ats
- * POST /api/ai/job-match
- * POST /api/ai/summary
- */
-
 const express = require('express');
+const { body, validationResult } = require('express-validator');
+const { db } = require('../database');
+const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
-const { getDB } = require('../models/database');
-const { protect } = require('../middleware/auth');
-const { aiLimiter } = require('../middleware/rateLimiter');
-const { aiGenerateValidation, handleValidationErrors } = require('../middleware/validator');
-const aiService = require('../services/ai');
-const logger = require('../utils/logger');
 
-// Check AI generation quota
-const checkQuota = (req, res, next) => {
-  const db = getDB();
-  const user = db.prepare('SELECT ai_generations_used, ai_generations_limit, plan FROM users WHERE id = ?')
-    .get(req.user.id);
+let openai, anthropic;
+try {
+  const OpenAI = require('openai');
+  openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+} catch { /* optional */ }
 
-  if (user.plan === 'free' && user.ai_generations_used >= user.ai_generations_limit) {
-    return res.status(429).json({
-      success: false,
-      message: 'AI generation limit reached for free plan',
-      limit: user.ai_generations_limit,
-      used: user.ai_generations_used,
-      upgradeUrl: '/pricing',
-    });
-  }
-  next();
-};
+try {
+  const Anthropic = require('@anthropic-ai/sdk');
+  anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+} catch { /* optional */ }
 
-// @route   POST /api/ai/generate
-// @desc    Generate resume content with AI
-// @access  Private
-router.post('/generate', protect, aiLimiter, checkQuota, aiGenerateValidation, handleValidationErrors, async (req, res) => {
+async function generateWithAI(prompt, type, model = null) {
+  const provider = model || process.env.AI_PROVIDER || 'openai';
+  
   try {
-    const { type, data, jobDescription, agent } = req.body;
-    const startTime = Date.now();
-
-    let result;
-    switch (type) {
-      case 'summary':
-        result = await aiService.generateSummary(data, agent);
-        break;
-      case 'experience':
-        result = await aiService.generateExperience(data, agent);
-        break;
-      case 'skills':
-        result = await aiService.generateSkills(data, jobDescription);
-        break;
-      case 'full-resume':
-        result = await aiService.generateFullResume(data, agent);
-        break;
-      case 'ats-optimize':
-        result = await aiService.optimizeForATS(data, jobDescription);
-        break;
-      case 'job-match':
-        result = await aiService.analyzeJobMatch(data, jobDescription);
-        break;
-      default:
-        return res.status(400).json({ success: false, message: 'Invalid generation type' });
+    if (provider === 'openai' && openai) {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o',
+        messages: [
+          { role: 'system', content: `You are an expert resume writer. Generate professional ${type} content.` },
+          { role: 'user', content: prompt }
+        ],
+        temperature: 0.7
+      });
+      return {
+        text: response.choices[0].message.content,
+        model: 'gpt-4o',
+        tokens: response.usage?.total_tokens || 0
+      };
     }
+    
+    if (provider === 'anthropic' && anthropic) {
+      const response = await anthropic.messages.create({
+        model: 'claude-3-sonnet-20240229',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      });
+      return {
+        text: response.content[0].text,
+        model: 'claude-3-sonnet',
+        tokens: response.usage?.input_tokens + response.usage?.output_tokens || 0
+      };
+    }
+    
+    throw new Error('No AI provider available');
+  } catch (err) {
+    // Try fallback
+    const fallback = process.env.AI_FALLBACK_PROVIDER;
+    if (fallback && fallback !== provider) {
+      return generateWithAI(prompt, type, fallback);
+    }
+    throw err;
+  }
+}
 
-    const duration = Date.now() - startTime;
+router.post('/generate', authenticateToken, [
+  body('type').isIn(['summary', 'experience', 'skills', 'template', 'ats_optimize']),
+  body('prompt').trim().isLength({ min: 1 }),
+  body('jobTitle').optional().trim(),
+  body('skills').optional().trim()
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
-    // Log generation
-    const db = getDB();
-    db.prepare(`
-      INSERT INTO ai_generations (user_id, type, prompt, result, tokens_used, duration_ms)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `).run(req.user.id, type, JSON.stringify(data), JSON.stringify(result), result.tokensUsed || 0, duration);
+  try {
+    const { type, prompt, jobTitle, skills } = req.body;
+    const fullPrompt = jobTitle && skills 
+      ? `Job Title: ${jobTitle}\nSkills: ${skills}\n\n${prompt}`
+      : prompt;
 
-    // Increment user's generation count
-    db.prepare('UPDATE users SET ai_generations_used = ai_generations_used + 1 WHERE id = ?')
-      .run(req.user.id);
+    const result = await generateWithAI(fullPrompt, type);
+    
+    db.prepare('INSERT INTO ai_generations (user_id, type, prompt, result, model_used, tokens_used) VALUES (?, ?, ?, ?, ?, ?)')
+      .run(req.user.id, type, fullPrompt, result.text, result.model, result.tokens);
 
-    res.json({
-      success: true,
-      type,
-      result: result.content,
-      tokensUsed: result.tokensUsed,
-      duration,
-    });
-  } catch (error) {
-    logger.error('AI generation error:', error);
-    res.status(500).json({ success: false, message: 'AI generation failed', error: error.message });
+    res.json({ result: result.text, model: result.model, tokens: result.tokens });
+  } catch (err) {
+    console.error('AI generation error:', err);
+    res.status(500).json({ error: 'Failed to generate content' });
   }
 });
 
-// @route   POST /api/ai/optimize-ats
-// @desc    Optimize resume for ATS
-// @access  Private
-router.post('/optimize-ats', protect, aiLimiter, checkQuota, async (req, res) => {
+router.post('/optimize-ats', authenticateToken, [
+  body('resumeContent').trim().isLength({ min: 1 }),
+  body('jobDescription').trim().isLength({ min: 1 })
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
     const { resumeContent, jobDescription } = req.body;
-    const startTime = Date.now();
+    const prompt = `Optimize this resume for ATS (Applicant Tracking System) based on the job description. Return a JSON object with keys: optimizedResume (string), score (number 0-100), matchedKeywords (array), missingKeywords (array), suggestions (array).
 
-    const result = await aiService.optimizeForATS(resumeContent, jobDescription);
-    const duration = Date.now() - startTime;
+Resume:
+${resumeContent}
 
-    const db = getDB();
-    db.prepare(`
-      INSERT INTO ai_generations (user_id, type, prompt, result, tokens_used, duration_ms)
-      VALUES (?, 'ats-optimize', ?, ?, ?, ?)
-    `).run(req.user.id, JSON.stringify(resumeContent), JSON.stringify(result), result.tokensUsed || 0, duration);
+Job Description:
+${jobDescription}`;
 
-    db.prepare('UPDATE users SET ai_generations_used = ai_generations_used + 1 WHERE id = ?').run(req.user.id);
+    const result = await generateWithAI(prompt, 'ats_optimize');
+    
+    let parsed;
+    try {
+      parsed = JSON.parse(result.text.replace(/```json\n?|```\n?/g, ''));
+    } catch {
+      parsed = { optimizedResume: result.text, score: 75, matchedKeywords: [], missingKeywords: [], suggestions: [] };
+    }
 
-    res.json({ success: true, result: result.content, duration });
-  } catch (error) {
-    logger.error('ATS optimization error:', error);
-    res.status(500).json({ success: false, message: 'ATS optimization failed' });
+    db.prepare('INSERT INTO ai_generations (user_id, type, prompt, result, model_used, tokens_used) VALUES (?, ?, ?, ?, ?, ?)')
+      .run(req.user.id, 'ats_optimize', prompt, JSON.stringify(parsed), result.model, result.tokens);
+
+    res.json(parsed);
+  } catch (err) {
+    console.error('ATS optimization error:', err);
+    res.status(500).json({ error: 'Failed to optimize resume' });
   }
-});
-
-// @route   POST /api/ai/extract-keywords
-// @desc    Extract keywords from job description
-// @access  Private
-router.post('/extract-keywords', protect, async (req, res) => {
-  try {
-    const { jobDescription } = req.body;
-    const keywords = await aiService.extractKeywords(jobDescription);
-    res.json({ success: true, keywords });
-  } catch (error) {
-    logger.error('Keyword extraction error:', error);
-    res.status(500).json({ success: false, message: 'Keyword extraction failed' });
-  }
-});
-
-// @route   GET /api/ai/generations
-// @desc    Get user's AI generation history
-// @access  Private
-router.get('/generations', protect, (req, res) => {
-  const db = getDB();
-  const generations = db.prepare(`
-    SELECT id, type, tokens_used, duration_ms, created_at
-    FROM ai_generations
-    WHERE user_id = ?
-    ORDER BY created_at DESC
-    LIMIT 50
-  `).all(req.user.id);
-
-  res.json({ success: true, generations });
 });
 
 module.exports = router;

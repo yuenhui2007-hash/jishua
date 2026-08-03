@@ -1,191 +1,153 @@
-/**
- * Authentication Routes
- * POST /api/auth/register
- * POST /api/auth/login
- * GET /api/auth/me
- * POST /api/auth/forgot-password
- * POST /api/auth/reset-password
- */
-
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const { body, validationResult } = require('express-validator');
+const { db } = require('../database');
+const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
 
-const { getDB } = require('../models/database');
-const { protect, generateToken } = require('../middleware/auth');
-const { authLimiter } = require('../middleware/rateLimiter');
-const { registerValidation, loginValidation, handleValidationErrors } = require('../middleware/validator');
-const logger = require('../utils/logger');
-const { sendEmail } = require('../services/email');
+function generateToken(userId) {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' });
+}
 
-// @route   POST /api/auth/register
-// @desc    Register a new user
-// @access  Public
-router.post('/register', authLimiter, registerValidation, handleValidationErrors, async (req, res) => {
+// Register
+router.post('/register', [
+  body('email').isEmail().normalizeEmail(),
+  body('password').isLength({ min: 8 }),
+  body('firstName').optional().trim(),
+  body('lastName').optional().trim()
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { email, password, firstName, lastName } = req.body;
+  const passwordHash = bcrypt.hashSync(password, 10);
+
   try {
-    const { email, password, firstName, lastName } = req.body;
-    const db = getDB();
+    const result = db.prepare(
+      'INSERT INTO users (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)'
+    ).run(email, passwordHash, firstName || null, lastName || null);
 
-    // Check if user exists
-    const existingUser = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
-    if (existingUser) {
-      return res.status(400).json({ success: false, message: 'User already exists with this email' });
-    }
-
-    // Hash password
-    const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_ROUNDS) || 12);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Generate verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
-
-    // Create user
-    const result = db.prepare(`
-      INSERT INTO users (email, password, first_name, last_name, verification_token)
-      VALUES (?, ?, ?, ?, ?)
-    `).run(email, hashedPassword, firstName || null, lastName || null, verificationToken);
-
-    const user = db.prepare('SELECT * FROM users WHERE id = ?').get(result.lastInsertRowid);
-    delete user.password;
-
-    // Send welcome email
-    try {
-      await sendEmail({
-        to: email,
-        subject: 'Welcome to ResumeAI Pro!',
-        html: `<h1>Welcome to ResumeAI Pro!</h1>
-               <p>Hi ${firstName || 'there'},</p>
-               <p>Your account has been created. Start building your AI-powered resume today!</p>
-               <a href="${process.env.FRONTEND_URL}/app.html">Get Started</a>`,
-      });
-    } catch (e) {
-      logger.warn('Failed to send welcome email:', e.message);
-    }
-
-    const token = generateToken(user.id);
-
+    const token = generateToken(result.lastInsertRowid);
     res.status(201).json({
-      success: true,
-      message: 'Account created successfully',
       token,
-      user,
+      user: {
+        id: result.lastInsertRowid,
+        email,
+        firstName,
+        lastName,
+        role: 'user',
+        subscriptionTier: 'free'
+      }
     });
-  } catch (error) {
-    logger.error('Register error:', error);
-    res.status(500).json({ success: false, message: 'Server error during registration' });
+  } catch (err) {
+    if (err.message.includes('UNIQUE constraint failed')) {
+      return res.status(409).json({ error: 'Email already registered' });
+    }
+    throw err;
   }
 });
 
-// @route   POST /api/auth/login
-// @desc    Login user
-// @access  Public
-router.post('/login', authLimiter, loginValidation, handleValidationErrors, async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const db = getDB();
-
-    // Find user
-    const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
-    if (!user) {
-      return res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
-
-    // Verify password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
-
-    delete user.password;
-    const token = generateToken(user.id);
-
-    res.json({
-      success: true,
-      message: 'Login successful',
-      token,
-      user,
-    });
-  } catch (error) {
-    logger.error('Login error:', error);
-    res.status(500).json({ success: false, message: 'Server error during login' });
+// Login
+router.post('/login', [
+  body('email').isEmail().normalizeEmail(),
+  body('password').exists()
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
-});
 
-// @route   GET /api/auth/me
-// @desc    Get current user
-// @access  Private
-router.get('/me', protect, (req, res) => {
+  const { email, password } = req.body;
+  const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+
+  if (!user || !bcrypt.compareSync(password, user.password_hash)) {
+    return res.status(401).json({ error: 'Invalid email or password' });
+  }
+
+  const token = generateToken(user.id);
   res.json({
-    success: true,
-    user: req.user,
+    token,
+    user: {
+      id: user.id,
+      email: user.email,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      role: user.role,
+      subscriptionTier: user.subscription_tier,
+      subscriptionStatus: user.subscription_status
+    }
   });
 });
 
-// @route   POST /api/auth/forgot-password
-// @desc    Send password reset email
-// @access  Public
-router.post('/forgot-password', authLimiter, async (req, res) => {
-  try {
-    const { email } = req.body;
-    const db = getDB();
-
-    const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
-    if (!user) {
-      // Don't reveal if user exists
-      return res.json({ success: true, message: 'If an account exists, a reset email has been sent' });
+// Get current user
+router.get('/me', authenticateToken, (req, res) => {
+  res.json({
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+      firstName: req.user.first_name,
+      lastName: req.user.last_name,
+      role: req.user.role,
+      subscriptionTier: req.user.subscription_tier,
+      subscriptionStatus: req.user.subscription_status
     }
-
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    const resetTokenExpires = new Date(Date.now() + 3600000); // 1 hour
-
-    db.prepare('UPDATE users SET reset_token = ?, reset_token_expires = ? WHERE id = ?')
-      .run(resetToken, resetTokenExpires.toISOString(), user.id);
-
-    const resetUrl = `${process.env.FRONTEND_URL}/reset-password.html?token=${resetToken}`;
-
-    await sendEmail({
-      to: email,
-      subject: 'Password Reset - ResumeAI Pro',
-      html: `<h1>Password Reset</h1>
-             <p>Click the link below to reset your password. This link expires in 1 hour.</p>
-             <a href="${resetUrl}">Reset Password</a>
-             <p>If you didn't request this, please ignore this email.</p>`,
-    });
-
-    res.json({ success: true, message: 'If an account exists, a reset email has been sent' });
-  } catch (error) {
-    logger.error('Forgot password error:', error);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
+  });
 });
 
-// @route   POST /api/auth/reset-password
-// @desc    Reset password with token
-// @access  Public
-router.post('/reset-password', authLimiter, async (req, res) => {
-  try {
-    const { token, password } = req.body;
-    const db = getDB();
-
-    const user = db.prepare('SELECT * FROM users WHERE reset_token = ? AND reset_token_expires > ?')
-      .get(token, new Date().toISOString());
-
-    if (!user) {
-      return res.status(400).json({ success: false, message: 'Invalid or expired reset token' });
-    }
-
-    const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_ROUNDS) || 12);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    db.prepare('UPDATE users SET password = ?, reset_token = NULL, reset_token_expires = NULL WHERE id = ?')
-      .run(hashedPassword, user.id);
-
-    res.json({ success: true, message: 'Password reset successfully' });
-  } catch (error) {
-    logger.error('Reset password error:', error);
-    res.status(500).json({ success: false, message: 'Server error' });
+// Admin Login
+router.post('/admin/login', [
+  body('email').isEmail().normalizeEmail(),
+  body('password').exists()
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
+
+  const { email, password } = req.body;
+  const user = db.prepare('SELECT * FROM users WHERE email = ? AND role = ?').get(email, 'admin');
+
+  if (!user) {
+    return res.status(401).json({ error: 'Invalid admin credentials' });
+  }
+
+  // Check if using env hash or bcrypt hash
+  let validPassword = false;
+  if (process.env.ADMIN_PASSWORD_HASH && process.env.ADMIN_PASSWORD_HASH.startsWith('$2')) {
+    validPassword = bcrypt.compareSync(password, user.password_hash) || bcrypt.compareSync(password, process.env.ADMIN_PASSWORD_HASH);
+  } else {
+    validPassword = bcrypt.compareSync(password, user.password_hash);
+  }
+
+  if (!validPassword) {
+    return res.status(401).json({ error: 'Invalid admin credentials' });
+  }
+
+  const token = jwt.sign(
+    { userId: user.id, type: 'admin' },
+    process.env.ADMIN_JWT_SECRET || process.env.JWT_SECRET,
+    { expiresIn: '24h' }
+  );
+
+  // Store session
+  const expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + 24);
+  
+  db.prepare('INSERT INTO admin_sessions (admin_id, token, ip_address, user_agent, expires_at) VALUES (?, ?, ?, ?, ?)')
+    .run(user.id, token, req.ip, req.headers['user-agent'], expiresAt.toISOString());
+
+  res.json({
+    token,
+    admin: {
+      id: user.id,
+      email: user.email,
+      firstName: user.first_name,
+      lastName: user.last_name
+    }
+  });
 });
 
 module.exports = router;

@@ -1,128 +1,77 @@
-/**
- * Payment Routes
- * Stripe integration for subscriptions
- * GET /api/payments/plans
- * POST /api/payments/create-intent
- * POST /api/payments/webhook
- * GET /api/payments/history
- */
-
 const express = require('express');
-const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { getDB } = require('../models/database');
-const { protect } = require('../middleware/auth');
-const logger = require('../utils/logger');
+const { db } = require('../database');
+const { authenticateToken } = require('../middleware/auth');
+const router = express.Router();
 
-const PLANS = {
-  free: { name: 'Free', price: 0, resumes: 3, aiGenerations: 5 },
-  basic: { name: 'Basic', price: 9.99, resumes: 10, aiGenerations: 25, stripePriceId: process.env.STRIPE_PRICE_BASIC },
-  pro: { name: 'Pro', price: 19.99, resumes: 50, aiGenerations: 100, stripePriceId: process.env.STRIPE_PRICE_PRO },
-  enterprise: { name: 'Enterprise', price: 49.99, resumes: 999, aiGenerations: 500, stripePriceId: process.env.STRIPE_PRICE_ENTERPRISE },
-};
-
-// @route   GET /api/payments/plans
-// @desc    Get available plans
-// @access  Public
-router.get('/plans', (req, res) => {
-  res.json({
-    success: true,
-    plans: PLANS,
-  });
-});
-
-// @route   POST /api/payments/create-intent
-// @desc    Create Stripe payment intent
-// @access  Private
-router.post('/create-intent', protect, async (req, res) => {
+// Create subscription checkout
+router.post('/create-checkout-session', authenticateToken, async (req, res) => {
   try {
-    const { plan } = req.body;
-    const planConfig = PLANS[plan];
+    const { tier } = req.body; // 'pro' or 'enterprise'
+    const priceId = tier === 'enterprise' 
+      ? process.env.STRIPE_PRICE_ID_ENTERPRISE 
+      : process.env.STRIPE_PRICE_ID_PRO;
 
-    if (!planConfig || plan === 'free') {
-      return res.status(400).json({ success: false, message: 'Invalid plan' });
+    if (!priceId) {
+      return res.status(400).json({ error: 'Invalid subscription tier' });
     }
 
-    // Create payment intent
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(planConfig.price * 100), // Convert to cents
-      currency: 'usd',
-      metadata: {
-        userId: req.user.id,
-        plan,
+    let customerId = req.user.stripe_customer_id;
+    
+    if (!customerId) {
+      const customer = await stripe.customers.create({
         email: req.user.email,
-      },
-    });
-
-    res.json({
-      success: true,
-      clientSecret: paymentIntent.client_secret,
-      amount: paymentIntent.amount,
-      currency: paymentIntent.currency,
-    });
-  } catch (error) {
-    logger.error('Create payment intent error:', error);
-    res.status(500).json({ success: false, message: 'Payment processing failed' });
-  }
-});
-
-// @route   POST /api/payments/create-subscription
-// @desc    Create Stripe subscription
-// @access  Private
-router.post('/create-subscription', protect, async (req, res) => {
-  try {
-    const { plan, paymentMethodId } = req.body;
-    const planConfig = PLANS[plan];
-
-    if (!planConfig || !planConfig.stripePriceId) {
-      return res.status(400).json({ success: false, message: 'Invalid plan' });
-    }
-
-    // Create or get Stripe customer
-    let customer;
-    const existingPayment = db.prepare('SELECT * FROM payments WHERE user_id = ? ORDER BY created_at DESC LIMIT 1')
-      .get(req.user.id);
-
-    if (existingPayment?.stripe_subscription_id) {
-      customer = { id: existingPayment.stripe_subscription_id.split('_')[0] };
-    } else {
-      customer = await stripe.customers.create({
-        email: req.user.email,
-        metadata: { userId: req.user.id },
-        payment_method: paymentMethodId,
-        invoice_settings: { default_payment_method: paymentMethodId },
+        metadata: { userId: req.user.id }
       });
+      customerId = customer.id;
+      db.prepare('UPDATE users SET stripe_customer_id = ? WHERE id = ?').run(customerId, req.user.id);
     }
 
-    // Create subscription
-    const subscription = await stripe.subscriptions.create({
-      customer: customer.id,
-      items: [{ price: planConfig.stripePriceId }],
-      payment_behavior: 'default_incomplete',
-      expand: ['latest_invoice.payment_intent'],
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      payment_method_types: ['card'],
+      line_items: [{ price: priceId, quantity: 1 }],
+      mode: 'subscription',
+      success_url: `${process.env.FRONTEND_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/pricing`,
+      metadata: { userId: req.user.id, tier }
     });
 
-    // Store subscription reference
-    const db = getDB();
-    db.prepare(`
-      INSERT INTO payments (user_id, stripe_subscription_id, amount, currency, status, plan)
-      VALUES (?, ?, ?, 'usd', 'pending', ?)
-    `).run(req.user.id, subscription.id, planConfig.price * 100, plan);
-
-    res.json({
-      success: true,
-      subscriptionId: subscription.id,
-      clientSecret: subscription.latest_invoice.payment_intent.client_secret,
-    });
-  } catch (error) {
-    logger.error('Create subscription error:', error);
-    res.status(500).json({ success: false, message: 'Subscription creation failed' });
+    res.json({ sessionId: session.id, url: session.url });
+  } catch (err) {
+    console.error('Stripe checkout error:', err);
+    res.status(500).json({ error: 'Failed to create checkout session' });
   }
 });
 
-// @route   POST /api/payments/webhook
-// @desc    Stripe webhook handler
-// @access  Public (Stripe sends this)
+// Create payment intent (for one-time purchases)
+router.post('/create-payment-intent', authenticateToken, async (req, res) => {
+  try {
+    const { amount, description } = req.body;
+    
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount * 100, // convert to cents
+      currency: 'usd',
+      description,
+      metadata: { userId: req.user.id }
+    });
+
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (err) {
+    console.error('Stripe payment intent error:', err);
+    res.status(500).json({ error: 'Failed to create payment intent' });
+  }
+});
+
+// Get user payment history
+router.get('/history', authenticateToken, (req, res) => {
+  const payments = db.prepare(
+    'SELECT * FROM payments WHERE user_id = ? ORDER BY created_at DESC'
+  ).all(req.user.id);
+  res.json({ payments });
+});
+
+// Stripe webhook
 router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   let event;
@@ -130,83 +79,62 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
   try {
     event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
   } catch (err) {
-    logger.error('Stripe webhook error:', err.message);
+    console.error('Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  const db = getDB();
-
   switch (event.type) {
-    case 'payment_intent.succeeded': {
-      const paymentIntent = event.data.object;
-      const userId = paymentIntent.metadata.userId;
-      const plan = paymentIntent.metadata.plan;
-
-      if (userId && plan) {
-        db.prepare('UPDATE users SET plan = ?, plan_expires_at = date("now", "+30 days") WHERE id = ?')
-          .run(plan, userId);
-
-        db.prepare(`
-          UPDATE payments SET status = 'succeeded' WHERE stripe_payment_intent_id = ?
-        `).run(paymentIntent.id);
-
-        logger.info(`Payment succeeded for user ${userId}, plan: ${plan}`);
+    case 'checkout.session.completed': {
+      const session = event.data.object;
+      const userId = session.metadata?.userId;
+      const tier = session.metadata?.tier;
+      
+      if (userId && tier) {
+        db.prepare('UPDATE users SET subscription_tier = ?, subscription_status = ? WHERE id = ?')
+          .run(tier, 'active', userId);
+        
+        db.prepare('INSERT INTO payments (user_id, stripe_payment_intent_id, amount, currency, status, tier, description) VALUES (?, ?, ?, ?, ?, ?, ?)')
+          .run(userId, session.payment_intent, session.amount_total, session.currency, 'succeeded', tier, `Subscription: ${tier}`);
       }
       break;
     }
-
-    case 'invoice.payment_failed': {
-      const subscription = event.data.object;
-      logger.warn(`Payment failed for subscription: ${subscription.id}`);
+    
+    case 'invoice.payment_succeeded': {
+      const invoice = event.data.object;
+      const customerId = invoice.customer;
+      const user = db.prepare('SELECT id FROM users WHERE stripe_customer_id = ?').get(customerId);
+      
+      if (user) {
+        db.prepare('UPDATE users SET subscription_status = ? WHERE id = ?').run('active', user.id);
+      }
       break;
     }
-
+    
+    case 'invoice.payment_failed': {
+      const invoice = event.data.object;
+      const customerId = invoice.customer;
+      const user = db.prepare('SELECT id FROM users WHERE stripe_customer_id = ?').get(customerId);
+      
+      if (user) {
+        db.prepare('UPDATE users SET subscription_status = ? WHERE id = ?').run('past_due', user.id);
+      }
+      break;
+    }
+    
     case 'customer.subscription.deleted': {
       const subscription = event.data.object;
-      db.prepare('UPDATE users SET plan = "free" WHERE id = (SELECT user_id FROM payments WHERE stripe_subscription_id = ?)')
-        .run(subscription.id);
-      logger.info(`Subscription cancelled: ${subscription.id}`);
+      const customerId = subscription.customer;
+      const user = db.prepare('SELECT id FROM users WHERE stripe_customer_id = ?').get(customerId);
+      
+      if (user) {
+        db.prepare('UPDATE users SET subscription_status = ?, subscription_tier = ? WHERE id = ?')
+          .run('cancelled', 'free', user.id);
+      }
       break;
     }
   }
 
   res.json({ received: true });
-});
-
-// @route   GET /api/payments/history
-// @desc    Get user's payment history
-// @access  Private
-router.get('/history', protect, (req, res) => {
-  const db = getDB();
-  const payments = db.prepare(`
-    SELECT id, amount, currency, status, plan, created_at
-    FROM payments WHERE user_id = ?
-    ORDER BY created_at DESC
-  `).all(req.user.id);
-
-  res.json({ success: true, payments });
-});
-
-// @route   POST /api/payments/cancel
-// @desc    Cancel subscription
-// @access  Private
-router.post('/cancel', protect, async (req, res) => {
-  try {
-    const db = getDB();
-    const payment = db.prepare('SELECT * FROM payments WHERE user_id = ? AND status = "succeeded" ORDER BY created_at DESC LIMIT 1')
-      .get(req.user.id);
-
-    if (payment?.stripe_subscription_id) {
-      await stripe.subscriptions.cancel(payment.stripe_subscription_id);
-    }
-
-    db.prepare('UPDATE users SET plan = "free", plan_expires_at = NULL WHERE id = ?').run(req.user.id);
-
-    res.json({ success: true, message: 'Subscription cancelled' });
-  } catch (error) {
-    logger.error('Cancel subscription error:', error);
-    res.status(500).json({ success: false, message: 'Failed to cancel subscription' });
-  }
 });
 
 module.exports = router;

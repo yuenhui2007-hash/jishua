@@ -1,68 +1,43 @@
-/**
- * Authentication & Authorization Middleware
- */
-
 const jwt = require('jsonwebtoken');
-const { getDB } = require('../models/database');
-const logger = require('../utils/logger');
+const { db } = require('../database');
 
-// Protect routes - verify JWT
-exports.protect = async (req, res, next) => {
-  let token;
-
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    token = req.headers.authorization.split(' ')[1];
-  }
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ success: false, message: 'Not authorized, no token' });
+    return res.status(401).json({ error: 'Access token required' });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const db = getDB();
-    const user = db.prepare('SELECT * FROM users WHERE id = ?').get(decoded.id);
-
+    const user = db.prepare('SELECT id, email, first_name, last_name, role, subscription_tier, subscription_status FROM users WHERE id = ?').get(decoded.userId);
+    
     if (!user) {
-      return res.status(401).json({ success: false, message: 'User not found' });
+      return res.status(401).json({ error: 'User not found' });
     }
 
-    // Remove password from user object
-    delete user.password;
     req.user = user;
     next();
-  } catch (error) {
-    logger.error('Auth middleware error:', error.message);
-    return res.status(401).json({ success: false, message: 'Not authorized, token failed' });
+  } catch (err) {
+    return res.status(403).json({ error: 'Invalid or expired token' });
   }
-};
+}
 
-// Admin only
-exports.adminOnly = (req, res, next) => {
-  if (req.user && req.user.role === 'admin') {
-    next();
-  } else {
-    return res.status(403).json({ success: false, message: 'Not authorized as admin' });
+function optionalAuth(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = db.prepare('SELECT id, email, role, subscription_tier, subscription_status FROM users WHERE id = ?').get(decoded.userId);
+      if (user) req.user = user;
+    } catch {
+      // silently fail for optional auth
+    }
   }
-};
+  next();
+}
 
-// Premium only
-exports.premiumOnly = (req, res, next) => {
-  const allowedPlans = ['pro', 'enterprise'];
-  if (req.user && (allowedPlans.includes(req.user.plan) || req.user.role === 'admin')) {
-    next();
-  } else {
-    return res.status(403).json({
-      success: false,
-      message: 'Premium feature. Please upgrade your plan.',
-      upgradeUrl: '/pricing',
-    });
-  }
-};
-
-// Generate JWT
-exports.generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE || '7d',
-  });
-};
+module.exports = { authenticateToken, optionalAuth };

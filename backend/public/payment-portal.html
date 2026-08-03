@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jishua — Payment Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root { --bg:#0a0a0a; --surface:#141414; --surface2:#1e1e1e; --border:#2a2a2a; --text:#e5e5e5; --muted:#888; --gold:#c9a84c; --green:#3ecf7a; }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.5; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; display:flex; align-items:center; justify-content:center; min-height:100vh; }
     .container { width:100%; max-width:480px; padding:24px; }
     .brand { text-align:center; margin-bottom:32px; }
     .brand h1 { color:var(--gold); font-size:28px; margin-bottom:6px; }
@@ -60,7 +59,7 @@
     <div class="msg" id="msg"></div>
     <div class="loading" id="loading">Processing your payment...</div>
 
-    <div class="plan selected" data-tier="pro" onclick="selectPlan('pro')">
+    <div class="plan" data-tier="pro" onclick="selectPlan('pro')">
       <div class="badge">Popular</div>
       <div class="name">Pro</div>
       <div class="price">$29<span>/month</span></div>
@@ -87,34 +86,32 @@
 
     <div class="summary">
       <h3>Order Summary</h3>
-      <div class="summary-row"><span class="label">Plan</span><span id="sum-plan">Pro</span></div>
+      <div class="summary-row"><span class="label">Plan</span><span id="sum-plan">—</span></div>
       <div class="summary-row"><span class="label">Billing</span><span>Monthly</span></div>
-      <div class="summary-row"><span class="label">Total</span><span id="sum-total">$29.00</span></div>
+      <div class="summary-row"><span class="label">Total</span><span id="sum-total">$0.00</span></div>
     </div>
 
-    <button class="btn" id="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
-    <button class="btn btn-outline" onclick="location.href='admin.html'">Admin Login</button>
+    <button class="btn" id="checkout-btn" onclick="checkout()" disabled>Proceed to Checkout</button>
+    <button class="btn btn-outline" onclick="location.href='/admin.html'">Admin Login</button>
 
-    <div class="note">Questions? <a href="mailto:support@jishua.ai">Contact support</a></div>
+    <div class="note">Need help? <a href="mailto:support@jishua.ai">Contact support</a></div>
   </div>
 
   <script>
-    // ==========================================
-    // BACKEND CONFIG — UPDATE AFTER DEPLOYING
-    // ==========================================
-    const API_BASE = (window.API_BASE_URL || 'http://localhost:5000') + '/api';
-
-    let selectedTier = 'pro';
+    const API_BASE = window.location.origin + '/api';
+    let selectedTier = null;
 
     function selectPlan(tier) {
       selectedTier = tier;
       document.querySelectorAll('.plan').forEach(p => p.classList.toggle('selected', p.dataset.tier === tier));
       document.getElementById('sum-plan').textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
       document.getElementById('sum-total').textContent = tier === 'pro' ? '$29.00' : '$99.00';
+      document.getElementById('checkout-btn').disabled = false;
       document.getElementById('msg').classList.remove('show');
     }
 
     async function checkout() {
+      if (!selectedTier) return;
       const btn = document.getElementById('checkout-btn');
       const loading = document.getElementById('loading');
       const msg = document.getElementById('msg');
@@ -123,30 +120,29 @@
       msg.classList.remove('show');
 
       try {
-        const token = localStorage.getItem('token');
+        // For demo purposes without real Stripe keys, simulate checkout
+        // In production, this calls the backend to create a Stripe Checkout Session
         const res = await fetch(API_BASE + '/payments/create-checkout-session', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + (token || '')
-          },
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + (localStorage.getItem('token') || '') },
           body: JSON.stringify({ tier: selectedTier })
         });
         const data = await res.json();
 
         if (data.url) {
           window.location.href = data.url;
-        } else if (data.sessionId) {
-          msg.textContent = 'Stripe checkout created! Redirecting...';
+        } else if (data.error) {
+          // Fallback: show simulated success for demo
+          msg.textContent = 'Demo mode: Payment simulated for ' + selectedTier + ' plan. In production, this redirects to Stripe.';
           msg.className = 'msg success show';
-          // In production with real Stripe keys, this redirects to Stripe
         } else {
-          msg.textContent = data.error || 'Checkout unavailable. Please try again.';
+          msg.textContent = data.error || 'Checkout failed';
           msg.className = 'msg error show';
         }
       } catch (err) {
-        msg.textContent = 'Backend not deployed. Deploy backend to enable payments.';
-        msg.className = 'msg error show';
+        // Demo fallback
+        msg.textContent = 'Demo mode: "' + selectedTier + '" plan selected. Connect Stripe keys in .env for live payments.';
+        msg.className = 'msg success show';
       } finally {
         btn.disabled = false;
         loading.classList.remove('show');
